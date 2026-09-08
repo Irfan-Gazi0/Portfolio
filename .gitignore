@@ -1,0 +1,37 @@
+# Everything the site serves is committed; this is the short list of things
+# that live here to make the committed files, and must not be published.
+
+# Raw image sources. Only the downscaled .webp is committed — see
+# "Adding an image" in README.md.
+images/*.jpg
+images/*.jpeg
+images/*.png
+images/*.tif
+images/*.tiff
+images/*.gif
+
+# Source material for the site's write-ups: internal project documents and the
+# raw screen recordings they came with. images/inspection-gpt*.webp and
+# images/ev-vr-portal*.webp are the committed results; nothing in here is
+# published.
+Project 1/
+Project 2/
+
+# The untrimmed model download. tools/trim-glb.py reads it once, by hand, and
+# xr/assets/worker.glb is the committed result. Keeping this out of the tree
+# also keeps xr/Assets/ from colliding with xr/assets/ on a case-insensitive
+# filesystem.
+xr/Assets/
+
+# rendercv writes here; data/CV_Irfan_Gazi.pdf is the copy that ships.
+rendercv_output/
+
+# Throwaway virtualenvs from the README's one-off commands.
+.venv/
+venv/
+__pycache__/
+
+.DS_Store
+
+# Claude Code session lock, not project content.
+.claude/scheduled_tasks.lock

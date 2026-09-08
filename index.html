@@ -1,621 +1,1458 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Irfan Gazi - Portfolio</title>
-    <link rel="stylesheet" href="styles.css" />
-    <style>
-      /* Base Styles */
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Irfan Gazi Portfolio</title>
+<meta name="description" content="Irfan Gazi — M.S. Construction Engineering and Graduate Research Assistant at the University of Nebraska-Lincoln. I build generative AI, LLM agent and mixed-reality systems for construction site inspection, safety and BIM." />
+<meta name="keywords" content="Irfan Gazi, construction engineering and management, generative AI, large language models, LLM agents, retrieval-augmented generation, RAG, machine learning, computer vision, mixed reality, virtual reality, XR, digital twin, BIM, Autodesk Revit, Navisworks, Unity, Python, construction safety, construction site inspection, University of Nebraska-Lincoln, graduate research assistant" />
+<meta name="author" content="Irfan Gazi" />
+<link rel="canonical" href="https://irfan-gazi0.github.io/Portfolio/" />
 
-      /* html {
+<meta property="og:type" content="profile" />
+<meta property="og:title" content="Irfan Gazi — AI &amp; Mixed Reality for Construction" />
+<meta property="og:description" content="M.S. Construction Engineering and Graduate Research Assistant at the University of Nebraska-Lincoln. Generative AI, LLM agents, mixed reality and BIM for the job site." />
+<meta property="og:url" content="https://irfan-gazi0.github.io/Portfolio/" />
+<meta property="og:image" content="https://irfan-gazi0.github.io/Portfolio/images/profile.webp" />
+<meta property="og:image:width" content="600" />
+<meta property="og:image:height" content="724" />
+<meta property="og:image:alt" content="Portrait of Irfan Gazi" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Irfan Gazi — AI &amp; Mixed Reality for Construction" />
+<meta name="twitter:description" content="M.S. Construction Engineering and Graduate Research Assistant at the University of Nebraska-Lincoln. Generative AI, LLM agents, mixed reality and BIM for the job site." />
+<meta name="twitter:image" content="https://irfan-gazi0.github.io/Portfolio/images/profile.webp" />
+<meta name="theme-color" content="#fdfcfa" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#0d1213" media="(prefers-color-scheme: dark)" />
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E6E6E'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='36' font-weight='700' fill='%23fff' text-anchor='middle'%3EIG%3C/text%3E%3C/svg%3E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+<script>
+  /* Set the theme before first paint so there is no flash of the wrong palette. */
+  (function () {
+    try {
+      var s = localStorage.getItem('theme');
+      document.documentElement.setAttribute('data-theme', (s === 'dark' || s === 'light') ? s : 'dark');
+    } catch (e) {}
+  })();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Irfan Gazi",
+  "url": "https://irfan-gazi0.github.io/Portfolio/",
+  "image": "https://irfan-gazi0.github.io/Portfolio/images/profile.webp",
+  "jobTitle": "Graduate Research Assistant",
+  "description": "M.S. student and Graduate Research Assistant in Construction Engineering and Management, working on generative AI, LLM agents and mixed reality for construction site inspection.",
+  "email": "mailto:igazi2@huskers.unl.edu",
+  "identifier": "https://orcid.org/0009-0004-5817-8845",
+  "knowsLanguage": ["en", "bn", "hi", "ur"],
+  "knowsAbout": [
+    "Construction Engineering and Management",
+    "Generative AI",
+    "Large Language Models",
+    "LLM agent orchestration",
+    "Retrieval-Augmented Generation",
+    "Machine Learning",
+    "Computer Vision",
+    "Mixed Reality",
+    "Virtual Reality",
+    "Digital Twin",
+    "Building Information Modeling",
+    "Autodesk Revit",
+    "Autodesk Navisworks",
+    "Unity",
+    "Python",
+    "Construction Safety",
+    "Monte Carlo simulation",
+    "Embodied Carbon"
+  ],
+  "affiliation": {
+    "@type": "CollegeOrUniversity",
+    "name": "University of Nebraska-Lincoln",
+    "department": "Durham School of Architectural Engineering and Construction"
+  },
+  "worksFor": {
+    "@type": "ResearchOrganization",
+    "name": "Autonomous Vehicles and Robotics Laboratory",
+    "url": "https://avrlab.unl.edu/",
+    "parentOrganization": {
+      "@type": "CollegeOrUniversity",
+      "name": "University of Nebraska-Lincoln"
+    }
+  },
+  "alumniOf": [
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "University of Nebraska-Lincoln"
+    },
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "Khulna University of Engineering and Technology"
+    }
+  ],
+  "sameAs": [
+    "https://orcid.org/0009-0004-5817-8845",
+    "https://scholar.google.com/citations?user=Nkbeio8AAAAJ&hl=en",
+    "https://github.com/Irfan-Gazi0",
+    "https://www.linkedin.com/in/irfan-gazi",
+    "https://www.researchgate.net/profile/Irfan-Gazi",
+    "https://avrlab.unl.edu/person/irfan-gazi/"
+  ]
+}
+</script>
+
+<style>
+/* ---------- tokens: light is the base palette ---------- */
+:root {
+  /* Tells the browser which way its own furniture — scrollbars, form
+     controls, the canvas behind the page — should be painted. */
+  color-scheme: light;
+
+  --accent:        #0E6E6E;
+  --accent-deep:   #0A5252;
+  --accent-warm:   #B36A15;
+  --accent-soft:   rgba(14, 110, 110, 0.10);
+  --accent-softer: rgba(14, 110, 110, 0.05);
+
+  --ink:      #1b2226;
+  --ink-soft: #45535a;
+  --ink-mute: #78868e;
+
+  --paper:   #fffefc;
+  --surface: #f4f8f8;
+  --rule:       rgba(14, 110, 110, 0.18);
+  --rule-faint: rgba(14, 110, 110, 0.09);
+
+  --nav-bg: rgba(255, 254, 252, 0.86);
+  --shadow: 0 1px 2px rgba(27, 34, 38, 0.05), 0 6px 20px rgba(27, 34, 38, 0.05);
+
+  --page-bg:
+    radial-gradient(ellipse 1000px 400px at 50% -90px, rgba(14, 110, 110, 0.055), transparent 70%),
+    radial-gradient(ellipse 820px 300px at 90% 16%, rgba(179, 106, 21, 0.030), transparent 72%),
+    linear-gradient(180deg, #fbfdfc 0%, #fffefc 620px);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --accent:        #45B5AF;
+    --accent-deep:   #6FCFC9;
+    --accent-warm:   #DDA05A;
+    --accent-soft:   rgba(69, 181, 175, 0.14);
+    --accent-softer: rgba(69, 181, 175, 0.07);
+
+    --ink:      #e4ecec;
+    --ink-soft: #aebcbc;
+    --ink-mute: #7e8f8f;
+
+    --paper:   #101617;
+    --surface: #182122;
+    --rule:       rgba(69, 181, 175, 0.24);
+    --rule-faint: rgba(69, 181, 175, 0.11);
+
+    --nav-bg: rgba(16, 22, 23, 0.86);
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 6px 20px rgba(0, 0, 0, 0.3);
+
+    --page-bg:
+      radial-gradient(ellipse 1000px 400px at 50% -90px, rgba(69, 181, 175, 0.075), transparent 70%),
+      radial-gradient(ellipse 820px 300px at 90% 16%, rgba(221, 160, 90, 0.040), transparent 72%),
+      linear-gradient(180deg, #0d1213 0%, #101617 620px);
+  }
+}
+
+/* Explicit choice wins in both directions. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --accent:        #45B5AF;
+  --accent-deep:   #6FCFC9;
+  --accent-warm:   #DDA05A;
+  --accent-soft:   rgba(69, 181, 175, 0.14);
+  --accent-softer: rgba(69, 181, 175, 0.07);
+
+  --ink:      #e4ecec;
+  --ink-soft: #aebcbc;
+  --ink-mute: #7e8f8f;
+
+  --paper:   #101617;
+  --surface: #182122;
+  --rule:       rgba(69, 181, 175, 0.24);
+  --rule-faint: rgba(69, 181, 175, 0.11);
+
+  --nav-bg: rgba(16, 22, 23, 0.86);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 6px 20px rgba(0, 0, 0, 0.3);
+
+  --page-bg:
+    radial-gradient(ellipse 1000px 400px at 50% -90px, rgba(69, 181, 175, 0.075), transparent 70%),
+    radial-gradient(ellipse 820px 300px at 90% 16%, rgba(221, 160, 90, 0.040), transparent 72%),
+    linear-gradient(180deg, #0d1213 0%, #101617 620px);
+}
+
+/* ---------- base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
   scroll-behavior: smooth;
-      } */
-
-        html {
-          scroll-behavior: smooth;
-          scroll-padding-top: 70px; /* Adjust this value to match your navbar height */
-        }
-
-      body {
-        font-family: "Helvetica Neue", Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        color: #333;
-        background: #fff;
-        line-height: 1.6;
-      }
-      a {
-        text-decoration: none;
-      }
-      
-      /* Navigation */
-      
-      nav {
-        position: fixed;     /* Makes the navigation fixed relative to the viewport */
-        top: 0;              /* Positions it at the very top */
-        left: 0;             /* Ensures it starts at the left edge */
-        width: 100%;         /* Makes the nav span the full width of the page */
-        z-index: 1000; 
-        background: #333;
-        padding: 10px 0;
-        text-align: center;
-      }
-      nav ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-      }
-      nav ul li {
-        display: inline;
-        margin: 0 15px;
-      }
-      nav ul li a {
-        color: #fff;
-        font-weight: bold;
-        padding: 2px 6px; /* ata deyar karone button shift hocche na r */
-        transition: color 0.3s ease, background 0.3s ease;  /* Smooth transition for hover effects */
-      }
-      nav ul li a:hover {
-      color: rgb(0, 58, 58);       /* Changes text color to Dodger Blue (or another accent color) when hovered */
-      background-color: #dadada;  /* Optional: adds a slight background color change on hover */
-      border-radius: 5px;   /* Optional: rounds the corners of the hover background */
-      }
-      
-      /* Main container */
-      
-      .container {
-        width: 70%;
-        margin: 60px auto 40px auto;
-      }
-
-      main {
-        margin-top: 60px;
-      }
-
-      /* Profile Section Chobir pashe lekha */
-
-      .profile-section {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 40px;
-        align-items: flex-start;
-        justify-content: flex-start;  
-        padding: 20px;   
-      }
-      .profile-image img {
-        width: 250px;
-        height: 250px;
-        object-fit: cover;
-        border-radius: 10px;
-      }
-      .profile-text {
-       flex: 1;                      /* This makes the text container grow to fill available space */
-       text-align: justify;             /* Keeps the text left-aligned */
-      }
-      .profile-links {
-        margin-top: 10px;
-      }
-      .profile-links a {
-        margin: 0 5px;
-        color: #333;
-      }
-
-      /* Scrollable News Section */
-      
-      .scroll-container {
-        max-height: 120px;
-        overflow-y: auto;
-        border: 2px solid #ddd;
-        padding: 10px;
-        background: #ecebeb;
-      }
-      h2 {
-        border-bottom: 5px solid #ddd;
-        padding-bottom: 5px;
-      }
-
-      /* Research Section */
-            
-      .research-section {
-        display: flex;   /* Uses flexbox to arrange text and images side by side */
-        flex-wrap: wrap;
-        gap: 20px;  /* Adds space between the research text and the image container */
-        align-items: flex-start;
-        margin-bottom: 20px;
-      }
-      .research-text {
-        flex: 1;          /* Lets the text take up available space */
-        min-width: 280px;
-      }
-      .research-experiment-container {
-        text-align: center;
-        margin-top: 50px;
-      }
-      .research-images-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        justify-content: center;
-        margin-bottom: 60px;
-      }
-      .research-item img {
-        width: 100%;        /* Makes each image use the full width of its container */
-        max-width: 520px;   /* Limits the image size so they don't get too large */
-        height: 250px;       /* Sets a fixed height for uniformity */
-        object-fit: cover;
-        border-radius: 10px;
-                
-      }
-      .research-description {
-        font-size: 15px;
-        max-width: 1100px;
-        margin: 0 auto;
-        text-align: justify;
-      }
-      
-      /* Responsive Adjustments for Smaller Screens */
-
-      @media (max-width: 768px) {
-        .research-images-container {
-          flex-direction: column;
-          align-items: center;
-        }
-        .profile-section {
-          flex-direction: column;
-        }
-      }
-
-      /* Section Content for Projects, Education, etc. */
-
-      .section-content {
-        margin-top: 20px;  /* Adds space above each section's content */
-      }
-      .section-content ul {
-        list-style: disc;
-        margin-left: 20px;   /* Indents the list for better structure */
-      }
-      .section-content li {
-        margin-bottom: 10px;  /* Adds space between list items */
-      }
-      .project-item {
-        margin-bottom: 20px;  /* Separates individual projects with extra space */
-      }
-      .project-item h3 {
-        margin-bottom: 5px; /* Adds a small gap between project title and description */
-      }
-      .project-item p {
-        margin-top: 0;
-      }
-      
-      /* Contact Form Styling */
-      
-#contact {
-  margin-top: 20px;
+  scroll-padding-top: 76px;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
 
-#contact h2 {
-  border-bottom: 6px solid #ddd;
-  padding-bottom: 5px;
+body {
+  margin: 0;
+  padding-top: 52px; /* clears the fixed nav; must not live on .wrap, whose
+                        `padding: 0 24px` shorthand would reset it */
+  font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17.5px;
+  line-height: 1.62;
+  color: var(--ink);
+  background: var(--page-bg);
+  background-color: var(--paper);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-#contact form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+code {
+  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.9em; padding: 1px 3px; border-radius: 4px;
+  background: var(--accent-softer); color: var(--ink-soft);
 }
 
-#contact label {
-  font-weight: bold;
+a { color: var(--accent); text-decoration: none; transition: color .18s ease; }
+a:hover, a:focus { color: var(--accent-warm); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+::selection { background: var(--accent-soft); }
+
+img { max-width: 100%; height: auto; display: block; }
+p { margin: 0 0 12px; overflow-wrap: break-word; }
+
+.wrap { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+/* ---------- navigation ---------- */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: var(--nav-bg);
+  backdrop-filter: saturate(160%) blur(10px);
+  -webkit-backdrop-filter: saturate(160%) blur(10px);
+  border-bottom: 1px solid var(--rule-faint);
+}
+.nav-inner {
+  max-width: 900px; margin: 0 auto; padding: 0 24px;
+  display: flex; align-items: center; gap: 14px; min-height: 52px;
+}
+nav ul {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-wrap: wrap; gap: 2px; flex: 1;
+}
+nav ul li a {
+  display: block; padding: 5px 10px; border-radius: 6px;
+  font-size: 14.5px; font-weight: 600; letter-spacing: .005em;
+  color: var(--ink-soft);
+  transition: color .18s ease, background .18s ease;
+}
+nav ul li a:hover { color: var(--accent); background: var(--accent-softer); }
+nav ul li a.active { color: var(--accent); background: var(--accent-soft); }
+/* Leaves the page, so it is marked out from the in-page anchors beside it. */
+nav ul li a.nav-xr {
+  color: var(--accent); border: 1px solid var(--rule);
+  display: inline-flex; align-items: center; gap: 5px;
+}
+nav ul li a.nav-xr:hover { border-color: var(--accent); background: var(--accent-soft); }
+nav ul li a.nav-xr svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.7; }
+
+/* Reading position, drawn on the nav's own bottom rule. */
+#scroll-progress {
+  position: absolute; left: 0; bottom: -1px; height: 2px; width: 0;
+  background: linear-gradient(90deg, var(--accent), var(--accent-warm));
+  transition: width .08s linear;
+  pointer-events: none;
 }
 
-#contact input,
-#contact textarea {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+.theme-toggle {
+  flex: none; width: 32px; height: 32px; padding: 0;
+  display: grid; place-items: center;
+  border: 1px solid var(--rule); border-radius: 8px;
+  background: transparent; color: var(--ink-soft); cursor: pointer;
+  transition: color .18s ease, border-color .18s ease;
+}
+.theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+.theme-toggle svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }
+.icon-moon { display: none; }
+:root[data-theme="dark"] .icon-sun { display: none; }
+:root[data-theme="dark"] .icon-moon { display: block; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .icon-sun  { display: none; }
+  :root:not([data-theme="light"]) .icon-moon { display: block; }
 }
 
-#contact button {
-  background: #817e7e;
-  color: #fff;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
+/* ---------- section furniture ---------- */
+section { padding-top: 40px; }
+section:last-of-type { padding-bottom: 8px; }
+
+h2.section-heading {
+  margin: 0 0 20px;
+  font-size: 25px; font-weight: 600; letter-spacing: -0.012em;
+  color: var(--ink);
+  display: inline-block; padding-bottom: 7px;
+  background-image: linear-gradient(90deg, var(--accent) 0%, var(--rule) 60%, transparent 100%);
+  background-position: 0 100%; background-size: 100% 2px; background-repeat: no-repeat;
+}
+h2.section-heading::before {
+  content: ""; display: inline-block;
+  width: 7px; height: 7px; margin: 0 10px 3px 0; vertical-align: middle;
+  border-radius: 50%; background: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
-#contact button:hover {
-  background: teal;
+/* ---------- hero ---------- */
+.hero { display: grid; grid-template-columns: 1fr 210px; gap: 36px; align-items: start; padding-top: 46px; }
+.hero-photo { position: relative; width: 210px; order: 2; margin-top: 3.2em; }
+.hero-photo::before {
+  content: ""; position: absolute; inset: 10px -6px -6px 10px; border-radius: 16px;
+  background: var(--accent); filter: blur(18px); opacity: 0; z-index: 0;
+  transition: opacity 0.25s ease;
+}
+.hero-photo:hover::before, .hero-photo:focus-within::before { opacity: 0.45; }
+.hero-photo button {
+  all: unset; display: block; position: relative; z-index: 1; border-radius: 12px;
+}
+.hero-photo img { width: 210px; border-radius: 12px; box-shadow: var(--shadow); display: block; transition: transform 0.25s ease; }
+.hero-photo:hover img, .hero-photo:focus-within img { transform: scale(1.04); }
+.photo-lightbox {
+  position: fixed; inset: 0; z-index: 1000; display: none; align-items: center; justify-content: center;
+  background: rgba(0, 0, 0, 0.72); padding: 24px; cursor: zoom-out;
+}
+.photo-lightbox.open { display: flex; }
+.photo-lightbox img { max-width: min(90vw, 640px); max-height: 88vh; border-radius: 12px; box-shadow: var(--shadow); }
+.hero h1 { margin: -6px 0 12px; font-size: 32px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; }
+.hero .tagline { margin: 0 0 14px; font-size: 15px; color: var(--ink-mute); }
+
+/* What I am doing now and what I am open to — the two things a visitor
+   scanning for ten seconds is actually looking for. */
+.status {
+  margin: 0 0 14px; padding: 8px 13px;
+  font-size: 14px; line-height: 1.55; color: var(--ink-soft);
+  border: 1px solid var(--rule-faint); border-radius: 9px;
+  background: var(--accent-softer);
+}
+.status strong { color: var(--ink); font-weight: 700; }
+.status-dot {
+  /* Inline, so it rides the first line however the rest of it wraps. */
+  display: inline-block; vertical-align: middle; margin: -2px 8px 0 0;
+  width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+  animation: status-pulse 2.6s ease-in-out infinite;
+}
+@keyframes status-pulse {
+  0%, 100% { box-shadow: 0 0 0 3px var(--accent-soft); }
+  50%      { box-shadow: 0 0 0 7px transparent; }
+}
+
+/* Focus areas, as their own row — the fastest read on the page. */
+.chips { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 16px; padding: 0; }
+.chips li {
+  font-size: 12.5px; font-weight: 600; letter-spacing: .01em;
+  padding: 3px 11px; border-radius: 999px;
+  color: var(--accent); background: var(--accent-softer);
+  border: 1px solid var(--rule);
+}
+
+.xr-cta { margin-top: 16px; font-size: 14.5px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.xr-cta a {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 7px 14px; border-radius: 999px;
+  border: 1px solid var(--rule); background: var(--accent-softer);
+  color: var(--accent); font-weight: 700;
+  transition: border-color .18s ease, background .18s ease;
+}
+.xr-cta a:hover { border-color: var(--accent); background: var(--accent-soft); }
+.xr-cta a svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.6; }
+.xr-cta span { color: var(--ink-mute); font-size: 13.5px; }
+
+.linkrow { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 13.5px; }
+.linkrow a, .linkrow button.linklike {
+  display: inline-flex; align-items: center;
+  padding: 6px 14px; border-radius: 999px;
+  border: 1px solid var(--rule); background: var(--accent-softer);
+  font-weight: 600; color: var(--accent);
+  transition: border-color .18s ease, background .18s ease, color .18s ease;
+}
+.linkrow a:hover, .linkrow button.linklike:hover {
+  border-color: var(--accent); background: var(--accent-soft); color: var(--accent-warm);
+}
+button.linklike {
+  cursor: pointer; font: inherit;
+}
+#email-address { font-size: 14.5px; color: var(--ink-soft); }
+#email-address[hidden] { display: none; }
+.copy-btn {
+  margin-left: 7px; padding: 1px 7px;
+  font: inherit; font-size: 12px; font-weight: 600; line-height: 1.5;
+  color: var(--ink-mute); background: transparent;
+  border: 1px solid var(--rule); border-radius: 5px; cursor: pointer;
+  transition: color .18s ease, border-color .18s ease;
+}
+.copy-btn:hover, .copy-btn.done { color: var(--accent); border-color: var(--accent); }
+
+/* ---------- news ---------- */
+.news-scroll {
+  padding: 4px 16px 4px 4px;
+}
+.news-scroll ul { list-style: none; margin: 0; padding: 8px 8px 8px 30px; position: relative; }
+.news-scroll ul::before {
+  content: ""; position: absolute; left: 12px; top: 8px; bottom: 8px;
+  width: 2px; background: var(--rule);
+}
+.news-scroll li {
+  position: relative; margin-bottom: 9px; font-size: 15px; color: var(--ink-soft); line-height: 1.55;
+}
+.news-scroll li:last-child { margin-bottom: 2px; }
+.news-scroll li::before {
+  content: ""; position: absolute; left: -24px; top: 5px;
+  width: 13px; height: 13px; border-radius: 50%;
+  background: var(--surface); border: 2px solid var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+  transition: background-color .15s ease;
+}
+.news-scroll li:hover::before { background: var(--accent); }
+.news-scroll .date { font-weight: 700; color: var(--ink-mute); font-variant-numeric: tabular-nums; margin-right: 0.65em; }
+
+/* ---------- research groups ----------
+   Four groups of nine entries need a container, not just a label. The old
+   h3.sub-heading was the same 12px uppercase mute as .venue, so a reader
+   counted thirteen headings in this section and found four. The group now
+   carries a rule and a count above it and a rail down its side — the news
+   timeline's spine reused — so the gap between two groups reads differently
+   from the gap between two entries inside one. */
+.rgroup { margin-top: 36px; }
+/* Adjacency, not :first-of-type — that keys on the tag, and .rindex is the
+   first div in the section, so :first-of-type would match nothing here. */
+.rindex + .rgroup { margin-top: 16px; }
+
+.rgroup-head {
+  display: flex; align-items: baseline; gap: 10px;
+  margin-bottom: 18px;
+}
+.rgroup-head h3 {
+  margin: 0; font-size: 15.5px; font-weight: 700;
+  letter-spacing: -0.005em; color: var(--ink);
+}
+/* The same dot as h2.section-heading, one size down: hierarchy by scale
+   rather than by a second device. */
+.rgroup-head h3::before {
+  content: ""; display: inline-block;
+  width: 6px; height: 6px; margin: 0 9px 2px 0; vertical-align: middle;
+  border-radius: 50%; background: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+.rgroup-count {
+  margin-left: auto;
+  font-size: 12px; font-weight: 700; letter-spacing: .04em;
+  color: var(--ink-mute); font-variant-numeric: tabular-nums;
+}
+/* --rule, not --rule-faint: at 11% alpha the rail vanished on the dark
+   ground, and a boundary you cannot see is not a boundary. */
+.rgroup-body {
+  border-left: 2px solid var(--rule);
+  padding-left: 22px; margin-left: 3px;
+}
+.rgroup-body > .entry:last-child { margin-bottom: 0; }
+
+/* The shape of the section in one line, before the reader has scrolled it.
+   Anchors rather than filters: someone reading this wants the whole list, and
+   nothing here may depend on JavaScript. A <div>, not a <nav> — the scroll-spy
+   below collects `nav a[href^="#"]`, and these four would displace Research. */
+.rindex { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 6px; }
+.rindex a {
+  display: inline-flex; align-items: baseline; gap: 7px;
+  padding: 4px 12px; border-radius: 999px;
+  font-size: 13px; font-weight: 600;
+  color: var(--accent); background: var(--accent-softer);
+  border: 1px solid var(--rule);
+  transition: border-color .18s ease, background .18s ease;
+}
+.rindex a:hover { border-color: var(--accent); background: var(--accent-soft); }
+.rindex b { font-weight: 700; color: var(--ink-mute); font-variant-numeric: tabular-nums; }
+
+/* ---------- research / project entries ---------- */
+.entry { display: grid; grid-template-columns: 265px 1fr; gap: 24px; align-items: start; margin-bottom: 34px; }
+.entry.no-fig { grid-template-columns: 1fr; }
+.entry-fig img, .entry-fig svg {
+  width: 100%; border-radius: 8px;
+  border: 1px solid var(--rule-faint); background: #fff;
+}
+.entry-fig img {
+  aspect-ratio: 4 / 3; object-fit: contain;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.entry-fig:hover img { transform: scale(1.04); box-shadow: 0 0 20px 2px var(--accent), var(--shadow); }
+:root[data-theme="dark"] .entry-fig img, :root[data-theme="dark"] .more-figs img { background: #f2f5f5; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .entry-fig img, :root:not([data-theme="light"]) .more-figs img { background: #f2f5f5; }
+}
+.entry-fig svg { background: transparent; border: 0; }
+
+.venue {
+  display: block; margin-bottom: 6px;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase;
+  color: var(--accent);
+}
+.venue.pending { color: var(--ink-mute); }
+
+/* An entry's own line says what the thing is, then where it lives. Research
+   uses this instead of .venue, whose uppercase mute was indistinguishable from
+   a group heading — five of them read as headings that were not there. The
+   state is a word in a pill, so colour is a second signal and never the only
+   one: the dot and the border are tinted, the text stays --ink-soft. */
+.entry-meta {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 4px 9px;
+  margin: 0 0 7px;
+  font-size: 13px; color: var(--ink-mute); line-height: 1.45;
+}
+.state {
+  display: inline-flex; align-items: center; gap: 6px; flex: none;
+  padding: 2px 10px; border-radius: 999px;
+  font-size: 12px; font-weight: 600; letter-spacing: .01em;
+  color: var(--ink-soft); background: var(--paper);
+  border: 1px solid var(--rule);
+}
+.state::before {
+  content: ""; flex: none;
+  width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+}
+/* Amber is the pipeline — not yet in print. It tints the dot and the border
+   only: at 12px bold on --paper it would sit just under 4.5:1 as text. */
+.state.is-open { border-color: var(--accent-warm); }
+.state.is-open::before { background: var(--accent-warm); }
+/* Archival: the dot goes quiet, the border does not. At --rule-faint the pill
+   stopped looking like a pill and read as loose text. */
+.state.is-past::before { background: var(--ink-mute); }
+
+.entry-title { margin: 0 0 6px; font-size: 17.5px; font-weight: 600; line-height: 1.35; letter-spacing: -0.008em; }
+.authors { margin: 0 0 8px; font-size: 14.5px; color: var(--ink-soft); line-height: 1.5; }
+.authors .me { font-weight: 700; color: var(--ink); }
+.takeaway { margin: 8px 0 0; font-size: 14.5px; color: var(--ink-soft); }
+.meta { margin: 8px 0 0; font-size: 14px; color: var(--ink-mute); }
+.meta strong { color: var(--ink-soft); font-weight: 600; }
+
+.actions { display: flex; flex-wrap: wrap; gap: 6px; margin: 2px 0 0; }
+.actions a {
+  font-size: 13px; font-weight: 600; letter-spacing: .01em;
+  padding: 2px 9px; border-radius: 999px;
+  border: 1px solid var(--rule); background: var(--accent-softer);
+  transition: background .18s ease, border-color .18s ease, color .18s ease;
+}
+.actions a:hover { background: var(--accent-soft); border-color: var(--accent); }
+
+details.more { margin-top: 12px; }
+details.more > summary {
+  display: inline-block; cursor: pointer; list-style: none;
+  font-size: 13px; font-weight: 600; color: var(--ink-mute);
+  padding: 1px 4px; border-radius: 4px;
+}
+details.more > summary::-webkit-details-marker { display: none; }
+details.more > summary::before { content: "+ "; color: var(--accent); font-weight: 700; }
+details.more[open] > summary::before { content: "\2212 "; }
+details.more > summary:hover { color: var(--accent); }
+.more-figs { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 12px; }
+.more-figs figure { margin: 0; }
+.more-figs img {
+  border-radius: 8px; border: 1px solid var(--rule-faint); background: #fff;
+  aspect-ratio: 4 / 3; object-fit: contain;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.more-figs figure:hover img { transform: scale(1.04); box-shadow: 0 0 20px 2px var(--accent), var(--shadow); }
+.more-figs svg { width: 100%; height: auto; background: transparent; }
+.more-figs figcaption { margin-top: 5px; font-size: 12.5px; color: var(--ink-mute); line-height: 1.4; }
+.fig-credit { margin: 6px 0 0; font-size: 12px; color: var(--ink-mute); line-height: 1.45; }
+
+/* ---------- code repositories ----------
+   The heading is what the thing does; the repo slug is filed underneath it as
+   an address, because a slug alone tells a reader nothing. */
+.repo {
+  padding: 15px 17px; margin-bottom: 11px;
+  border: 1px solid var(--rule-faint); border-radius: 10px;
+  background: var(--surface);
+  transition: border-color .18s ease, box-shadow .18s ease;
+}
+.repo:hover { border-color: var(--rule); box-shadow: var(--shadow); }
+.repo-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; }
+.repo-title {
+  margin: 0; font-size: 17px; font-weight: 600;
+  line-height: 1.32; letter-spacing: -0.008em;
+}
+.repo .repo-slug {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin: 6px 0 0;
+  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 12.5px; color: var(--ink-mute);
+  overflow-wrap: anywhere; /* repo slugs are long unbroken tokens */
+}
+.repo .repo-slug svg { flex: none; width: 13px; height: 13px; fill: currentColor; }
+.repo .tags { margin-top: 2px; }
+.repo .actions { margin-top: 11px; }
+.tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.tag {
+  font-size: 11.5px; font-weight: 600; letter-spacing: .02em;
+  padding: 1px 7px; border-radius: 4px;
+  color: var(--ink-mute); background: var(--surface); border: 1px solid var(--rule-faint);
+}
+.repo p { margin: 5px 0 0; font-size: 14.5px; color: var(--ink-soft); }
+.repo .paper-link { font-size: 13.5px; color: var(--ink-mute); }
+
+/* ---------- plain lists (education, honors, ...) ---------- */
+.entries { margin: 0; padding: 0; list-style: none; }
+.entries > li { margin-bottom: 16px; }
+.entries .row-title { font-weight: 600; }
+.entries .where { color: var(--ink-soft); font-size: 15px; }
+.entries .detail { color: var(--ink-mute); font-size: 14.5px; }
+.when {
+  font-size: 13px; font-weight: 600; letter-spacing: .02em;
+  color: var(--accent); white-space: nowrap;
+}
+.plain { margin: 0; padding-left: 20px; }
+.plain li { margin-bottom: 8px; color: var(--ink-soft); }
+.plain li strong { color: var(--ink); font-weight: 600; }
+
+.skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px 32px; margin: 0; }
+.skills > div { min-width: 0; }
+.skills dt { font-size: 12.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-mute); }
+.skills dd { margin: 7px 0 0; font-size: 15px; color: var(--ink-soft); }
+.skills dd.skill-list { display: flex; flex-wrap: wrap; gap: 5px; }
+.skills dd.skill-list span {
+  font-size: 12.5px; font-weight: 600;
+  padding: 2px 9px; border-radius: 5px;
+  color: var(--ink-soft); background: var(--paper);
+  border: 1px solid var(--rule-faint);
 }
 
 
-      /* Footer */
-      footer {
-        background: #222;
-        color: #fff;
-        text-align: center;
-        padding: 1px 0;
-        margin-top: 20px;
-      }
-    </style>
-  </head>
-  <body>
-    <nav>
+/* ---------- footer ---------- */
+.to-top { font-weight: 600; }
+footer {
+  margin-top: 52px; padding: 22px 0 30px;
+  border-top: 1px solid var(--rule-faint);
+  font-size: 13.5px; color: var(--ink-mute);
+  display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between;
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 768px) {
+  .hero { grid-template-columns: 1fr; gap: 22px; padding-top: 34px; }
+  .hero-photo img { width: 160px; }
+  .entry { grid-template-columns: 1fr; gap: 14px; }
+  .entry-fig { max-width: 420px; }
+  .rgroup-body { padding-left: 14px; }
+  .rgroup-head h3 { font-size: 14.5px; }
+  .nav-inner { padding: 6px 16px; }
+  nav ul li a { padding: 4px 8px; font-size: 13.5px; }
+  .wrap { padding: 0 18px; }
+  html { scroll-padding-top: 104px; }
+  body { padding-top: 76px; }
+  h2.section-heading { font-size: 22px; }
+  .hero h1 { font-size: 27px; }
+  .status { font-size: 13.5px; }
+}
+
+/* ---------- motion ----------
+   Entries settle in as they scroll into view. The class is attached by script,
+   so with JavaScript off nothing is ever left invisible. */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal { opacity: 0; transform: translateY(12px); transition: opacity .55s ease, transform .55s ease; }
+  .reveal.is-in { opacity: 1; transform: none; }
+}
+
+/* ---------- print ----------
+   This page gets saved as a PDF and forwarded; it should survive that. */
+@media print {
+  nav, #scroll-progress, .xr-cta, .to-top, .theme-toggle { display: none !important; }
+  .rindex { display: none; }  /* in-page anchors are nothing on paper */
+  body { padding-top: 0; background: #fff !important; color: #000; font-size: 10.5pt; }
+  .wrap { max-width: none; padding: 0; }
+  a { color: #000; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  details.more { display: none; }
+  .news-scroll {
+    max-height: none; overflow: visible; border: 0; background: none;
+    -webkit-mask-image: none; mask-image: none;
+  }
+  section { padding-top: 16px; }
+  .entry, .repo, .entries > li, h2.section-heading { break-inside: avoid; page-break-inside: avoid; }
+  .repo { background: none; border-color: #ccc; }
+  /* The rail is a screen device; on paper it only eats the margin. But a group
+     heading stranded at the foot of a page is the same failure this section was
+     redesigned to fix, so it stays with what it names. */
+  .rgroup-body { border-left: 0; padding-left: 0; margin-left: 0; }
+  .rgroup-head { break-after: avoid; page-break-after: avoid; break-inside: avoid; }
+  .state { border-color: #ccc; background: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Icons used more than once, defined once. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-github" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></symbol>
+</svg>
+
+<nav>
+  <div class="nav-inner">
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#code">Code</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a class="nav-xr" href="xr/">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6a8 8 0 0 1 16 0"/><path d="M2.4 12.6h19.2"/><path d="M9 12.2V6.4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v5.8"/><path d="M3.4 19.6h17.2"/></svg>
+        3D Site
+      </a></li>
+    </ul>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode">
+      <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.4 5.4l1.5 1.5M17.1 17.1l1.5 1.5M18.6 5.4l-1.5 1.5M6.9 17.1l-1.5 1.5"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.5 8.5 0 1 1 9.4 3.5a6.8 6.8 0 0 0 11.1 11.1z"/></svg>
+    </button>
+  </div>
+  <div id="scroll-progress" aria-hidden="true"></div>
+</nav>
+
+<main class="wrap">
+
+  <!-- ============ About ============ -->
+  <section id="about" class="hero">
+    <div class="hero-photo">
+      <button type="button" id="photo-trigger" aria-haspopup="dialog">
+        <img src="images/profile.webp" width="600" height="724" alt="Portrait of Irfan Gazi" />
+      </button>
+    </div>
+    <div>
+      <h1>Irfan Gazi</h1>
+      <p>
+        I am a <a href="https://engineering.unl.edu/durhamschool/cemt-ms/" target="_blank" rel="noopener">CEMT</a> MS student and Graduate Research Assistant at the
+        <a href="https://www.unl.edu/" target="_blank" rel="noopener">University of Nebraska&ndash;Lincoln</a>,
+        advised by <a href="https://engineering.unl.edu/durhamschool/person/kyungki-kim/" target="_blank" rel="noopener">Dr. Kyungki Kim</a>.
+        I am partly supported by the Calvin C. Solem Fellowship. My work focuses on building virtual environments paired with
+        AI assistants. 
+      </p>
+      <p>
+        Currently, I am developing a virtual training system for the
+        <a href="https://dot.nebraska.gov/" target="_blank" rel="noopener">Nebraska Department of Transportation (NDOT)</a>
+        that teaches new highway inspectors using simulated job sites and an AI assistant
+        grounded in agency manuals. Alongside this, I am building a VR
+        training portal for first responders to practice electric vehicle emergency rescues.
+      </p>
+      <p>
+        Before Nebraska, I earned my bachelors degree in
+        <a href="https://www.kuet.ac.bd/becm" target="_blank" rel="noopener">Building Engineering and Construction Management</a>
+        from <a href="https://www.kuet.ac.bd" target="_blank" rel="noopener">KUET</a>
+        in Bangladesh, where I graduated 5th in my class.
+      </p>
+
+      <div class="linkrow">
+        <button class="linklike" id="email-reveal" type="button" aria-expanded="false" aria-controls="email-address">Email</button>
+        <span id="email-address" hidden>&nbsp;<span id="email-text">igazi2&#64;huskers.unl.edu</span><button class="copy-btn" id="email-copy" type="button">copy</button></span>
+        <a href="data/CV_Irfan_Gazi.pdf" target="_blank" rel="noopener">CV</a>
+        <a href="https://orcid.org/0009-0004-5817-8845" target="_blank" rel="noopener">ORCID</a>
+        <a href="https://scholar.google.com/citations?user=Nkbeio8AAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>
+        <a href="https://www.researchgate.net/profile/Irfan-Gazi" target="_blank" rel="noopener">ResearchGate</a>
+        <a href="https://github.com/Irfan-Gazi0" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/irfan-gazi" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ News ============ -->
+  <section id="news">
+    <h2 class="section-heading">News</h2>
+    <div class="news-scroll" tabindex="0" role="region" aria-label="News and updates">
       <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#research">Research Experience</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#work">Work Experience</a></li>
-        <li><a href="#honors">Honors and Awards</a></li>
-        <li><a href="#leadership">Leadership</a></li>
-        <li><a href="#contact">Contact</a></li>  <!-- New Contact Button -->
+        <li><span class="date">2026:</span> Our XR and AI first-responder training portal is presented in the <a href="https://nec4.unl.edu/" target="_blank" rel="noopener">NEC4</a> Jumpstart webinar.</li>
+        <li><span class="date">2026:</span> Served as a judge at the <a href="https://www.unl.edu/gradstudies/" target="_blank" rel="noopener">UNL Office of Graduate Studies</a> Summer Research Symposium.</li>
+        <li><span class="date">2026:</span> Our <a href="https://doi.org/10.1038/s41598-026-63788-2" target="_blank" rel="noopener">2nd Paper</a> on occupational risk prioritization is published in Scientific Reports.</li>
+        <li><span class="date">2026:</span> First presentation in the US, on our research, at the <a href="https://dot.nebraska.gov/" target="_blank" rel="noopener">NDOT</a> &amp; UNL Research Summit.</li>
+        <li><span class="date">2026:</span> Awarded the <strong>Calvin C. Solem Fellowship</strong>.</li>
+        <li><span class="date">2026:</span> Awarded a <strong>Chancellor&rsquo;s Graduate Research Grant</strong> travel award.</li>
+        <li><span class="date">2026:</span> Our <a href="https://doi.org/10.3390/app16115320" target="_blank" rel="noopener">1st Paper</a>, an LLM-orchestrated Robotic Health Attendant framework, is published in Applied Sciences.</li>
+        <li><span class="date">2026:</span> Served as research advisor to the <a href="https://www.clarkconstruction.com/" target="_blank" rel="noopener">Clark Construction Group</a> capstone team, building a GPT for Procore daily logs.</li>
+        <li><span class="date">2026:</span> Presented InspectionGPT, our agentic RAG&ndash;MCP chatbot for inspector training, at the CI &amp; CRC joint conference.</li>
+        <li><span class="date">2025:</span> Started my M.S. in Construction Engineering and Management at UNL with a Graduate Research Assistantship.</li>
+        <li><span class="date">2024:</span> Scored 7.5 overall on IELTS.</li>
+        <li><span class="date">2024:</span> Completed my undergraduate degree at KUET.</li>
+        <li><span class="date">2024:</span> Organized <a href="https://www.facebook.com/builtech.fest.becm.kuet" target="_blank" rel="noopener">Builtech Fest 5.0</a>, the largest national construction management competition in Bangladesh.</li>
+        <li><span class="date">2023:</span> Runners-up in the Technical Poster Presentation on sustainable construction at <a href="https://www.facebook.com/civilalliancekuet/" target="_blank" rel="noopener">Civil Convivial 3.0</a>.</li>
       </ul>
-    </nav>
+    </div>
+  </section>
 
+  <!-- ============ Research ============ -->
+  <section id="research">
+    <h2 class="section-heading">Research</h2>
 
-    <main class="container">
+    <!-- The shape of the section, before anyone has scrolled it. A <div> and
+         not a <nav>: the scroll-spy script collects `nav a[href^="#"]`. -->
+    <div class="rindex">
+      <a href="#r-funded">Funded Projects <b>2</b></a>
+      <a href="#r-journal">Journal Articles <b>2</b></a>
+      <a href="#r-progress">In Progress <b>3</b></a>
+      <a href="#r-talks"> Presentations <b>2</b></a>
+    </div>
 
-      <!-- Profile Section -->
+    <div class="rgroup" id="r-funded">
+    <div class="rgroup-head"><h3>Funded Projects</h3></div>
+    <div class="rgroup-body">
 
-      <section id="about" class="profile-section">
-        <div class="profile-image">
-          <img src="images/profile.jpg" alt="Irfan Gazi" />
-          <div class="profile-links">
-            <!-- Replace your existing email link with this code -->
-              <a href="#" id="email-reveal" style="color: darkblue;">Email</a>
-              <span id="email-address" style="display: none; margin-left: 10px;">irfangazi11805061@gmail.com</span>
-              
-              <script>
-                document.getElementById('email-reveal').addEventListener('click', function(event) {
-                  event.preventDefault(); // Prevent default link behavior
-                  var emailSpan = document.getElementById('email-address');
-                  // Toggle the display property between 'none' and 'inline'
-                  if (emailSpan.style.display === 'none') {
-                    emailSpan.style.display = 'inline';
-                  } else {
-                    emailSpan.style.display = 'none';
-                  }
-                });
-              </script> /
-            <a href="data\CV_Irfan Gazi_Fall 2025 .pdf" target="_blank" style="color: darkblue;">CV</a> / 
-            <a href="https://linkedin.com/in/irfangazi" target="_blank" style="color: darkblue;">LinkedIn</a>
-          </div>
-        </div>
-        <div class="profile-text">
-          <p>
-            Hi, I am <strong>Irfan Gazi</strong> from Dhaka, <strong>Bangladesh</strong>. I am a passionate Construction Management student who enjoys learning new stuffs 
-            about technology and research methodology. I obtained my BSc.(Engg.) degree in March 2024 from the department of 
-            <a href="https://www.kuet.ac.bd/dept/becm" target="_blank" style="color: darkblue;">Building Engineering and Construction Management (BECM)</a> at 
-            <a href="https://www.kuet.ac.bd" target="_blank" style="color: darkblue;">Khulna University of Engineering and Technology (KUET)</a>, 
-            one of the leading engineering college of Bangladesh.
-          </p> 
-          <p>
-          My undergraduate thesis focused on the prediction of carbon emissions using an integrated framework of BIM and 
-          Virtual Reality (VR). By employing several supervised machine learning models, the optimized concrete mix ratio with the lowest
-          embodied carbon was achieved. This solution allowed for real-time visualization of data for informed 
-          decision-making via a web-based virtual environment.
-          </p>
-        </div>
-      </section>
-
-      <!-- News and Updates Section -->
-
-      <section id="news">
-        <h2>News and Updates</h2>
-        <div class="scroll-container">
-          <ul>
-            <li>
-              <strong>November, 2024:</strong> Received my IELTS score of band 7.5 from IDP.
-            </li>
-            <li>
-              <strong>March, 2024:</strong> Comepleted my undergraduate degree from KUET.
-            </li>
-            <li>
-              <strong>October, 2023:</strong> Runners up in Technical Poster Presentation competition at <a href="https://www.facebook.com/civilalliancekuet/" target="_blank" style="color: darkblue;">Civil Convivial 3.0</a> on sustainble construction.
-            </li>
-            <li>
-              <strong>February, 2024:</strong> Organized the largest national construction management competition<a href="https://www.facebook.com/builtech.fest.becm.kuet" target="_blank" style="color: darkblue;"> Builtech Fest 5.0 </a>.
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- Research Experience Section -->
-       
-      <section id="research">
-        <h2>Research Experience</h2>
-
-        <div class="research-section">
-          <div class="research-text">
-            <p>
-              My research interests include leveraging interdisciplinary technologies to automate mundane tasks in the construction industry.
-            </p>
-            
-            <h3>Completed Research</h3>
-          </div>
-        </div>
-        <div class="research-experiment-container">
-          <div class="research-images-container">
-            <div class="research-item">
-              <img src="images/03.png" alt="Research Image 1" />
-            </div>
-            <div class="research-item">
-              <img src="images/01.png" alt="Research Image 2" />
-            </div>
-            <div class="research-item">
-              <img src="images/02.png" alt="Research Image 3" />
-            </div>
-          </div>
-  
-          <div class="research-description">
-            <p style="color: indigo;">
-              <strong>Virtual Reality Framework for Machine Learning Enhanced Carbon Footprint Reduction in Construction industry</strong>
-            </p>
-            <p>
-              While BIM does enable preconstruction evaluations, it cannot visualize embodied carbon data seamlessly. To bridge this gap, a
-              virtual environment in Unity was built to combine the functionalities of Autodesk Revit with the ML based web application.
-              Several supervised ML models, such as AdaBoost, Random Forest, and Linear Regressions, were trained on the
-              sampled concrete mixture datasets. However, the XGBoost algorithm performed the best with more than 90% accuracy. Then, the outputs were exported as a web-based application. Finally, the virtual environment could be accessed using a provided link. 
-            </p>
-            <p>
-              <span style="color: teal;"><strong>Supervisor(s): </strong></span> <a href="https://scholar.google.com/citations?user=054j2_8AAAAJ&hl=en" 
-              target="_blank" style="color: darkblue;">Dr. Md. Ikramul Hoque</a>
-            </p>
-          </div>
+    <article class="entry">
+      <div class="entry-fig">
+        <img src="images/inspection-gpt-still.webp" width="775" height="457" loading="lazy" decoding="async"
+             data-anim="images/inspection-gpt.webp"
+             alt="The InspectionGPT interface: a sidebar of NDOT standard specifications, tech talk videos and the project contract; a chat thread answering &quot;Once the anchor bolts are set in concrete, how far off plumb can they be?&quot; with the specification passage quoted and page-level sources listed; and the cited manual page open beside it." />
+        <p class="fig-credit">AI answering a trainee inspector&rsquo;s question with the cited document page open beside it.</p>
+      </div>
+      <div>
+        <p class="entry-meta"><span class="state">Active</span> Nebraska Department of Transportation &middot; 2025&ndash;2027</p>
+        <h4 class="entry-title">AI and VR for Construction Inspection Training</h4>
+        <p class="authors">
+          <span class="me">Irfan Gazi</span>,
+          <a href="https://engineering.unl.edu/durhamschool/person/kyungki-kim/" target="_blank" rel="noopener">Kyungki Kim</a>,
           
-        </div>
+          <a href="https://engineering.unl.edu/durhamschool/person/chun-hsing-ho/" target="_blank" rel="noopener">Chun-Hsing (Jun) Ho</a>.
+          
+        </p>
+        <p class="actions">
+          <a href="https://trid.trb.org/View/2507233" target="_blank" rel="noopener">TRID</a>
+        </p>
+        <p class="takeaway">
+          Trainee inspectors learn on the job, and what they learn leaves with them. This project pairs
+          a chatbot grounded in NDOT documents, project contracts and videos that cites
+          the page behind every answer inside an immersive construction environment.
+           
+        </p>
+      </div>
+    </article>
 
-        <!-- Research  UAV DL -->
-
-        <div class="research-experiment-container">
-          <div class="research-images-container">
-            <div class="research-item">
-              <img src="images/06.png" alt="Research Image 1" />
-            </div>
-            <div class="research-item">
-              <img src="images/04.png" alt="Research Image 2" />
-            </div>
-            <div class="research-item">
-              <img src="images/05.png" alt="Research Image 3" />
-            </div>
-          </div>
+    <article class="entry">
+      <div class="entry-fig">
+        <img src="images/ev-vr-portal-still.webp" width="800" height="446" loading="lazy" decoding="async"
+             data-anim="images/ev-vr-portal.webp"
+             alt="Inside the VR portal: the 360-degree recording of the training plays around the viewer, while a floating panel carries the video controls, quick-question chips reading &quot;Shut down HV&quot;, &quot;Battery fire&quot; and &quot;Where to cut&quot;, and a chat thread answering &quot;Where are the two batteries located in Ford Mustang?&quot;" />
+        <p class="fig-credit">Immersive training video playing with the voice assisted chatbot interface </p>
+      </div>
+      <div>
+        <p class="entry-meta"><span class="state">Active</span> Nebraska Clean Cities &amp; Communities Coalition &middot; 2025&ndash;2026</p>
+        <h4 class="entry-title">Modernizing EV Emergency Response Training Through XR and AI</h4>
+        <p class="authors">
+          <span class="me">Irfan Gazi</span>,
+          <a href="https://engineering.unl.edu/civil/person/nathan-huynh/" target="_blank" rel="noopener">Nathan Huynh</a>,
+          <a href="https://engineering.unl.edu/durhamschool/person/kyungki-kim/" target="_blank" rel="noopener">Kyungki Kim</a>.
+          
+        </p>
+        <p class="actions">
+          <a href="https://nec4-jumpstart.streamlit.app/" target="_blank" rel="noopener">First Responder Portal</a>
+          <a href="https://nec4.unl.edu/" target="_blank" rel="noopener">NEC4</a>
+          <a href="https://github.com/Irfan-Gazi0/RAG_Responder" target="_blank" rel="noopener">Code</a>
+        </p>
+        <p class="takeaway">
+          First responders can practice electric vehicle emergency response using a web browser or VR headset. 
+          This portal replaces traditional classroom sessions by combining 360-degree training videos, interactive vehicle scans, 
+          and a smart chatbot that answers questions using official guides.
+        </p>
         
-          <div class="research-description">
-            <p style="color: indigo;">
-              <strong>A Systematic Review of Deep Learning-Based Drone Applications in the Construction Industry</strong>
-            </p>
-            <p>
-              The review followed PRISMA guidelines to select and analyze studies, looking for patterns and themes in the research. Significant improvements were found in the use of Convolutional Neural Networks (CNNs) and You Only Look Once (YOLO) 
-              algorithms for detecting objects, monitoring sites, and assessing structures. These technologies have proven to be highly 
-              accurate and efficient in different phases of construction. 
-            </p>
-            <p>
-              <span style="color: teal;"><strong>Supervisor(s): </strong></span> <a href="https://scholar.google.com.au/citations?user=V4ZZIToAAAAJ&hl=en" 
-              target="_blank" style="color: darkblue;">Dr. Md. Habibur Rahman Sobuz</a>
-            </p>
-          </div>
+      </div>
+    </article>
+
+    </div>
+    </div>
+
+    <div class="rgroup" id="r-journal">
+    <div class="rgroup-head"><h3>Journal Articles</h3></div>
+    <div class="rgroup-body">
+
+    <article class="entry">
+      <div class="entry-fig">
+        <img src="images/rha-robot-skills.webp" width="612" height="372" alt="Six panels of the Robotic Health Attendant in a simulated ward: speaking to a patient with its introduction shown on a head display, following a planned navigation path, picking a medication box from a shelf in the medication room, toggling its visual alert light off, dim and on, and placing the box at its destination." />
+      </div>
+      <div>
+        <p class="entry-meta"><span class="state">Published</span> Applied Sciences &middot; 2026</p>
+        <h4 class="entry-title">LLM-Orchestrated Framework for Multifunctional Robotic Health Attendant (RHA) in Healthcare Environments</h4>
+        <p class="authors">
+          Kyungki Kim, <span class="me">Irfan Gazi</span>, John Windle, Christian Haas, Melissa Christian,
+          Tom Windle, Nicholas Armstrong, Logan Doorlag, Tuankhanh Dao
+        </p>
+        <p class="actions">
+          <a href="https://doi.org/10.3390/app16115320" target="_blank" rel="noopener">Paper</a>
           
-        </div>
+        </p>
+        <p class="takeaway">
+          A smart nursing-assistant robot that understands everyday language to handle physical chores 
+          and look up medical information. It connects with hospital sensors and patient records to make decisions about what it should do next.
+        </p>
         
-      </section>
-
-      <!-- Projects Section 01 -->
-
-      <section id="projects">
-
-        <h2>Projects</h2>
-
-        <div class="section-content">
-          <div class="project-item">
-            <h3 style="color: teal;">BIM Collaboration: Revit-Based Architecture and Plumbing</h3>
+        <details class="more">
+          <summary>2 more figures</summary>
+          <div class="more-figs">
+            <figure>
+              <img src="images/rha-facility-skills.webp" width="338" height="268" loading="lazy" decoding="async" alt="Reference sheet pairing a cutaway hospital ward model with the robot, listing facility skills turn_light, control_door and monitor_control, robot skills navigate, pick, place and speak, and parameters for nurse call priority, alert mode, visual alert and speed." />
+              <figcaption>The action vocabulary shared by the building and the robot &mdash; what an LLM plan is allowed to name.</figcaption>
+            </figure>
+            <figure>
+              <img src="images/rha-hospital-plan.webp" width="359" height="236" loading="lazy" decoding="async" alt="Cutaway 3D plan of the simulated hospital floor with arrows marking Patient Room 1, the RHA in the corridor, and Medication room 1." />
+              <figcaption>The simulated ward the framework was evaluated in, with a medication-delivery route.</figcaption>
+            </figure>
             
-            <div class="research-experiment-container">
-              <div class="research-images-container">
-                <div class="research-item">
-                  <img src="images/11.png" alt="Research Image 1" />
-                </div>
-                <div class="research-item">
-                  <img src="images/13.png" alt="Research Image 2" />
-                </div>
-                <div class="research-item">
-                  <img src="images/12.png" alt="Research Image 3" />
-                </div>
-              </div>
-      
-              <div class="research-description">
-                <p>
-              
-               This project demonstrates a unified architectural and plumbing design developed in Revit for a 
-               commercial building. The 3D model leverages parametric components to ensure accurate hot/cold water supply,
-               drainage, and fixture connections. Each deliverable highlights carefully coordinated routes, pipe sizes, and equipment placements. Legacy data was cross-referenced using AutoCAD, ensuring seamless project coordination. 
- 
-                </p>
-                <p>
-                  <span style="color: darkolivegreen;"><strong>Software used: </strong></span> <a style="color: darkblue;">Autodesk Revit, AutoCAD </a>
-                </p>
-              </div>
-              
-            </div>
           </div>
-          
-        </div>
+        </details>
+      </div>
+    </article>
 
-        <!-- Projects Section 02 -->
-
-        <div class="section-content">
-          <div class="project-item">
-            <h3 style="color: teal;">HVAC System Design and BIM Coordination in Autodesk Revit</h3>
-            
-            <div class="research-experiment-container">
-              <div class="research-images-container">
-                <div class="research-item">
-                  <img src="images/14.png" alt="Research Image 1" />
-                </div>
-                <div class="research-item">
-                  <img src="images/15.png" alt="Research Image 2" />
-                </div>
-                <div class="research-item">
-                  <img src="images/16.png" alt="Research Image 3" />
-                </div>
-              </div>
-      
-              <div class="research-description">
-                
-                <p>
-                  
-                Showcasing an HVAC system modeled and coordinated in Autodesk Revit. The 3D design aligns ducting, equipment, 
-                and mechanical components while ensuring proper flow rates. Accurate construction drawings highlight dimensioned routes, 
-                flow capacities, and device placements. Interdisciplinary BIM coordination and parametric workflows guarantee system efficiency 
-                and reduced on-site clashes.
-                </p>
-                <p>
-                  <span style="color: darkolivegreen;"><strong>Software used: </strong></span> <a style="color: darkblue;">Autodesk Revit </a> 
-                </p>
-              </div>
-              
-            </div>
+    <article class="entry">
+      <div class="entry-fig">
+        <img src="images/risk-framework-phases.webp" width="668" height="656" loading="lazy" decoding="async"
+             alt="Three-phase framework diagram: phase one framework development via literature review, phase two process integration via risk assessment covering questionnaire, statistical analysis, Monte Carlo simulation and prioritization, and phase three framework execution via risk prioritization by risk matrix, Monte Carlo simulation and decision-maker risk perception." />
+      </div>
+      <div>
+        <p class="entry-meta"><span class="state">Published</span> Scientific Reports &middot; 2026</p>
+        <h4 class="entry-title">A hybrid framework for occupational risk prioritization in construction projects using Monte Carlo simulation and utility theory</h4>
+        <p class="authors">
+          Md Tanvir Rahman Rifat, Shuvo Dip Datta, Md. Mehrab Hossain, Md Shah Jamal,
+          Marcel Maghiar, Sani Aliyu, <span class="me">Irfan Gazi</span>
+        </p>
+        <p class="actions">
+          <a href="https://doi.org/10.1038/s41598-026-63788-2" target="_blank" rel="noopener">Paper</a>
+        </p>
+        <p class="takeaway">
+          Traditional construction risk tools ignore how managers weigh disasters against common nuisances. 
+          By combining survey data with simulations, this framework automatically adjusts risk rankings based on how cautious a decision-maker is.
+        </p>
+        <details class="more">
+          <summary>2 more figures</summary>
+          <div class="more-figs">
+            <figure>
+              <img src="images/risk-respondent-map.webp" width="601" height="714" loading="lazy" decoding="async" alt="Choropleth map of Bangladesh shading five divisions by respondent count: Chattogram 29, Khulna 26, Dhaka 25, Barisal 22 and Sylhet 10." />
+              <figcaption>Where the 112 respondents worked, across five divisions of Bangladesh.</figcaption>
+            </figure>
+            <figure>
+              <img src="images/risk-matrix.webp" width="743" height="610" loading="lazy" decoding="async" alt="Five-by-five risk matrix crossing probability bands A to E against severity one to five, with cells scored 1 to 25 and colour-coded, above a mitigation strategy table defining high, moderate, low and negligible risk bands." />
+              <figcaption>The baseline 5&times;5 matrix and mitigation bands the simulation output is compared against.</figcaption>
+            </figure>
           </div>
-          
-        </div>
+        </details>
+      </div>
+    </article>
 
-        <!-- Projects Section 03 -->
+    </div>
+    </div>
 
-        <div class="section-content">
-          <div class="project-item">
-            <h3 style="color: teal;">Clash Detection and Coordination using Navisworks</h3>
-            
-            <div class="research-experiment-container">
-              <div class="research-images-container">
-                <div class="research-item">
-                  <img src="images/19.png" alt="Research Image 1" />
-                </div>
-                <div class="research-item">
-                  <img src="images/17.png" alt="Research Image 2" />
-                </div>
-                <div class="research-item">
-                  <img src="images/18.png" alt="Research Image 3" />
-                </div>
-              </div>
-      
-              <div class="research-description">
-                
-                <p>
-                  This project demonstrates the use of Navisworks and Revit for clash detection and model coordination. By integrating architectural, structural, and MEP models, potential conflicts were identified early in the design phase, minimizing errors during construction. The 3D clash detection process ensured a streamlined workflow, improving project accuracy and reducing costly rework.
-                </p>
-                <p>
-                  <span style="color: darkolivegreen;"><strong>Software used: </strong></span> <a style="color: darkblue;">Autodesk Navisworks </a>
-                </p>
-              </div>
-              
-            </div>
+    <div class="rgroup" id="r-progress">
+    <div class="rgroup-head"><h3>In Progress</h3></div>
+    <div class="rgroup-body">
+
+    
+      <article class="entry">
+      <div class="entry-fig">
+        <img src="images/rag-architecture.webp" width="1099" height="462" loading="lazy" decoding="async"
+             alt="Architecture diagram: an NDOT inspector's question and training prompts are rewritten by a supervisor agent, routed to contract, specification, training, quiz and conflict-detection sub-agents, which query NDOT manuals and project documents on an MCP server and return a grounded answer with sources." />
+      </div>
+      <div>
+        <p class="entry-meta"><span class="state is-open">Under review</span> TRB Annual Meeting</p>
+        <h4 class="entry-title">Evaluating Multi-Agent and Single-Agent RAG Frameworks for Highway Construction Inspector Training</h4>
+        <p class="takeaway">
+          Whether a multi-agent RAG system beats a single grounded LLM at answering NDOT inspection queries.
+          Grounding cut hallucinations sharply; adding agent orchestration did not improve final answer quality.
+        </p>
+        <details class="more">
+          <summary>2 more figures</summary>
+          <div class="more-figs">
+            <figure>
+              <img src="images/rag-results.webp" width="1300" height="618" loading="lazy" decoding="async" alt="Two charts: answer quality by condition, showing closed-book at 2.71 rising to 3.73 for single-agent RAG with no further gain from multi-agent variants; and safety-relevant failure rate dropping from 69% closed-book to 25% single-agent, ticking back up to 33% for the full multi-agent system." />
+              <figcaption>Grounding improved answer quality and cut unsafe answers; adding agents did not improve further.</figcaption>
+            </figure>
+            <figure>
+              <img src="images/rag-abstention.webp" width="1300" height="588" loading="lazy" decoding="async" alt="Two charts: abstention rate on unanswerable questions falling from 56.7% to 26.7% as agents are added, on Bank D; and abstention rate declining across conditions on all three question banks (adversarial, contract, general), though by different amounts." />
+              <figcaption>Appropriate refusals on unanswerable questions declined as the system grew more agentic.</figcaption>
+            </figure>
           </div>
-          
-        </div>
+        </details>
+      </div>
+    </article>
 
-      </section>
-
-      <!-- Education Section -->
-      <section id="education">
-        <h2>Education</h2>
-        <div class="section-content">
-          <ul>
-            <li>
-              <strong>Bachelor of Science in Building Engineering and Construction Management</strong> &nbsp; <span style="color: lightseagreen;"> [2019 - 2024]</span><br />
-              Khulna University of Engineering and Technology (KUET)<br />              
-              CGPA: 3.63/4.00
-            </li>
-            <li>
-              <strong>Higher Secondary School Certificate (HSC)</strong>&nbsp; <span style="color: lightseagreen;"> [2016 - 2018]</span><br />
-              Notre Dame College, Dhaka, Bangladesh<br />
-              GPA: 5.00/5.00
-            </li>
-            <li>
-              <strong>Secondary School Certificate (SSC)</strong>&nbsp; <span style="color: lightseagreen;"> [2006 - 2016]</span><br />
-              Dhanmondi Govt Boys High School, Dhaka, Bangladesh<br />
-              GPA: 5.00/5.00
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- Work Experience Section -->
-
-      <section id="work">
-        <h2>Work Experience</h2>
-        <div class="section-content">
-          <ul>
-            <li>
-              <strong>Research Assistant</strong> &nbsp; <span style="color: lightseagreen;"> [2023 - 2024]</span><br />
-              Department of Building Engineering and Construction Management, KUET
-              
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- Honors and Awards Section -->
-
-      <section id="honors">
-        <h2>Honors and Awards</h2>
-        <div class="section-content">
-          <ul>
-            <li>
-              <strong>Deans List Award</strong> for GPA 3.96/4.00 in the fourth year of undergraduate studies, KUET.
-            </li>
-            <li>
-              <strong>Deans List Award</strong> for GPA 3.76/4.00 in the third year of undergraduate studies, KUET.
-            </li>
-            <li>
-              <strong>Education Board scholarships</strong> in secondary and higher studies.
-            </li>
-            
-          </ul>
-        </div>
-      </section>
-
-      <!-- Leadership Section -->
-
-      <section id="leadership">
-        <h2>Leadership</h2>
-        <div class="section-content">
-          <ul>
-            <li>
-              <strong>BECM Technical Club (BTECK), KUET</strong><br />
-              Vice President &nbsp; <span style="color: lightseagreen;"> [2022 - 2023]</span>        
-            </li>
-            <li>
-              <strong>KUET Research Society</strong><br />
-              Vice President &nbsp; <span style="color: lightseagreen;"> [2022 - 2023]</span>   
-              
-            </li>
-          </ul>
-        </div>
-      </section>
-
-    <!-- Contact Form Section -->
-
-       <section id="contact">
-  <h2>Contact Me</h2>
-  <form action="https://formspree.io/f/mgvopjza" method="POST">
-    <label for="name">Name</label>
-    <input type="text" id="name" name="name" placeholder="Your Name" required>
+    <article class="entry">
+      <div class="entry-fig">
+        <img src="images/carbon-vr-unity.webp" width="992" height="542" loading="lazy" decoding="async"
+             alt="Unity virtual environment showing a multi-storey concrete frame with a element selector for column, beam, slab, stairs and pile, and a panel reporting embodied carbon for the selected structural column." />
+      </div>
+      <div>
+        <p class="entry-meta"><span class="state is-open">In preparation</span> <span class="state is-past">B.Sc. thesis</span> </p>
+        <h4 class="entry-title">BIM-Integrated Virtual Reality Framework for Machine Learning Enhanced Carbon Footprint Reduction</h4>
+        <p class="takeaway">
+          Tracking a building's carbon footprint at the early design phase is difficult. This problem is addressed
+          by using machine learning to calculate the carbon emissions of various concrete mixtures and linking those calculations  
+          to a virtual reality model. Selecting any column or beam will show
+          the carbon amount they could save by switching to greener materials.
+        </p>
+        <p class="meta"><strong>Supervisor:</strong>
+          <a href="https://scholar.google.com/citations?user=054j2_8AAAAJ&amp;hl=en" target="_blank" rel="noopener">Dr. Md. Ikramul Hoque</a>
+        </p>
+        <details class="more">
+          <summary>2 more figures</summary>
+          <div class="more-figs">
+            <figure>
+              <img src="images/carbon-ml-metrics.webp" width="1200" height="1069" loading="lazy" decoding="async" alt="Grouped bar chart comparing R squared, RMSE and MAE for Lasso Regression, XGBoost, ANN, Gradient Boosting, Random Forest and Bagging Regressor." />
+              <figcaption>Model comparison &mdash; XGBoost leads on all three metrics.</figcaption>
+            </figure>
+            <figure>
+              <img src="images/carbon-revit-model.webp" width="1400" height="1078" loading="lazy" decoding="async" alt="Revit structural model of a multi-storey building showing frames, slabs and pile foundations." />
+              <figcaption>The source Revit model the quantities are drawn from.</figcaption>
+            </figure>
+          </div>
+        </details>
+      </div>
+    </article>
+    <article class="entry">
+      <div class="entry-fig">
+        <img src="images/drone-keyword-map.webp" width="1200" height="914" loading="lazy" decoding="async" alt="VOSviewer co-occurrence map clustering keywords such as aerial vehicle, CNN, classification, artificial intelligence and object detection." />
+      </div>
+      <div>
+        <p class="entry-meta"><span class="state is-open">In preparation</span></p>
+        <h4 class="entry-title">A Systematic Review of Deep Learning-Based Drone Applications in the Construction Industry</h4>
+        <p class="takeaway">
+          A PRISMA-guided review of how deep learning is actually being flown on construction sites.
+          Convolutional networks and the YOLO family dominate the literature for object detection, site
+          monitoring, and structural assessment, and the review traces where each is credibly accurate across
+          the phases of a project.
+        </p>
+        <p class="meta"><strong>Supervisor:</strong>
+          <a href="https://orcid.org/0000-0002-6279-5406" target="_blank" rel="noopener">Dr. Md. Habibur Rahman Sobuz</a>
+        </p>
+        <details class="more">
+          <summary>2 more figures</summary>
+          <div class="more-figs">
+            <figure>
+              <img src="images/drone-dl-pipeline.webp" width="1103" height="905" loading="lazy" decoding="async"
+                   alt="Two-stage pipeline: a data acquisition stage covering infrastructure type, sensor-equipped drone, data collection and labelling, feeding a CNN-based structural assessment stage of architecture selection, training, tuning and classification, producing autonomous monitoring, defect detection and early warning." />
+              <figcaption>Two-stage deep learning pipeline for drone-based structural assessment.</figcaption>
+            </figure>
+            <figure>
+              <img src="images/drone-theme-flow.webp" width="1000" height="530" loading="lazy" decoding="async" alt="Sankey diagram tracing research themes across three periods: 2018 to 2020, 2021 to 2022, and 2023 to 2024." />
+              <figcaption>How themes shift across 2018&ndash;2024.</figcaption>
+            </figure>
+          </div>
+        </details>
+      </div>
+    </article>
     
-    <label for="email">Email</label>
-    <input type="email" id="email" name="_replyto" placeholder="Your Email" required>
-    
-    <label for="message">Message</label>
-    <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
-    
-    <button type="submit">Send Message</button>
-  </form>
-       </section>
- 
-    </main>
 
-    <footer>
-      <p>&copy; 2025 Irfan Gazi. All rights reserved.</p>
-    </footer>
-  </body>
+    </div>
+    </div>
+
+    <div class="rgroup" id="r-talks">
+    <div class="rgroup-head"><h3> Presentations</h3></div>
+    <div class="rgroup-body">
+
+    <article class="entry">
+      <div class="entry-fig">
+        <img src="images/inspectiongpt-poster.webp" width="1072" height="803" loading="lazy" decoding="async"
+             alt="InspectionGPT conference poster: introduction, problem identification, objectives and source document panels on the left; methodology diagrams of the proposed framework, document ingestion and chunking pipeline, and four-stage self-corrective RAG workflow in the centre; results bar charts and conclusions on the right." />
+      </div>
+      <div>
+        <p class="entry-meta"><span class="state">Poster</span> CI &amp; CRC Joint Conference, San Antonio, TX &middot; 2026</p>
+        <h4 class="entry-title">InspectionGPT: Advancing Inspector Training Workflow in NDOT with an Agentic RAG-MCP Based Chatbot</h4>
+        <p class="authors"><span class="me">Irfan Gazi</span>, Kyungki Kim</p>
+        <p class="takeaway">
+          A chatbot that answers a trainee inspector&rsquo;s questions from the NDOT construction manuals with
+          the passage it drew on cited beside the answer, so a new inspector can check the source rather
+          than take the model&rsquo;s word for it. Retrieval and the tools the agent may call are separated
+          behind MCP, which keeps the manuals swappable and the agent&rsquo;s reach explicit.
+          Supported by the Nebraska Department of Transportation.
+        </p>
+        <details class="more">
+          <summary>2 more figures</summary>
+          <div class="more-figs">
+            <figure>
+              <img src="images/inspectiongpt-poster-architecture.webp" width="1240" height="678" loading="lazy" decoding="async"
+                   alt="Architecture diagram: NDOT inspector query flowing through a Streamlit chat app and FastAPI router agent to an n8n client, which coordinates a self-corrective module (checking past mistakes, a vector DB, learning new corrections) and a document AI agent (knowledge vector store, top-K chunks, LLM response); below, raw materials guide data is extracted, table-detected, chunked and embedded." />
+              <figcaption>The proposed InspectionGPT framework: routed retrieval, self-correction, and content-aware chunking behind MCP.</figcaption>
+            </figure>
+            <figure>
+              <img src="images/inspectiongpt-poster-conference.webp" width="1080" height="1350" loading="lazy" decoding="async"
+                   alt="Irfan Gazi standing beside the printed InspectionGPT poster at the CI &amp; CRC Joint Conference, wearing an exhibitor badge." />
+              <figcaption>Presenting the poster at the CI &amp; CRC Joint Conference in San Antonio, TX.</figcaption>
+            </figure>
+          </div>
+        </details>
+      </div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-fig">
+        <img src="images/ndot-unl-summit-talk.webp" width="1400" height="771" loading="lazy" decoding="async"
+             alt="Irfan Gazi giving the project talk at the NDOT &amp; University of Nebraska&ndash;Lincoln Research Summit, 2026." />
+      </div>
+      <div>
+        <p class="entry-meta"><span class="state">Talk</span> NDOT &amp; University of Nebraska&ndash;Lincoln Research Summit &middot; 2026</p>
+        <h4 class="entry-title">AI and Immersive AR/VR for Sustained Material and Construction Inspection Training and Knowledge Retention</h4>
+        <p class="authors">
+          <span class="me">Irfan Gazi</span> &middot; PI: Kyungki Kim &middot; Co-PI: Chun-Hsing (Jun) Ho
+        </p>
+        <p class="takeaway">
+          The project talk for our NDOT-funded work: InspectionGPT as a cited knowledge base and virtual
+          mentor for new inspectors, and the immersive VR environment it is being embedded in, so an
+          inspector practises against a virtual site rather than a live one and retains what they learned
+          after the training ends.
+        </p>
+      </div>
+    </article>
+
+    </div>
+    </div>
+  </section>
+
+  <!-- ============ Code ============ -->
+  <section id="code">
+    <h2 class="section-heading">Code</h2>
+    <p style="color: var(--ink-soft); font-size: 15px; margin-bottom: 18px;">
+      Glimpse of my coding journey. Take a sneak peek at my
+      <a href="https://github.com/Irfan-Gazi0" target="_blank" rel="noopener">GitHub</a>.
+    </p>
+
+    <article class="repo">
+      <div class="repo-head">
+        <h4 class="repo-title">Safety-Gated LLM Controller for a Hospital Robot</h4>
+        <span class="tags"><span class="tag">Python</span><span class="tag">py_trees</span><span class="tag">LLM orchestration</span><span class="tag">Docker</span><span class="tag">pytest</span></span>
+      </div>
+      <p>
+        A deterministic six-priority behaviour tree gates <code>gpt-4o-mini</code>'s task plans before they
+        reach hospital robot hardware. Emergencies preempt in-flight tasks instantly; medication safety and
+        prompt injection are both refused. 15 unit tests, 8 scenarios.
+      </p>
+      <p class="actions">
+        <a href="https://github.com/Irfan-Gazi0/robot-multi-agent-pytree" target="_blank" rel="noopener">Repository</a>
+        
+      </p>
+    </article>
+
+    <article class="repo">
+      <div class="repo-head">
+        <h4 class="repo-title">Token-Budget-Aware Retrieval for Medical Literature</h4>
+        <span class="tags"><span class="tag">Python</span><span class="tag">RAG</span><span class="tag">Pinecone</span><span class="tag">OpenAI</span><span class="tag">FastAPI</span><span class="tag">React</span></span>
+      </div>
+      <p>
+        A retrieval scorer that packs passages into a fixed 1,800-token budget, trading relevance against
+        redundancy and keyword coverage. Benchmarked against cosine similarity and MMR over PubMed chunks
+        in Pinecone.
+      </p>
+      <p class="actions">
+        <a href="https://github.com/Irfan-Gazi0/LitePack-RAG" target="_blank" rel="noopener">Repository</a>
+      </p>
+    </article>
+
+    <article class="repo">
+      <div class="repo-head">
+        <h4 class="repo-title">Emergency Response Assistant for Electric Vehicles</h4>
+        <span class="tags"><span class="tag">LangChain</span><span class="tag">GPT-4o</span><span class="tag">Pinecone</span><span class="tag">Whisper</span><span class="tag">n8n</span><span class="tag">three.js</span></span>
+      </div>
+      <p>
+        This virtual portal helps first responders safely handle electric vehicle emergencies. It pairs a 360-degree interactive walkthrough 
+        of vehicles with a smart chatbot. Instead of going through manuals, users can ask the chatbot questions to get cited answers.
+      </p>
+      <p class="actions">
+        <a href="https://github.com/Irfan-Gazi0/RAG_Responder" target="_blank" rel="noopener">Repository</a>
+      </p>
+    </article>
+
+    <article class="repo">
+      <div class="repo-head">
+        <h4 class="repo-title">COVID-19 Misinformation Classifier under Temporal Drift</h4>
+        <span class="tags"><span class="tag">TensorFlow</span><span class="tag">Keras</span><span class="tag">NLP</span><span class="tag">LSTM</span></span>
+      </div>
+      <p>
+        Trained on May articles, tested on July ones, so the distribution genuinely shifts. Five experiments
+        across LNN, LSTM and MLP heads over Count and TF-IDF features, scored on minority-class recall
+        instead of accuracy.
+      </p>
+      <p class="actions">
+        <a href="https://github.com/Irfan-Gazi0/covid19-misinfo-detector-nlp" target="_blank" rel="noopener">Repository</a>
+      </p>
+    </article>
+
+   
+  </section>
+
+  <!-- ============ Projects ============ -->
+  <section id="projects">
+    <h2 class="section-heading"> Projects</h2>
+    <p style="color: var(--ink-soft); font-size: 15px; margin-bottom: 20px;">
+      Some notable academic projects I did.
+    </p>
+
+    <article class="entry">
+      <div class="entry-fig">
+        <img src="images/bim-plumbing-3d.webp" width="1400" height="1033" loading="lazy" decoding="async"
+             alt="Revit 3D model of a building with colour-coded hot and cold water supply and drainage runs connecting a bath, sink and toilet." />
+      </div>
+      <div>
+        <span class="venue pending">Autodesk Revit &middot; AutoCAD</span>
+        <h4 class="entry-title">Revit-Based Architectural and Plumbing Coordination</h4>
+        <p class="takeaway">
+          A unified architectural and plumbing model for a commercial building, with parametric components
+          keeping supply, drainage, and fixtures consistent through to the construction drawings.
+        </p>
+        <details class="more">
+          <summary>2 more figures</summary>
+          <div class="more-figs">
+            <figure>
+              <img src="images/bim-architectural-3d.webp" width="1400" height="1083" loading="lazy" decoding="async" alt="Revit architectural 3D model of an L-shaped building with curtain wall glazing and a stair core." />
+              <figcaption>The architectural model the services are coordinated against.</figcaption>
+            </figure>
+            <figure>
+              <img src="images/bim-water-supply-drawing.webp" width="1400" height="898" loading="lazy" decoding="async" alt="Water supply construction drawing annotated with pipe diameters and bottom-of-pipe elevations." />
+              <figcaption>Water supply drawing with diameters and elevations.</figcaption>
+            </figure>
+          </div>
+        </details>
+      </div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-fig">
+        <img src="images/hvac-3d.webp" width="1400" height="1011" loading="lazy" decoding="async"
+             alt="Revit 3D HVAC model showing colour-coded supply, return and exhaust ducting, chilled water piping and a fan coil unit." />
+      </div>
+      <div>
+        <span class="venue pending">Autodesk Revit</span>
+        <h4 class="entry-title">HVAC System Design and BIM Coordination</h4>
+        <p class="takeaway">
+          Supply, return, and exhaust ducting modelled alongside chilled-water piping, sized to hold design
+          flow rates, with dimensions and device tags carried through to the drawings.
+        </p>
+        <details class="more">
+          <summary>2 more figures</summary>
+          <div class="more-figs">
+            <figure>
+              <img src="images/hvac-drawing.webp" width="1400" height="1081" loading="lazy" decoding="async" alt="HVAC construction drawing annotated with duct sizes, bottom-of-duct elevations and flow rates in litres per second." />
+              <figcaption>Duct sizes, elevations and flow rates per branch.</figcaption>
+            </figure>
+            <figure>
+              <img src="images/hvac-coordination.webp" width="1200" height="893" loading="lazy" decoding="async" alt="Wireframe view of the full building with all mechanical services overlaid for coordination review." />
+              <figcaption>All services overlaid for coordination review.</figcaption>
+            </figure>
+          </div>
+        </details>
+      </div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-fig">
+        <img src="images/clash-detective.webp" width="1300" height="808" loading="lazy" decoding="async"
+             alt="Autodesk Navisworks Clash Detective showing a test result of 123 clashes listed by level and grid intersection, with one highlighted in red and green in the 3D view." />
+      </div>
+      <div>
+        <span class="venue pending">Autodesk Navisworks &middot; Revit</span>
+        <h4 class="entry-title">Clash Detection and Model Coordination</h4>
+        <p class="takeaway">
+          Federating architectural, structural, and MEP models into Navisworks surfaced 123 clashes, each
+          pinned to a level and grid intersection for assignment and closure before they became rework.
+        </p>
+        <details class="more">
+          <summary>2 more figures</summary>
+          <div class="more-figs">
+            <figure>
+              <img src="images/clash-plan-view.webp" width="1200" height="746" loading="lazy" decoding="async" alt="Second Navisworks Clash Detective viewpoint showing a different clash selected from the results list." />
+              <figcaption>Working through the results list clash by clash.</figcaption>
+            </figure>
+            <figure>
+              <img src="images/clash-building-render.webp" width="703" height="624" loading="lazy" decoding="async" alt="Rendered exterior view of the coordinated L-shaped multi-storey building." />
+              <figcaption>The coordinated building.</figcaption>
+            </figure>
+          </div>
+        </details>
+      </div>
+    </article>
+  </section>
+
+  <footer>
+    <span>&copy; 2026 Irfan Gazi &middot; Lincoln, Nebraska</span>
+    <span>Last updated August 2026 &middot; <a class="to-top" href="#about">Back to top &uarr;</a></span>
+  </footer>
+
+</main>
+
+<script>
+  /* Reveal the email address only on request, to keep it away from casual
+     scrapers, then let it be copied in one click. The mailto: is assembled at
+     runtime for the same reason it is not in the markup. */
+  (function () {
+    var btn = document.getElementById('email-reveal');
+    var out = document.getElementById('email-address');
+    var text = document.getElementById('email-text');
+    var copy = document.getElementById('email-copy');
+    if (!btn || !out) return;
+
+    btn.addEventListener('click', function () {
+      var shown = !out.hidden;
+      out.hidden = shown;
+      btn.setAttribute('aria-expanded', String(!shown));
+    });
+
+    if (!copy || !text) return;
+    var address = text.textContent.trim();
+    copy.setAttribute('aria-label', 'Copy ' + address + ' to the clipboard');
+
+    var settle;
+    copy.addEventListener('click', function () {
+      var done = function () {
+        copy.textContent = 'copied';
+        copy.classList.add('done');
+        clearTimeout(settle);
+        settle = setTimeout(function () {
+          copy.textContent = 'copy';
+          copy.classList.remove('done');
+        }, 1800);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(address).then(done, function () {
+          window.location.href = 'mailto:' + address;
+        });
+      } else {
+        window.location.href = 'mailto:' + address;
+      }
+    });
+  })();
+
+  /* Reading position, drawn on the nav's bottom rule. */
+  (function () {
+    var bar = document.getElementById('scroll-progress');
+    if (!bar) return;
+    var ticking = false;
+    var draw = function () {
+      var doc = document.documentElement;
+      var travel = doc.scrollHeight - doc.clientHeight;
+      var pct = travel > 0 ? (doc.scrollTop || document.body.scrollTop) / travel : 0;
+      bar.style.width = Math.min(1, Math.max(0, pct)) * 100 + '%';
+      ticking = false;
+    };
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; window.requestAnimationFrame(draw); }
+    }, { passive: true });
+    window.addEventListener('resize', draw, { passive: true });
+    draw();
+  })();
+
+  /* Let entries settle in as they scroll into view. The class is attached here
+     rather than in the markup, so without JavaScript nothing is hidden. */
+  (function () {
+    if (!('IntersectionObserver' in window)) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var items = document.querySelectorAll('#research .entry, #code .repo, #projects .entry');
+    if (!items.length) return;
+
+    var observer = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-in');
+        obs.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px' });
+
+    Array.prototype.forEach.call(items, function (el) {
+      el.classList.add('reveal');
+      observer.observe(el);
+    });
+  })();
+
+  /* Swap a still figure for its animated .webp, but only where motion is
+     welcome. The markup ships the still, so a reader who asked for reduced
+     motion — or who has no JavaScript — never downloads the animation at all. */
+  (function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    Array.prototype.forEach.call(document.querySelectorAll('img[data-anim]'), function (img) {
+      img.src = img.getAttribute('data-anim');
+    });
+  })();
+
+  /* Theme toggle. No stored value means "follow the system", so the first click
+     has to resolve what the system is currently showing and flip away from it. */
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var current = root.getAttribute('data-theme');
+      if (!current) {
+        current = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      var next = current === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      // The <meta name="theme-color"> pair only answers the OS preference, so
+      // an explicit choice has to move the browser chrome itself.
+      var metas = document.querySelectorAll('meta[name="theme-color"]');
+      for (var i = 0; i < metas.length; i++) {
+        metas[i].media = metas[i].content === '#0d1213'
+          ? (next === 'dark' ? 'all' : 'not all')
+          : (next === 'light' ? 'all' : 'not all');
+      }
+    });
+  })();
+
+  /* Highlight the nav link for whichever section is currently in view. */
+  (function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('nav a[href^="#"]'));
+    if (!links.length || !('IntersectionObserver' in window)) return;
+
+    var byId = {};
+    var sections = [];
+    links.forEach(function (link) {
+      var el = document.getElementById(link.getAttribute('href').slice(1));
+      if (!el) return;
+      byId[el.id] = link;
+      sections.push(el);
+    });
+
+    var visible = {};
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        visible[entry.target.id] = entry.isIntersecting;
+      });
+      /* Several sections can be on screen at once; the topmost one wins. */
+      var active = null;
+      for (var i = 0; i < sections.length; i++) {
+        if (visible[sections[i].id]) { active = sections[i].id; break; }
+      }
+      links.forEach(function (link) { link.classList.remove('active'); });
+      if (active && byId[active]) byId[active].classList.add('active');
+    }, { rootMargin: '-70px 0px -55% 0px' });
+
+    sections.forEach(function (el) { observer.observe(el); });
+  })();
+
+  /* Profile photo lightbox. */
+  (function () {
+    var trigger = document.getElementById('photo-trigger');
+    var lightbox = document.getElementById('photo-lightbox');
+    if (!trigger || !lightbox) return;
+    function open() { lightbox.classList.add('open'); }
+    function close() { lightbox.classList.remove('open'); trigger.focus(); }
+    trigger.addEventListener('click', open);
+    lightbox.addEventListener('click', close);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && lightbox.classList.contains('open')) close();
+    });
+  })();
+</script>
+
+<div class="photo-lightbox" id="photo-lightbox" role="dialog" aria-modal="true" aria-label="Full-size portrait">
+  <img src="images/profile.webp" width="600" height="724" alt="Portrait of Irfan Gazi" />
+</div>
+
+</body>
 </html>
