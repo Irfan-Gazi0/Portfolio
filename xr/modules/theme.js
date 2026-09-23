@@ -107,11 +107,7 @@ const NIGHT = {
 };
 
 export function prefersDark() {
-  let stored = null;
-  try { stored = localStorage.getItem('theme'); } catch { /* private mode */ }
-  if (stored === 'dark') return true;
-  if (stored === 'light') return false;
-  return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  return false;
 }
 
 export function getPalette() {

@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { fitText } from './label.js';
 
 /* Site surfaces, drawn on a canvas at load time.
 
@@ -221,13 +222,18 @@ export function hazardTexture(pal) {
  * at 6 m the wordmark came round three times on a single run of hoarding and
  * the site started shouting its own name.
  *
- * `kind` is 'identity' (the project, in the compound's colour) or 'safety'
- * (the PPE notice, for runs that carry no boards).
+ * `kind` is 'identity' (the project, in the compound's colour, on the face that
+ * looks out at the rest of the site), 'zone' (the yard's own name, on inward
+ * runs the boards left bare) or 'safety' (the PPE notice).
  */
-export function hoardingBandTexture(pal, accent, kind = 'identity') {
+export function hoardingBandTexture(pal, zone, kind = 'identity') {
+  const accent = zone.accent;
   // The safety notice does not use the accent, so it must not be keyed on it —
-  // otherwise five compounds get five byte-identical 1.5 Mpx textures.
-  const key = kind === 'safety' ? `band:safety:${pal.night}` : `band:identity:${accent}:${pal.night}`;
+  // otherwise five compounds get five byte-identical 1.5 Mpx textures. The yard
+  // band carries a name, so it keys on the yard rather than on the colour.
+  const key = kind === 'safety' ? `band:safety:${pal.night}`
+    : kind === 'zone' ? `band:zone:${zone.code}:${pal.night}`
+      : `band:identity:${accent}:${pal.night}`;
   return canvasTex(key, 1536, 384, (ctx, w, h) => {
     const FONT = '"Source Sans 3", system-ui, sans-serif';
 
@@ -289,6 +295,48 @@ export function hoardingBandTexture(pal, accent, kind = 'identity') {
       ctx.letterSpacing = '1.5px';
       ctx.globalAlpha = 0.72;
       ctx.fillText('ALL VISITORS REPORT TO THE SITE OFFICE', 465, 237);
+      ctx.globalAlpha = 1;
+      ctx.letterSpacing = '0px';
+      return;
+    }
+
+    if (kind === 'zone') {
+      const base = new THREE.Color(accent).multiplyScalar(pal.night ? 0.38 : 0.88);
+      ctx.fillStyle = '#' + base.getHexString();
+      ctx.fillRect(0, 0, w, h);
+
+      ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+      ctx.lineWidth = 2;
+      for (let x = 0; x <= w; x += 64) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
+      for (let y = 0; y <= h; y += 64) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
+
+      chevron(0, 26); chevron(h - 26, 26);
+
+      // The plan reference, sized to be read from the far corner of a 24 m yard
+      // rather than from arm's length.
+      const plate = 176, plateX = 72, plateY = (h - plate) / 2;
+      ctx.fillStyle = 'rgba(255,255,255,0.95)';
+      ctx.fillRect(plateX, plateY, plate, plate);
+      ctx.fillStyle = '#' + base.getHexString();
+      ctx.font = `700 122px ${FONT}`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(zone.code, plateX + plate / 2, plateY + plate / 2 + 4);
+
+      // Names run from four characters to twelve, so both the name and the line
+      // under it condense to the plank rather than running off the end of it.
+      const tx = plateX + plate + 48, room = w - tx - 72;
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'alphabetic';
+      ctx.fillStyle = '#ffffff';
+
+      ctx.letterSpacing = '5px';
+      ctx.fillText(fitText(ctx, zone.label.toUpperCase(), room, 118, 48, 3)[0], tx, h / 2 + 8);
+      ctx.fillRect(tx, h / 2 + 30, Math.min(room, 430), 4);
+
+      ctx.letterSpacing = '2px';
+      ctx.globalAlpha = 0.82;
+      ctx.fillText(fitText(ctx, zone.blurb.toUpperCase(), room, 36, 18, 1)[0], tx, h / 2 + 88);
       ctx.globalAlpha = 1;
       ctx.letterSpacing = '0px';
       return;
@@ -480,13 +528,8 @@ export function wayfindingArrowTexture(pal, accent, code, label) {
     ctx.textAlign = 'left';
     // Long names have to fit the same plank as short ones, so the type
     // condenses to the width rather than running off the end of the paint.
-    let size = 44;
     ctx.letterSpacing = '3px';
-    do {
-      ctx.font = `700 ${size}px ${FONT}`;
-      size -= 2;
-    } while (ctx.measureText(label.toUpperCase()).width > w - 118 && size > 20);
-    ctx.fillText(label.toUpperCase(), 98, py + plate / 2 + 2);
+    ctx.fillText(fitText(ctx, label.toUpperCase(), w - 118, 44, 20)[0], 98, py + plate / 2 + 2);
     ctx.letterSpacing = '0px';
     ctx.globalAlpha = 1;
 

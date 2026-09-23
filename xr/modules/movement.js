@@ -13,7 +13,10 @@ import * as THREE from 'three';
 
 const WALK = 3.6;
 const RUN = 6.6;
-const ACCEL = 15;
+// Fast enough that a keypress reads as immediate. Below about 20 the ramp is
+// long enough to feel like lag rather than weight, and it stacks with the turn
+// and camera easings downstream of it.
+const ACCEL = 25;
 const DAMP = 13;
 const LOOK_SENS = 0.0024;
 const TOUCH_LOOK_SENS = 0.0042;

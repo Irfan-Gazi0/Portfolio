@@ -33,5 +33,13 @@ __pycache__/
 
 .DS_Store
 
-# Claude Code session lock, not project content.
-.claude/scheduled_tasks.lock
+# Local agent tooling and notes, not site content. GitHub Pages would serve
+# them as public URLs if they were committed.
+CLAUDE.md
+.claude/
+.agents/
+skills-lock.json
+
+# One-off scripts that produced committed files. Kept local so the pipeline
+# is not published alongside the site.
+tools/

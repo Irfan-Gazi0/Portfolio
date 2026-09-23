@@ -46,7 +46,10 @@ export function createScene(canvas) {
 
   scene.add(buildSky(pal));
 
-  const camera = new THREE.PerspectiveCamera(62, window.innerWidth / window.innerHeight, 0.15, 900);
+  // 72, not the 62 this started at. Optical flow at the screen edge is most of
+  // what sells walking pace, and a narrow third-person FOV reads as slow motion
+  // however fast the worker is actually travelling.
+  const camera = new THREE.PerspectiveCamera(72, window.innerWidth / window.innerHeight, 0.15, 900);
   camera.position.set(0, 6, 12);
   scene.add(camera);
 

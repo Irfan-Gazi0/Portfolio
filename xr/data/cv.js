@@ -40,12 +40,17 @@ export const GATE_WIDTH = 4;    // outer gate onto the wider site
 export const WALL_HEIGHT = 5.6; // site hoarding, tall enough to carry the boards
 export const SITE_HALF = 60;    // perimeter fence sits this far out on each axis
 
+/* `label` names what is in a yard, not what the yard would be called on a real
+   site: it is what the gate signs, the floor markings, the site plan and the
+   jump list all read, and a visitor arrives knowing none of the metaphor. The
+   yard still looks like a plan room or a fabrication yard — that is what the
+   plant standing in it is for. */
 export const ZONES = [
   {
     id: 'office',
     label: 'Site Office',
     code: 'A',
-    blurb: 'Start here — induction, contact and current notices',
+    blurb: 'Start here — who I am, how to reach me, and what is new',
     bounds: { minX: -12, maxX: 12, minZ: -12, maxZ: 12 },
     accent: 0x0e6e6e,
     walls: { north: 'door', south: 'door', east: 'door', west: 'door' },
@@ -53,36 +58,36 @@ export const ZONES = [
   },
   {
     id: 'planroom',
-    label: 'Plan Room',
+    label: 'Research',
     code: 'B',
-    blurb: 'Two journal articles, three in progress, two presented',
+    blurb: 'Papers: two published, three in progress, two presented',
     bounds: { minX: -12, maxX: 12, minZ: -30, maxZ: -12 },
     accent: 0x2b6cb0,
     walls: { north: 'gate', south: 'none', east: 'solid', west: 'solid' },
   },
   {
     id: 'systems',
-    label: 'Systems Container',
+    label: 'Code',
     code: 'C',
-    blurb: 'Systems built and released',
+    blurb: 'Systems and repositories I have built and released',
     bounds: { minX: 12, maxX: 30, minZ: -12, maxZ: 12 },
     accent: 0x4e8b3a,
     walls: { north: 'solid', south: 'solid', east: 'gate', west: 'none' },
   },
   {
     id: 'fabrication',
-    label: 'Fabrication Yard',
+    label: 'BIM Projects',
     code: 'D',
-    blurb: 'BIM modelling and coordination',
+    blurb: 'Revit and Navisworks modelling and coordination',
     bounds: { minX: -30, maxX: -12, minZ: -12, maxZ: 12 },
     accent: 0xc2570f,
     walls: { north: 'solid', south: 'solid', east: 'none', west: 'gate' },
   },
   {
     id: 'milestones',
-    label: 'Milestone Row',
+    label: 'Milestones',
     code: 'E',
-    blurb: '',
+    blurb: 'Education, awards and service',
     bounds: { minX: -12, maxX: 12, minZ: 12, maxZ: 30 },
     accent: 0x8a5fa8,
     walls: { north: 'none', south: 'gate', east: 'solid', west: 'solid' },
@@ -103,7 +108,9 @@ export const EXHIBITS = [
   /* ===================== SITE OFFICE ===================== */
   {
     id: 'portrait',
-    zone: 'office', wall: 'south', slot: 1, size: [2.6, 3.14],
+    // Deliberately the largest board on the site: it is the one thing in frame
+    // when you arrive, and at 2.6 m it read as a postage stamp across a 24 m yard.
+    zone: 'office', wall: 'south', slot: 1, size: [3.2, 3.86],
     kind: 'portrait',
     focal: true,   // the spawn point is derived to stand in front of this
     texture: '../images/profile.webp',
@@ -152,7 +159,25 @@ export const EXHIBITS = [
       ['2023-10', 'Runners-up in the Technical Poster Presentation on sustainable construction at Civil Convivial 3.0.'],
     ],
   },
-  /* ===================== PLAN ROOM ===================== */
+  {
+    // Hung on the run you face when you turn away from the portrait, which is
+    // also the way through to the Research yard. Duplicates ZONES on purpose:
+    // five literal lines beat a codepath that renders the site plan onto a board.
+    id: 'directory',
+    zone: 'office', wall: 'north', slot: 0, size: [3.2, 2.1],
+    kind: 'board',
+    title: 'Site Directory',
+    venue: 'Five yards',
+    body: ['Each yard holds one part of the CV. Walk through a gateway, press J for the list, or press 1–5.'],
+    list: [
+      ['A', 'Site Office — this yard: who I am, contact, news'],
+      ['B', 'Research — papers published, in progress and presented'],
+      ['C', 'Code — systems and repositories'],
+      ['D', 'BIM Projects — Revit and Navisworks coordination'],
+      ['E', 'Milestones — education, awards and service'],
+    ],
+  },
+  /* ===================== RESEARCH (PLAN ROOM) ===================== */
   {
     id: 'rha',
     zone: 'planroom', wall: 'north', slot: 0, size: [5.2, 3.16],
@@ -293,7 +318,7 @@ export const EXHIBITS = [
     zone: 'systems', wall: 'north', slot: 0, size: [3.6, 2.01],
     kind: 'project',
     texture: '../images/ev-vr-portal-still.webp',
-    venue: 'Nebraska Clean Cities & Communities Coalition (NEC4) · Jumpstart · 2025 – present',
+    venue: 'Nebraska Clean Cities & Communities Coalition (NEC4) · Jumpstart · Sponsored by the National Laboratory of the Rockies (NLR) · 2025 – 2026',
     title: 'Modernizing EV Emergency Response Training Through XR and AI',
     authors: 'PI Dr. Nathan Huynh (Nebraska Transportation Center), Co-PI Dr. Kyungki Kim (Durham School); {me} builds the portal, the retrieval chatbot and the VR integration.',
     body: [
@@ -303,7 +328,7 @@ export const EXHIBITS = [
     ],
     caption: 'The proof-of-concept VR interface: the training plays around you, and the same panel holds the playback controls and the chatbot — hold the trigger to ask out loud, or type.',
     links: [
-      { label: 'First Responder Portal', href: 'https://nec4-jumpstart.streamlit.app/' },
+      { label: 'Project page', href: 'https://nec4.unl.edu/initiatives/modernizing-ev-emergency-response-training-through-xr-and-ai/' },
       { label: 'NEC4', href: 'https://nec4.unl.edu/' },
       { label: 'Code', href: 'https://github.com/Irfan-Gazi0/RAG_Responder' },
     ],
@@ -396,5 +421,51 @@ export const EXHIBITS = [
     ],
   },
 
-  /* ===================== MILESTONE ROW ===================== */
+  /* ===================== MILESTONES ===================== */
+  {
+    id: 'education',
+    zone: 'milestones', wall: 'east', slot: 0, size: [3.2, 2.2],
+    kind: 'milestone',
+    title: 'Education',
+    venue: 'Degrees',
+    rows: [
+      ['M.S., Construction Engineering & Management', 'Aug 2025 – Jun 2027 (expected)',
+       'University of Nebraska–Lincoln, Durham School of Architectural Engineering and Construction. Graduate Research Assistant in the Autonomous Vehicles and Robotics Laboratory, advised by Dr. Kyungki Kim, on an NDOT-funded project training construction inspectors in virtual environments.'],
+      ['B.Sc. (Engg.), Building Engineering & Construction Management', 'Mar 2024',
+       'Khulna University of Engineering & Technology, Bangladesh. Graduated 5th of 79. Thesis: BIM, supervised machine learning and a Unity virtual environment made the embodied carbon of a concrete mix visible while the design was still being decided. Supervised by Dr. Md. Ikramul Hoque.'],
+    ],
+    links: [
+      { label: 'Durham School', href: 'https://engineering.unl.edu/durhamschool/' },
+      { label: 'CV (PDF)', href: '../data/CV_Irfan_Gazi.pdf' },
+    ],
+  },
+  {
+    id: 'awards',
+    zone: 'milestones', wall: 'east', slot: 1, size: [3.2, 2.2],
+    kind: 'milestone',
+    title: 'Awards & Recognition',
+    venue: 'Fellowships, grants, results',
+    list: [
+      ['2026-06', 'Calvin C. Solem Fellowship for the 2026–27 academic year, Durham School of Architectural Engineering and Construction.'],
+      ['2026-05', 'Chancellor’s Graduate Research Grant travel award, UNL, Spring 2026 cycle.'],
+      ['2024-11', 'IELTS 7.5 overall.'],
+      ['2024-03', 'Graduated 5th of 79 at KUET.'],
+      ['2023-10', 'Runners-up, Technical Poster Presentation on sustainable construction, Civil Convivial 3.0.'],
+    ],
+  },
+  {
+    id: 'service',
+    zone: 'milestones', wall: 'south', slot: 0, size: [3.0, 2.0],
+    kind: 'milestone',
+    title: 'Service & Mentoring',
+    venue: 'Reviewing, judging, organizing',
+    rows: [
+      ['Judge, Summer Research Symposium 2026', 'Aug 2026',
+       'UNL Office of Graduate Studies.'],
+      ['Graduate research advisor, Clark Construction Group capstone', 'Apr 2026',
+       'A voice-first custom GPT that drafts Procore daily logs from a foreman’s spoken site notes.'],
+      ['Organizer, Builtech Fest 5.0', 'Feb 2024',
+       'The largest national construction management competition in Bangladesh.'],
+    ],
+  },
 ];

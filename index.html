@@ -23,20 +23,27 @@
 <meta name="twitter:description" content="M.S. Construction Engineering and Graduate Research Assistant at the University of Nebraska-Lincoln. Generative AI, LLM agents, mixed reality and BIM for the job site." />
 <meta name="twitter:image" content="https://irfan-gazi0.github.io/Portfolio/images/profile.webp" />
 <meta name="theme-color" content="#fdfcfa" media="(prefers-color-scheme: light)" />
-<meta name="theme-color" content="#0d1213" media="(prefers-color-scheme: dark)" />
+<meta name="theme-color" content="#110d0e" media="(prefers-color-scheme: dark)" />
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E6E6E'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='36' font-weight='700' fill='%23fff' text-anchor='middle'%3EIG%3C/text%3E%3C/svg%3E" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23D00000'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='36' font-weight='700' fill='%23fff' text-anchor='middle'%3EIG%3C/text%3E%3C/svg%3E" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<!-- Fetched at high priority but not render-blocking: first paint no longer
+     waits on a round trip to Google. Safe here because the stack in `body`
+     already falls back to the system sans and the request carries
+     `display=swap`, so text is drawn in the fallback either way and the only
+     difference is whether the rest of the page is held up waiting for it.
+     The <noscript> copy keeps the webfont for readers without JavaScript. -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" /></noscript>
 
 <script>
   /* Set the theme before first paint so there is no flash of the wrong palette. */
   (function () {
     try {
       var s = localStorage.getItem('theme');
-      document.documentElement.setAttribute('data-theme', (s === 'dark' || s === 'light') ? s : 'dark');
+      if (s === 'dark' || s === 'light') document.documentElement.setAttribute('data-theme', s);
     } catch (e) {}
   })();
 </script>
@@ -115,83 +122,83 @@
      controls, the canvas behind the page — should be painted. */
   color-scheme: light;
 
-  --accent:        #0E6E6E;
-  --accent-deep:   #0A5252;
-  --accent-warm:   #B36A15;
-  --accent-soft:   rgba(14, 110, 110, 0.10);
-  --accent-softer: rgba(14, 110, 110, 0.05);
+  --accent:        #D00000;
+  --accent-deep:   #A30000;
+  --accent-warm:   #B8860B;
+  --accent-soft:   rgba(34, 28, 28, 0.07);
+  --accent-softer: rgba(34, 28, 28, 0.035);
 
-  --ink:      #1b2226;
-  --ink-soft: #45535a;
-  --ink-mute: #78868e;
+  --ink:      #221c1c;
+  --ink-soft: #52494a;
+  --ink-mute: #857a7b;
 
   --paper:   #fffefc;
-  --surface: #f4f8f8;
-  --rule:       rgba(14, 110, 110, 0.18);
-  --rule-faint: rgba(14, 110, 110, 0.09);
+  --surface: #f6f4f2;
+  --rule:       rgba(34, 28, 28, 0.14);
+  --rule-faint: rgba(34, 28, 28, 0.07);
 
   --nav-bg: rgba(255, 254, 252, 0.86);
-  --shadow: 0 1px 2px rgba(27, 34, 38, 0.05), 0 6px 20px rgba(27, 34, 38, 0.05);
+  --shadow: 0 1px 2px rgba(34, 28, 28, 0.05), 0 6px 20px rgba(34, 28, 28, 0.05);
 
   --page-bg:
-    radial-gradient(ellipse 1000px 400px at 50% -90px, rgba(14, 110, 110, 0.055), transparent 70%),
-    radial-gradient(ellipse 820px 300px at 90% 16%, rgba(179, 106, 21, 0.030), transparent 72%),
-    linear-gradient(180deg, #fbfdfc 0%, #fffefc 620px);
+    radial-gradient(ellipse 1000px 400px at 50% -90px, rgba(34, 28, 28, 0.03), transparent 70%),
+    radial-gradient(ellipse 820px 300px at 90% 16%, rgba(34, 28, 28, 0.02), transparent 72%),
+    linear-gradient(180deg, #fbfaf9 0%, #fffefc 620px);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
-    --accent:        #45B5AF;
-    --accent-deep:   #6FCFC9;
-    --accent-warm:   #DDA05A;
-    --accent-soft:   rgba(69, 181, 175, 0.14);
-    --accent-softer: rgba(69, 181, 175, 0.07);
+    --accent:        #FF6B5E;
+    --accent-deep:   #FF9A8F;
+    --accent-warm:   #E8B860;
+    --accent-soft:   rgba(255, 255, 255, 0.09);
+    --accent-softer: rgba(255, 255, 255, 0.045);
 
-    --ink:      #e4ecec;
-    --ink-soft: #aebcbc;
-    --ink-mute: #7e8f8f;
+    --ink:      #f0e8e6;
+    --ink-soft: #c4b6b3;
+    --ink-mute: #968683;
 
-    --paper:   #101617;
-    --surface: #182122;
-    --rule:       rgba(69, 181, 175, 0.24);
-    --rule-faint: rgba(69, 181, 175, 0.11);
+    --paper:   #161112;
+    --surface: #211819;
+    --rule:       rgba(255, 255, 255, 0.16);
+    --rule-faint: rgba(255, 255, 255, 0.07);
 
-    --nav-bg: rgba(16, 22, 23, 0.86);
+    --nav-bg: rgba(22, 17, 18, 0.86);
     --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 6px 20px rgba(0, 0, 0, 0.3);
 
     --page-bg:
-      radial-gradient(ellipse 1000px 400px at 50% -90px, rgba(69, 181, 175, 0.075), transparent 70%),
-      radial-gradient(ellipse 820px 300px at 90% 16%, rgba(221, 160, 90, 0.040), transparent 72%),
-      linear-gradient(180deg, #0d1213 0%, #101617 620px);
+      radial-gradient(ellipse 1000px 400px at 50% -90px, rgba(255, 255, 255, 0.045), transparent 70%),
+      radial-gradient(ellipse 820px 300px at 90% 16%, rgba(232, 184, 96, 0.04), transparent 72%),
+      linear-gradient(180deg, #110d0e 0%, #161112 620px);
   }
 }
 
 /* Explicit choice wins in both directions. */
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --accent:        #45B5AF;
-  --accent-deep:   #6FCFC9;
-  --accent-warm:   #DDA05A;
-  --accent-soft:   rgba(69, 181, 175, 0.14);
-  --accent-softer: rgba(69, 181, 175, 0.07);
+  --accent:        #FF6B5E;
+  --accent-deep:   #FF9A8F;
+  --accent-warm:   #E8B860;
+  --accent-soft:   rgba(255, 255, 255, 0.09);
+  --accent-softer: rgba(255, 255, 255, 0.045);
 
-  --ink:      #e4ecec;
-  --ink-soft: #aebcbc;
-  --ink-mute: #7e8f8f;
+  --ink:      #f0e8e6;
+  --ink-soft: #c4b6b3;
+  --ink-mute: #968683;
 
-  --paper:   #101617;
-  --surface: #182122;
-  --rule:       rgba(69, 181, 175, 0.24);
-  --rule-faint: rgba(69, 181, 175, 0.11);
+  --paper:   #161112;
+  --surface: #211819;
+  --rule:       rgba(255, 255, 255, 0.16);
+  --rule-faint: rgba(255, 255, 255, 0.07);
 
-  --nav-bg: rgba(16, 22, 23, 0.86);
+  --nav-bg: rgba(22, 17, 18, 0.86);
   --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 6px 20px rgba(0, 0, 0, 0.3);
 
   --page-bg:
-    radial-gradient(ellipse 1000px 400px at 50% -90px, rgba(69, 181, 175, 0.075), transparent 70%),
-    radial-gradient(ellipse 820px 300px at 90% 16%, rgba(221, 160, 90, 0.040), transparent 72%),
-    linear-gradient(180deg, #0d1213 0%, #101617 620px);
+    radial-gradient(ellipse 1000px 400px at 50% -90px, rgba(255, 255, 255, 0.045), transparent 70%),
+    radial-gradient(ellipse 820px 300px at 90% 16%, rgba(232, 184, 96, 0.04), transparent 72%),
+    linear-gradient(180deg, #110d0e 0%, #161112 620px);
 }
 
 /* ---------- base ---------- */
@@ -228,14 +235,14 @@ code {
 }
 
 a { color: var(--accent); text-decoration: none; transition: color .18s ease; }
-a:hover, a:focus { color: var(--accent-warm); }
+a:hover, a:focus { color: var(--accent-deep); }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
 ::selection { background: var(--accent-soft); }
 
 img { max-width: 100%; height: auto; display: block; }
 p { margin: 0 0 12px; overflow-wrap: break-word; }
 
-.wrap { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
 /* ---------- navigation ---------- */
 nav {
@@ -246,7 +253,7 @@ nav {
   border-bottom: 1px solid var(--rule-faint);
 }
 .nav-inner {
-  max-width: 900px; margin: 0 auto; padding: 0 24px;
+  max-width: 1080px; margin: 0 auto; padding: 0 24px;
   display: flex; align-items: center; gap: 14px; min-height: 52px;
 }
 nav ul {
@@ -259,21 +266,44 @@ nav ul li a {
   color: var(--ink-soft);
   transition: color .18s ease, background .18s ease;
 }
-nav ul li a:hover { color: var(--accent); background: var(--accent-softer); }
+nav ul li a:hover { color: var(--ink); background: var(--accent-softer); }
 nav ul li a.active { color: var(--accent); background: var(--accent-soft); }
-/* Leaves the page, so it is marked out from the in-page anchors beside it. */
-nav ul li a.nav-xr {
-  color: var(--accent); border: 1px solid var(--rule);
-  display: inline-flex; align-items: center; gap: 5px;
+/* Leaves the page, so it is marked out from the in-page anchors. On hover the
+   little figure bolts out of the doorway. */
+a.nav-xr {
+  flex: none; height: 32px; padding: 0 10px; border-radius: 8px;
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 14px; font-weight: 600; color: var(--ink-soft);
+  border: 1px solid var(--rule);
+  transition: color .18s ease, border-color .18s ease, background .18s ease;
 }
-nav ul li a.nav-xr:hover { border-color: var(--accent); background: var(--accent-soft); }
-nav ul li a.nav-xr svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.7; }
+a.nav-xr:hover, a.nav-xr:focus-visible { color: var(--ink); border-color: var(--ink-mute); background: var(--accent-soft); }
+a.nav-xr svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; overflow: visible; }
+@media (prefers-reduced-motion: no-preference) {
+  .nav-xr .xr-man { transition: transform .5s cubic-bezier(.3,1.4,.5,1); }
+  .nav-xr:hover .xr-man, .nav-xr:focus-visible .xr-man { transform: translateX(10px); animation: xr-hop .5s ease-out .5s 2; }
+  .nav-xr .xr-leg-a, .nav-xr .xr-leg-b, .nav-xr .xr-arm { transform-box: fill-box; transform-origin: top center; }
+  .nav-xr:hover .xr-leg-a, .nav-xr:focus-visible .xr-leg-a { animation: xr-step .25s ease-in-out infinite alternate; }
+  .nav-xr:hover .xr-leg-b, .nav-xr:focus-visible .xr-leg-b { animation: xr-step .25s ease-in-out infinite alternate-reverse; }
+  .nav-xr:hover .xr-arm, .nav-xr:focus-visible .xr-arm { animation: xr-wave .25s ease-in-out infinite alternate; }
+}
+@keyframes xr-hop { 50% { transform: translate(10px, -3px); } }
+@keyframes xr-step { from { transform: rotate(-25deg); } to { transform: rotate(25deg); } }
+@keyframes xr-wave { from { transform: translateY(-1px); } to { transform: translateY(1.5px); } }
 
-/* Reading position, drawn on the nav's own bottom rule. */
+/* Reading position, drawn on the nav's own bottom rule.
+
+   Scaled rather than resized. This sits inside a backdrop-filtered nav, and
+   `width` is a layout property: writing it every scroll frame invalidated the
+   nav's paint, which made the blur re-sample the page behind it 60 times a
+   second. A transform is composited on its own, so the nav is never repainted
+   and the blur runs once. */
 #scroll-progress {
-  position: absolute; left: 0; bottom: -1px; height: 2px; width: 0;
-  background: linear-gradient(90deg, var(--accent), var(--accent-warm));
-  transition: width .08s linear;
+  position: absolute; left: 0; bottom: -1px; height: 2px; width: 100%;
+  transform: scaleX(0); transform-origin: 0 50%;
+  background: var(--accent);
+  transition: transform .08s linear;
+  will-change: transform;
   pointer-events: none;
 }
 
@@ -284,7 +314,7 @@ nav ul li a.nav-xr svg { width: 13px; height: 13px; fill: none; stroke: currentC
   background: transparent; color: var(--ink-soft); cursor: pointer;
   transition: color .18s ease, border-color .18s ease;
 }
-.theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+.theme-toggle:hover { color: var(--ink); border-color: var(--ink-mute); }
 .theme-toggle svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }
 .icon-moon { display: none; }
 :root[data-theme="dark"] .icon-sun { display: none; }
@@ -303,37 +333,41 @@ h2.section-heading {
   font-size: 25px; font-weight: 600; letter-spacing: -0.012em;
   color: var(--ink);
   display: inline-block; padding-bottom: 7px;
-  background-image: linear-gradient(90deg, var(--accent) 0%, var(--rule) 60%, transparent 100%);
+  background-image: linear-gradient(90deg, var(--ink-mute) 0%, var(--rule) 60%, transparent 100%);
   background-position: 0 100%; background-size: 100% 2px; background-repeat: no-repeat;
 }
 h2.section-heading::before {
   content: ""; display: inline-block;
   width: 7px; height: 7px; margin: 0 10px 3px 0; vertical-align: middle;
-  border-radius: 50%; background: var(--accent);
+  border-radius: 50%; background: var(--ink-mute);
   box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
 /* ---------- hero ---------- */
 .hero { display: grid; grid-template-columns: 1fr 210px; gap: 36px; align-items: start; padding-top: 46px; }
-.hero-photo { position: relative; width: 210px; order: 2; margin-top: 3.2em; }
-.hero-photo::before {
-  content: ""; position: absolute; inset: 10px -6px -6px 10px; border-radius: 16px;
-  background: var(--accent); filter: blur(18px); opacity: 0; z-index: 0;
-  transition: opacity 0.25s ease;
-}
-.hero-photo:hover::before, .hero-photo:focus-within::before { opacity: 0.45; }
+.hero-photo { position: relative; width: 210px; order: 2; margin-top: 0; }
 .hero-photo button {
   all: unset; display: block; position: relative; z-index: 1; border-radius: 12px;
 }
-.hero-photo img { width: 210px; border-radius: 12px; box-shadow: var(--shadow); display: block; transition: transform 0.25s ease; }
-.hero-photo:hover img, .hero-photo:focus-within img { transform: scale(1.04); }
+/* Glow lives on the button, not .hero-photo, so it hugs the portrait and
+   not the sponsor row below it. */
+.hero-photo button::before {
+  content: ""; position: absolute; inset: 10px -6px -6px 10px; border-radius: 16px;
+  background: var(--accent); filter: blur(18px); opacity: 0; z-index: -1;
+  transition: opacity 0.25s ease;
+}
+.hero-photo button:hover::before, .hero-photo button:focus-visible::before { opacity: 0.45; }
+.hero-photo button img { width: 210px; border-radius: 12px; box-shadow: var(--shadow); display: block; transition: transform 0.25s ease; }
+.hero-photo button:hover img, .hero-photo button:focus-visible img { transform: scale(1.04); }
+.hero-sponsors { display: flex; gap: 6px; margin-top: 20px; justify-content: center; align-items: center; }
 .photo-lightbox {
   position: fixed; inset: 0; z-index: 1000; display: none; align-items: center; justify-content: center;
   background: rgba(0, 0, 0, 0.72); padding: 24px; cursor: zoom-out;
 }
 .photo-lightbox.open { display: flex; }
 .photo-lightbox img { max-width: min(90vw, 640px); max-height: 88vh; border-radius: 12px; box-shadow: var(--shadow); }
-.hero h1 { margin: -6px 0 12px; font-size: 32px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; }
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.hero h1 { grid-column: 1 / -1; margin: 0 0 -18px; font-size: 32px; line-height: 1.15; letter-spacing: -0.02em; color: var(--ink); }
 .hero .tagline { margin: 0 0 14px; font-size: 15px; color: var(--ink-mute); }
 
 /* What I am doing now and what I am open to — the two things a visitor
@@ -362,7 +396,7 @@ h2.section-heading::before {
 .chips li {
   font-size: 12.5px; font-weight: 600; letter-spacing: .01em;
   padding: 3px 11px; border-radius: 999px;
-  color: var(--accent); background: var(--accent-softer);
+  color: var(--ink-soft); background: var(--accent-softer);
   border: 1px solid var(--rule);
 }
 
@@ -383,11 +417,11 @@ h2.section-heading::before {
   display: inline-flex; align-items: center;
   padding: 6px 14px; border-radius: 999px;
   border: 1px solid var(--rule); background: var(--accent-softer);
-  font-weight: 600; color: var(--accent);
+  font-weight: 600; color: var(--ink-soft);
   transition: border-color .18s ease, background .18s ease, color .18s ease;
 }
 .linkrow a:hover, .linkrow button.linklike:hover {
-  border-color: var(--accent); background: var(--accent-soft); color: var(--accent-warm);
+  border-color: var(--ink-mute); background: var(--accent-soft); color: var(--ink);
 }
 button.linklike {
   cursor: pointer; font: inherit;
@@ -401,7 +435,7 @@ button.linklike {
   border: 1px solid var(--rule); border-radius: 5px; cursor: pointer;
   transition: color .18s ease, border-color .18s ease;
 }
-.copy-btn:hover, .copy-btn.done { color: var(--accent); border-color: var(--accent); }
+.copy-btn:hover, .copy-btn.done { color: var(--ink); border-color: var(--ink-mute); }
 
 /* ---------- news ---------- */
 .news-scroll {
@@ -419,7 +453,7 @@ button.linklike {
 .news-scroll li::before {
   content: ""; position: absolute; left: -24px; top: 5px;
   width: 13px; height: 13px; border-radius: 50%;
-  background: var(--surface); border: 2px solid var(--accent);
+  background: var(--surface); border: 2px solid var(--ink-mute);
   box-shadow: 0 0 0 4px var(--accent-soft);
   transition: background-color .15s ease;
 }
@@ -451,7 +485,7 @@ button.linklike {
 .rgroup-head h3::before {
   content: ""; display: inline-block;
   width: 6px; height: 6px; margin: 0 9px 2px 0; vertical-align: middle;
-  border-radius: 50%; background: var(--accent);
+  border-radius: 50%; background: var(--ink-mute);
   box-shadow: 0 0 0 3px var(--accent-soft);
 }
 .rgroup-count {
@@ -476,15 +510,15 @@ button.linklike {
   display: inline-flex; align-items: baseline; gap: 7px;
   padding: 4px 12px; border-radius: 999px;
   font-size: 13px; font-weight: 600;
-  color: var(--accent); background: var(--accent-softer);
+  color: var(--ink-soft); background: var(--accent-softer);
   border: 1px solid var(--rule);
   transition: border-color .18s ease, background .18s ease;
 }
-.rindex a:hover { border-color: var(--accent); background: var(--accent-soft); }
+.rindex a:hover { color: var(--ink); border-color: var(--ink-mute); background: var(--accent-soft); }
 .rindex b { font-weight: 700; color: var(--ink-mute); font-variant-numeric: tabular-nums; }
 
 /* ---------- research / project entries ---------- */
-.entry { display: grid; grid-template-columns: 265px 1fr; gap: 24px; align-items: start; margin-bottom: 34px; }
+.entry { display: grid; grid-template-columns: 340px 1fr; gap: 28px; align-items: start; margin-bottom: 34px; }
 .entry.no-fig { grid-template-columns: 1fr; }
 .entry-fig img, .entry-fig svg {
   width: 100%; border-radius: 8px;
@@ -504,7 +538,7 @@ button.linklike {
 .venue {
   display: block; margin-bottom: 6px;
   font-size: 12px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase;
-  color: var(--accent);
+  color: var(--ink-soft);
 }
 .venue.pending { color: var(--ink-mute); }
 
@@ -536,6 +570,14 @@ button.linklike {
 /* Archival: the dot goes quiet, the border does not. At --rule-faint the pill
    stopped looking like a pill and read as loose text. */
 .state.is-past::before { background: var(--ink-mute); }
+/* NDOT/NLR marks are dark-on-transparent, so they need a light chip behind
+   them in both themes, not just the dark one. */
+.sponsor-logo {
+  height: 50px; width: auto; flex: none;
+  padding: 4px 8px; border-radius: 6px;
+  background: #f2f5f5;
+  object-fit: contain;
+}
 
 .entry-title { margin: 0 0 6px; font-size: 17.5px; font-weight: 600; line-height: 1.35; letter-spacing: -0.008em; }
 .authors { margin: 0 0 8px; font-size: 14.5px; color: var(--ink-soft); line-height: 1.5; }
@@ -546,12 +588,16 @@ button.linklike {
 
 .actions { display: flex; flex-wrap: wrap; gap: 6px; margin: 2px 0 0; }
 .actions a {
+  display: inline-flex; align-items: center; gap: 5px;
   font-size: 13px; font-weight: 600; letter-spacing: .01em;
   padding: 2px 9px; border-radius: 999px;
-  border: 1px solid var(--rule); background: var(--accent-softer);
+  border: 1px solid var(--rule); background: var(--accent-softer); color: var(--ink-soft);
   transition: background .18s ease, border-color .18s ease, color .18s ease;
 }
-.actions a:hover { background: var(--accent-soft); border-color: var(--accent); }
+.actions a:hover { background: var(--accent-soft); border-color: var(--ink-mute); color: var(--ink); }
+/* Line icons (Lucide, 24px grid) and the filled GitHub mark share one size. */
+.actions a svg { flex: none; width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.actions a svg.i-solid { fill: currentColor; stroke: none; }
 
 details.more { margin-top: 12px; }
 details.more > summary {
@@ -560,10 +606,10 @@ details.more > summary {
   padding: 1px 4px; border-radius: 4px;
 }
 details.more > summary::-webkit-details-marker { display: none; }
-details.more > summary::before { content: "+ "; color: var(--accent); font-weight: 700; }
+details.more > summary::before { content: "+ "; color: var(--ink-mute); font-weight: 700; }
 details.more[open] > summary::before { content: "\2212 "; }
-details.more > summary:hover { color: var(--accent); }
-.more-figs { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 12px; }
+details.more > summary:hover { color: var(--ink); }
+.more-figs { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-top: 12px; }
 .more-figs figure { margin: 0; }
 .more-figs img {
   border-radius: 8px; border: 1px solid var(--rule-faint); background: #fff;
@@ -617,7 +663,7 @@ details.more > summary:hover { color: var(--accent); }
 .entries .detail { color: var(--ink-mute); font-size: 14.5px; }
 .when {
   font-size: 13px; font-weight: 600; letter-spacing: .02em;
-  color: var(--accent); white-space: nowrap;
+  color: var(--ink-mute); white-space: nowrap;
 }
 .plain { margin: 0; padding-left: 20px; }
 .plain li { margin-bottom: 8px; color: var(--ink-soft); }
@@ -638,6 +684,8 @@ details.more > summary:hover { color: var(--accent); }
 
 /* ---------- footer ---------- */
 .to-top { font-weight: 600; }
+/* Visit counter: a hits.sh badge, counted per page load on their server. */
+.visits { vertical-align: middle; }
 footer {
   margin-top: 52px; padding: 22px 0 30px;
   border-top: 1px solid var(--rule-faint);
@@ -648,7 +696,10 @@ footer {
 /* ---------- responsive ---------- */
 @media (max-width: 768px) {
   .hero { grid-template-columns: 1fr; gap: 22px; padding-top: 34px; }
+  .hero-photo { order: 0; }
   .hero-photo img { width: 160px; }
+  .hero-sponsors { justify-content: flex-start; }
+  .sponsor-logo { height: 36px; }
   .entry { grid-template-columns: 1fr; gap: 14px; }
   .entry-fig { max-width: 420px; }
   .rgroup-body { padding-left: 14px; }
@@ -659,7 +710,6 @@ footer {
   html { scroll-padding-top: 104px; }
   body { padding-top: 76px; }
   h2.section-heading { font-size: 22px; }
-  .hero h1 { font-size: 27px; }
   .status { font-size: 13.5px; }
 }
 
@@ -702,6 +752,9 @@ footer {
 <!-- Icons used more than once, defined once. -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <symbol id="i-github" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></symbol>
+  <symbol id="i-paper" viewBox="0 0 24 24"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></symbol>
+  <symbol id="i-ext" viewBox="0 0 24 24"><path d="M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/><path d="m21 3-9 9"/><path d="M15 3h6v6"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></symbol>
 </svg>
 
 <nav>
@@ -712,11 +765,11 @@ footer {
       <li><a href="#research">Research</a></li>
       <li><a href="#code">Code</a></li>
       <li><a href="#projects">Projects</a></li>
-      <li><a class="nav-xr" href="xr/">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.6a8 8 0 0 1 16 0"/><path d="M2.4 12.6h19.2"/><path d="M9 12.2V6.4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v5.8"/><path d="M3.4 19.6h17.2"/></svg>
-        3D Site
-      </a></li>
     </ul>
+    <a class="nav-xr" href="xr/" title="Walk through the 3D version of this site">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V4h9v17"/><path d="M2 21h20"/><g class="xr-man"><circle cx="7.5" cy="10" r="1.7"/><path d="M7.5 12v4.5"/><path class="xr-arm" d="M5.3 13.6l2.2-.8 2.2.8"/><path class="xr-leg-a" d="M7.5 16.5l-1.6 4"/><path class="xr-leg-b" d="M7.5 16.5l1.6 4"/></g></svg>
+      3D Site
+    </a>
     <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode">
       <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.4 5.4l1.5 1.5M17.1 17.1l1.5 1.5M18.6 5.4l-1.5 1.5M6.9 17.1l-1.5 1.5"/></svg>
       <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.5 8.5 0 1 1 9.4 3.5a6.8 6.8 0 0 0 11.1 11.1z"/></svg>
@@ -729,38 +782,44 @@ footer {
 
   <!-- ============ About ============ -->
   <section id="about" class="hero">
+    <h1>Irfan Gazi</h1>
     <div class="hero-photo">
       <button type="button" id="photo-trigger" aria-haspopup="dialog">
-        <img src="images/profile.webp" width="600" height="724" alt="Portrait of Irfan Gazi" />
+        <img src="images/profile.webp" width="450" height="530" alt="Portrait of Irfan Gazi" />
       </button>
+      <div class="hero-sponsors">
+        <img class="sponsor-logo" src="images/ndot-logo.webp" width="110" height="44" alt="Nebraska Department of Transportation logo" loading="lazy" decoding="async" />
+        <img class="sponsor-logo" src="images/nlr-logo.webp" width="82" height="44" alt="National Laboratory of the Rockies logo" loading="lazy" decoding="async" />
+      </div>
     </div>
     <div>
-      <h1>Irfan Gazi</h1>
       <p>
-        I am a <a href="https://engineering.unl.edu/durhamschool/cemt-ms/" target="_blank" rel="noopener">CEMT</a> MS student and Graduate Research Assistant at the
-        <a href="https://www.unl.edu/" target="_blank" rel="noopener">University of Nebraska&ndash;Lincoln</a>,
-        advised by <a href="https://engineering.unl.edu/durhamschool/person/kyungki-kim/" target="_blank" rel="noopener">Dr. Kyungki Kim</a>.
-        Recently, I was awarded the Calvin C. Solem Foundation Fellowship. My work focuses on building virtual environments paired with
-        AI assistants. 
+        I am a Graduate Research Assistant pursuing my MS in
+        <a href="https://engineering.unl.edu/durhamschool/cemt-ms/" target="_blank" rel="noopener">Construction Engineering and Management</a>
+        at the <a href="https://www.unl.edu/" target="_blank" rel="noopener">University of Nebraska&ndash;Lincoln</a>,
+        advised by <a href="https://engineering.unl.edu/durhamschool/person/kyungki-kim/" target="_blank" rel="noopener">Dr. Kyungki Kim.</a>
+        Recently I was awarded the Calvin C. Solem Foundation Fellowship for academic excellence. 
       </p>
       <p>
-        Currently, I am developing a virtual training system for the
+        
+        Currently, I am developing a training platform for inspectors at the
         <a href="https://dot.nebraska.gov/" target="_blank" rel="noopener">Nebraska Department of Transportation (NDOT)</a>
-        that teaches new highway inspectors using simulated job sites and an AI assistant
-        grounded in agency manuals. Alongside this, I am building a VR
-        training portal for first responders to practice electric vehicle emergency rescues.
+        to address the challenge of transferring construction inspection knowledge to new employees.
+        The platform combines simulated highway work zones with an AI mentor grounded in agency manuals, procedures and training videos.
+        
       </p>
       <p>
-        Before Nebraska, I earned my bachelor's degree in
-        <a href="https://www.kuet.ac.bd/becm" target="_blank" rel="noopener">Building Engineering and Construction Management</a>
-        from <a href="https://www.kuet.ac.bd" target="_blank" rel="noopener">KUET</a>
-        in Bangladesh, graduating in the top 5% of my class.
+        Also, I built a first responder training portal for the
+        <a href="https://nec4.unl.edu/initiatives/modernizing-ev-emergency-response-training-through-xr-and-ai/" target="_blank" rel="noopener">Nebraska Clean Cities and Communities Coalition</a>, sponsored by the <a href="https://www.nlr.gov/" target="_blank" rel="noopener">National Laboratory of the Rockies (NLR)</a>,
+        where they can inspect 3D electric cars and learn from immersive training videos. Within the portal, a virtual assistant provides cited answers  
+        from manufacturer rescue guides, sparing crews from searching through large vehicle manuals.
       </p>
+      <br>
 
       <div class="linkrow">
         <button class="linklike" id="email-reveal" type="button" aria-expanded="false" aria-controls="email-address">Email</button>
         <span id="email-address" hidden>&nbsp;<span id="email-text">igazi2&#64;huskers.unl.edu</span><button class="copy-btn" id="email-copy" type="button">copy</button></span>
-        <a href="data/CV_Irfan_Gazi.pdf" target="_blank" rel="noopener">CV</a>
+        <a href="data/CV_Irfan_Gazi_Fall_2027.pdf" target="_blank" rel="noopener">CV</a>
         <a href="https://orcid.org/0009-0004-5817-8845" target="_blank" rel="noopener">ORCID</a>
         <a href="https://scholar.google.com/citations?user=Nkbeio8AAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>
         <a href="https://www.researchgate.net/profile/Irfan-Gazi" target="_blank" rel="noopener">ResearchGate</a>
@@ -775,20 +834,15 @@ footer {
     <h2 class="section-heading">News</h2>
     <div class="news-scroll" tabindex="0" role="region" aria-label="News and updates">
       <ul>
-        <li><span class="date">2026:</span> Our XR and AI first-responder training portal is presented in the <a href="https://nec4.unl.edu/" target="_blank" rel="noopener">NEC4</a> Jumpstart webinar.</li>
-        <li><span class="date">2026:</span> Served as a judge at the <a href="https://www.unl.edu/gradstudies/" target="_blank" rel="noopener">UNL Office of Graduate Studies</a> Summer Research Symposium.</li>
-        <li><span class="date">2026:</span> Our <a href="https://doi.org/10.1038/s41598-026-63788-2" target="_blank" rel="noopener">2nd Paper</a> on occupational risk prioritization is published in Scientific Reports.</li>
-        <li><span class="date">2026:</span> First presentation in the US, on our research, at the <a href="https://dot.nebraska.gov/" target="_blank" rel="noopener">NDOT</a> &amp; UNL Research Summit.</li>
-        <li><span class="date">2026:</span> Awarded the <strong>Calvin C. Solem Fellowship</strong>.</li>
-        <li><span class="date">2026:</span> Awarded a <strong>Chancellor&rsquo;s Graduate Research Grant</strong> travel award.</li>
-        <li><span class="date">2026:</span> Our <a href="https://doi.org/10.3390/app16115320" target="_blank" rel="noopener">1st Paper</a>, an LLM-orchestrated Robotic Health Attendant framework, is published in Applied Sciences.</li>
-        <li><span class="date">2026:</span> Served as research advisor to the <a href="https://www.clarkconstruction.com/" target="_blank" rel="noopener">Clark Construction Group</a> capstone team, building a GPT for Procore daily logs.</li>
-        <li><span class="date">2026:</span> Presented InspectionGPT, our agentic RAG&ndash;MCP chatbot for inspector training, at the CI &amp; CRC joint conference.</li>
-        <li><span class="date">2025:</span> Started my M.S. in Construction Engineering and Management at UNL with a Graduate Research Assistantship.</li>
-        <li><span class="date">2024:</span> Scored 7.5 overall on IELTS.</li>
-        <li><span class="date">2024:</span> Completed my undergraduate degree at KUET.</li>
-        <li><span class="date">2024:</span> Organized <a href="https://www.facebook.com/builtech.fest.becm.kuet" target="_blank" rel="noopener">Builtech Fest 5.0</a>, the largest national construction management competition in Bangladesh.</li>
-        <li><span class="date">2023:</span> Runners-up in the Technical Poster Presentation on sustainable construction at <a href="https://www.facebook.com/civilalliancekuet/" target="_blank" rel="noopener">Civil Convivial 3.0</a>.</li>
+        <li><span class="date">Sep 2026:</span> Presented our first-responder training portal in the <a href="https://nec4.unl.edu/" target="_blank" rel="noopener">NEC4</a> Jumpstart webinar.</li>
+        <li><span class="date">Aug 2026:</span> Served as a judge at the <a href="https://www.unl.edu/gradstudies/" target="_blank" rel="noopener">Undergraduate Summer Research Symposium.</a> </li>
+        <li><span class="date">Aug 2026:</span> <a href="https://doi.org/10.1038/s41598-026-63788-2" target="_blank" rel="noopener">2nd Paper</a> published on occupational risk prioritization.</li>
+        <li><span class="date">Jul 2026:</span> Presented our research at the <a href="https://dot.nebraska.gov/" target="_blank" rel="noopener">NDOT</a> &amp; UNL Research Summit.</li>
+        <li><span class="date">Jun 2026:</span> Awarded the <strong>Calvin C. Solem Foundation Fellowship</strong>.</li>
+        <li><span class="date">May 2026:</span> Awarded the <strong>Chancellor&rsquo;s Graduate Travel Grant</strong>.</li>
+        <li><span class="date">May 2026:</span> <a href="https://doi.org/10.3390/app16115320" target="_blank" rel="noopener">1st Paper</a> published on an LLM-orchestrated robotic health attendant framework.</li>
+        <li><span class="date">Apr 2026:</span> Served as research advisor to the <a href="https://www.clarkconstruction.com/" target="_blank" rel="noopener">Clark Construction Group</a> capstone team.</li>
+        <li><span class="date">Mar 2026:</span> Presented our work at the CI &amp; CRC joint conference in San Antonio, Texas.</li>
       </ul>
     </div>
   </section>
@@ -815,20 +869,20 @@ footer {
         <img src="images/inspection-gpt-still.webp" width="775" height="457" loading="lazy" decoding="async"
              data-anim="images/inspection-gpt.webp"
              alt="The InspectionGPT interface: a sidebar of NDOT standard specifications, tech talk videos and the project contract; a chat thread answering &quot;Once the anchor bolts are set in concrete, how far off plumb can they be?&quot; with the specification passage quoted and page-level sources listed; and the cited manual page open beside it." />
-        <p class="fig-credit">AI answering a trainee inspector&rsquo;s question with the cited document page open beside it.</p>
+        <p class="fig-credit">Answers are displayed with a side panel showing the source pages</p>
       </div>
       <div>
-        <p class="entry-meta"><span class="state">Active</span> Nebraska Department of Transportation &middot; 2025&ndash;2027</p>
+        <p class="entry-meta"><span class="state">Active</span> Nebraska Department of Transportation</p>
         <h4 class="entry-title">AI and VR for Construction Inspection Training</h4>
         <p class="authors">
-          <span class="me">Irfan Gazi</span>,
+          <span class="me">Supervisor</span>:
           <a href="https://engineering.unl.edu/durhamschool/person/kyungki-kim/" target="_blank" rel="noopener">Kyungki Kim</a>,
           
           <a href="https://engineering.unl.edu/durhamschool/person/chun-hsing-ho/" target="_blank" rel="noopener">Chun-Hsing (Jun) Ho</a>.
           
         </p>
         <p class="actions">
-          <a href="https://trid.trb.org/View/2507233" target="_blank" rel="noopener">TRID</a>
+          <a href="https://trid.trb.org/View/2507233" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-ext"/></svg>TRID Record</a>
         </p>
         <p class="takeaway">
           Trainee inspectors learn on the job, and what they learn leaves with them. This project pairs
@@ -844,28 +898,38 @@ footer {
         <img src="images/ev-vr-portal-still.webp" width="800" height="446" loading="lazy" decoding="async"
              data-anim="images/ev-vr-portal.webp"
              alt="Inside the VR portal: the 360-degree recording of the training plays around the viewer, while a floating panel carries the video controls, quick-question chips reading &quot;Shut down HV&quot;, &quot;Battery fire&quot; and &quot;Where to cut&quot;, and a chat thread answering &quot;Where are the two batteries located in Ford Mustang?&quot;" />
-        <p class="fig-credit">Immersive training video playing with the voice assisted chatbot interface </p>
+        <p class="fig-credit">Immersive training video playing with the voice assisted chatbot </p>
       </div>
       <div>
-        <p class="entry-meta"><span class="state">Active</span> Nebraska Clean Cities &amp; Communities Coalition &middot; 2025&ndash;2026</p>
+        <p class="entry-meta"><span class="state">Completed</span> National Laboratory of the Rockies (NLR)</p>
         <h4 class="entry-title">Modernizing EV Emergency Response Training Through XR and AI</h4>
         <p class="authors">
-          <span class="me">Irfan Gazi</span>,
+          <span class="me">Supervisor</span>:
           <a href="https://engineering.unl.edu/civil/person/nathan-huynh/" target="_blank" rel="noopener">Nathan Huynh</a>,
           <a href="https://engineering.unl.edu/durhamschool/person/kyungki-kim/" target="_blank" rel="noopener">Kyungki Kim</a>.
           
         </p>
         <p class="actions">
-          <a href="https://nec4-jumpstart.streamlit.app/" target="_blank" rel="noopener">First Responder Portal</a>
-          <a href="https://nec4.unl.edu/" target="_blank" rel="noopener">NEC4</a>
-          <a href="https://github.com/Irfan-Gazi0/RAG_Responder" target="_blank" rel="noopener">Code</a>
+          <a href="https://nec4.unl.edu/initiatives/modernizing-ev-emergency-response-training-through-xr-and-ai/" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-ext"/></svg>Project page</a>
         </p>
         <p class="takeaway">
-          First responders can practice electric vehicle emergency response using a web browser or VR headset. 
-          This portal replaces traditional classroom sessions by combining 360-degree training videos, interactive vehicle scans, 
-          and a smart chatbot that answers questions using official guides.
+          First responders can practice electric vehicle emergency response using a web browser or VR headset. This portal replaces traditional
+          classroom sessions by combining 360-degree training videos, interactive vehicle scans, and a smart chatbot that answers questions using
+          official guides.
         </p>
-        
+        <details class="more">
+          <summary>2 more figures</summary>
+          <div class="more-figs">
+            <figure>
+              <img src="images/ev-3d-explorer-ui.webp" width="1400" height="700" loading="lazy" decoding="async" alt="3D EV Explorer tab showing a Chevrolet Equinox EV engine bay scan with a marker opened to an HV Battery Warning Label panel describing the 400V+ high-voltage system, and a Training Assistant chat panel with quick-question prompts." />
+              <figcaption>Click a hotspot for safety info, or ask the chatbot directly.</figcaption>
+            </figure>
+            <figure>
+              <img src="images/ev-3d-explorer-scan.webp" width="1329" height="925" loading="lazy" decoding="async" alt="Overhead view of the photogrammetry scan of the Chevrolet Equinox EV with its hood open, showing two glowing marker hotspots over the engine bay and front wheel." />
+              <figcaption>A full 3D scan of the vehicle, viewable from any angle.</figcaption>
+            </figure>
+          </div>
+        </details>
       </div>
     </article>
 
@@ -884,11 +948,10 @@ footer {
         <p class="entry-meta"><span class="state">Published</span> Applied Sciences &middot; 2026</p>
         <h4 class="entry-title">LLM-Orchestrated Framework for Multifunctional Robotic Health Attendant (RHA) in Healthcare Environments</h4>
         <p class="authors">
-          Kyungki Kim, <span class="me">Irfan Gazi</span>, John Windle, Christian Haas, Melissa Christian,
-          Tom Windle, Nicholas Armstrong, Logan Doorlag, Tuankhanh Dao
+          Kyungki Kim, <span class="me">Irfan Gazi</span>, et al.
         </p>
         <p class="actions">
-          <a href="https://doi.org/10.3390/app16115320" target="_blank" rel="noopener">Paper</a>
+          <a href="https://doi.org/10.3390/app16115320" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-paper"/></svg>Paper</a>
           
         </p>
         <p class="takeaway">
@@ -901,11 +964,11 @@ footer {
           <div class="more-figs">
             <figure>
               <img src="images/rha-facility-skills.webp" width="338" height="268" loading="lazy" decoding="async" alt="Reference sheet pairing a cutaway hospital ward model with the robot, listing facility skills turn_light, control_door and monitor_control, robot skills navigate, pick, place and speak, and parameters for nurse call priority, alert mode, visual alert and speed." />
-              <figcaption>The action vocabulary shared by the building and the robot &mdash; what an LLM plan is allowed to name.</figcaption>
+              <figcaption>The building and robot actions the LLM can plan with.</figcaption>
             </figure>
             <figure>
               <img src="images/rha-hospital-plan.webp" width="359" height="236" loading="lazy" decoding="async" alt="Cutaway 3D plan of the simulated hospital floor with arrows marking Patient Room 1, the RHA in the corridor, and Medication room 1." />
-              <figcaption>The simulated ward the framework was evaluated in, with a medication-delivery route.</figcaption>
+              <figcaption>The simulated hospital ward the robot was tested in.</figcaption>
             </figure>
             
           </div>
@@ -922,11 +985,10 @@ footer {
         <p class="entry-meta"><span class="state">Published</span> Scientific Reports &middot; 2026</p>
         <h4 class="entry-title">A hybrid framework for occupational risk prioritization in construction projects using Monte Carlo simulation and utility theory</h4>
         <p class="authors">
-          Md Tanvir Rahman Rifat, Shuvo Dip Datta, Md. Mehrab Hossain, Md Shah Jamal,
-          Marcel Maghiar, Sani Aliyu, <span class="me">Irfan Gazi</span>
+          Md Tanvir Rahman Rifat, et al. , <span class="me">Irfan Gazi</span>
         </p>
         <p class="actions">
-          <a href="https://doi.org/10.1038/s41598-026-63788-2" target="_blank" rel="noopener">Paper</a>
+          <a href="https://doi.org/10.1038/s41598-026-63788-2" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-paper"/></svg>Paper</a>
         </p>
         <p class="takeaway">
           Traditional construction risk tools ignore how managers weigh disasters against common nuisances. 
@@ -991,11 +1053,11 @@ footer {
       </div>
       <div>
         <p class="entry-meta"><span class="state is-open">In preparation</span> <span class="state is-past">B.Sc. thesis</span> </p>
-        <h4 class="entry-title">BIM-Integrated Virtual Reality Framework for Machine Learning Enhanced Carbon Footprint Reduction</h4>
+        <h4 class="entry-title">BIM-based Immersive Virtual Reality for Element-Level Embodied Carbon Assessment using Machine Learning Optimized Concrete Mix Design</h4>
         <p class="takeaway">
-          Tracking a building's carbon footprint at the early design phase is difficult. This problem is addressed
-          by using machine learning to calculate the carbon emissions of various concrete mixtures and linking those calculations  
-          to a virtual reality model. Selecting any column or beam will show
+          XGBoost predicts concrete-mix embodied carbon at R&sup2; 0.95, against 0.54 for Lasso, and the
+          prediction is linked to a virtual reality BIM model at the early design phase, when carbon is hardest to track.
+          Selecting any column or beam will show
           the carbon amount they could save by switching to greener materials.
         </p>
         <p class="meta"><strong>Supervisor:</strong>
@@ -1100,7 +1162,7 @@ footer {
         <p class="entry-meta"><span class="state">Talk</span> NDOT &amp; University of Nebraska&ndash;Lincoln Research Summit &middot; 2026</p>
         <h4 class="entry-title">AI and Immersive AR/VR for Sustained Material and Construction Inspection Training and Knowledge Retention</h4>
         <p class="authors">
-          <span class="me">Irfan Gazi</span> &middot; PI: Kyungki Kim &middot; Co-PI: Chun-Hsing (Jun) Ho
+          <span class="me">Supervisor</span>: Kyungki Kim, Chun-Hsing (Jun) Ho
         </p>
         <p class="takeaway">
           The project talk for our NDOT-funded work: InspectionGPT as a cited knowledge base and virtual
@@ -1134,7 +1196,7 @@ footer {
         prompt injection are both refused. 15 unit tests, 8 scenarios.
       </p>
       <p class="actions">
-        <a href="https://github.com/Irfan-Gazi0/robot-multi-agent-pytree" target="_blank" rel="noopener">Repository</a>
+        <a href="https://github.com/Irfan-Gazi0/robot-multi-agent-pytree" target="_blank" rel="noopener"><svg class="i-solid" aria-hidden="true"><use href="#i-github"/></svg>Repository</a>
         
       </p>
     </article>
@@ -1146,11 +1208,11 @@ footer {
       </div>
       <p>
         A retrieval scorer that packs passages into a fixed 1,800-token budget, trading relevance against
-        redundancy and keyword coverage. Benchmarked against cosine similarity and MMR over PubMed chunks
-        in Pinecone.
+        redundancy and keyword coverage. Against cosine similarity and MMR over PubMed chunks in Pinecone,
+        it used the fewest prompt tokens (1,734) at the highest ROUGE-L (0.476).
       </p>
       <p class="actions">
-        <a href="https://github.com/Irfan-Gazi0/LitePack-RAG" target="_blank" rel="noopener">Repository</a>
+        <a href="https://github.com/Irfan-Gazi0/LitePack-RAG" target="_blank" rel="noopener"><svg class="i-solid" aria-hidden="true"><use href="#i-github"/></svg>Repository</a>
       </p>
     </article>
 
@@ -1160,11 +1222,12 @@ footer {
         <span class="tags"><span class="tag">LangChain</span><span class="tag">GPT-4o</span><span class="tag">Pinecone</span><span class="tag">Whisper</span><span class="tag">n8n</span><span class="tag">three.js</span></span>
       </div>
       <p>
-        This virtual portal helps first responders safely handle electric vehicle emergencies. It pairs a 360-degree interactive walkthrough 
-        of vehicles with a smart chatbot. Instead of going through manuals, users can ask the chatbot questions to get cited answers.
+        A virtual portal for first responders handling electric vehicle emergencies. It pairs a 360-degree
+        walkthrough of the vehicle with a chatbot that answers with citations from about 578 documents across
+        three Pinecone namespaces, instead of sending users through manuals.
       </p>
       <p class="actions">
-        <a href="https://github.com/Irfan-Gazi0/RAG_Responder" target="_blank" rel="noopener">Repository</a>
+        <a href="https://github.com/Irfan-Gazi0/RAG_Responder" target="_blank" rel="noopener"><svg class="i-solid" aria-hidden="true"><use href="#i-github"/></svg>Repository</a>
       </p>
     </article>
 
@@ -1179,7 +1242,7 @@ footer {
         instead of accuracy.
       </p>
       <p class="actions">
-        <a href="https://github.com/Irfan-Gazi0/covid19-misinfo-detector-nlp" target="_blank" rel="noopener">Repository</a>
+        <a href="https://github.com/Irfan-Gazi0/covid19-misinfo-detector-nlp" target="_blank" rel="noopener"><svg class="i-solid" aria-hidden="true"><use href="#i-github"/></svg>Repository</a>
       </p>
     </article>
 
@@ -1199,7 +1262,7 @@ footer {
              alt="Revit 3D model of a building with colour-coded hot and cold water supply and drainage runs connecting a bath, sink and toilet." />
       </div>
       <div>
-        <span class="venue pending">Autodesk Revit &middot; AutoCAD</span>
+        <span class="venue pending">Autodesk Revit</span>
         <h4 class="entry-title">Revit-Based Architectural and Plumbing Coordination</h4>
         <p class="takeaway">
           A unified architectural and plumbing model for a commercial building, with parametric components
@@ -1255,7 +1318,7 @@ footer {
              alt="Autodesk Navisworks Clash Detective showing a test result of 123 clashes listed by level and grid intersection, with one highlighted in red and green in the 3D view." />
       </div>
       <div>
-        <span class="venue pending">Autodesk Navisworks &middot; Revit</span>
+        <span class="venue pending">Autodesk Navisworks</span>
         <h4 class="entry-title">Clash Detection and Model Coordination</h4>
         <p class="takeaway">
           Federating architectural, structural, and MEP models into Navisworks surfaced 123 clashes, each
@@ -1279,8 +1342,8 @@ footer {
   </section>
 
   <footer>
-    <span>&copy; 2026 Irfan Gazi &middot; Lincoln, Nebraska</span>
-    <span>Last updated August 2026 &middot; <a class="to-top" href="#about">Back to top &uarr;</a></span>
+    <span><img class="visits" src="https://hits.sh/irfan-gazi0.github.io/Portfolio.svg?label=visits&amp;color=a30000&amp;labelColor=52494a" height="20" alt="Visit count" loading="lazy" decoding="async" /></span>
+    <span> Last updated August 2026 &middot; <a class="to-top" href="#about">Back to top &uarr;</a></span>
   </footer>
 
 </main>
@@ -1336,7 +1399,7 @@ footer {
       var doc = document.documentElement;
       var travel = doc.scrollHeight - doc.clientHeight;
       var pct = travel > 0 ? (doc.scrollTop || document.body.scrollTop) / travel : 0;
-      bar.style.width = Math.min(1, Math.max(0, pct)) * 100 + '%';
+      bar.style.transform = 'scaleX(' + Math.min(1, Math.max(0, pct)) + ')';
       ticking = false;
     };
     window.addEventListener('scroll', function () {
@@ -1397,7 +1460,7 @@ footer {
       // an explicit choice has to move the browser chrome itself.
       var metas = document.querySelectorAll('meta[name="theme-color"]');
       for (var i = 0; i < metas.length; i++) {
-        metas[i].media = metas[i].content === '#0d1213'
+        metas[i].media = metas[i].content === '#110d0e'
           ? (next === 'dark' ? 'all' : 'not all')
           : (next === 'light' ? 'all' : 'not all');
       }
@@ -1451,8 +1514,9 @@ footer {
 </script>
 
 <div class="photo-lightbox" id="photo-lightbox" role="dialog" aria-modal="true" aria-label="Full-size portrait">
-  <img src="images/profile.webp" width="600" height="724" alt="Portrait of Irfan Gazi" />
+  <img src="images/profile.webp" width="450" height="530" alt="Portrait of Irfan Gazi" />
 </div>
 
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "28dcf3540ad949d9b426261197cce7c3"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- Light is a working day here, dark is the night shift. Set on the element
+     rather than by a script, because modules/theme.js currently answers "light"
+     unconditionally — there is nothing to read before first paint. -->
+<html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8" />
 <!-- No maximum-scale: pinch zoom stays available. The canvas sets
@@ -19,16 +22,22 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
 
-<script>
-  /* Match the 2D site's theme before first paint. Light is a working day here,
-     dark is the night shift. */
-  (function () {
-    try {
-      var t = localStorage.getItem('theme');
-      if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
-    } catch (e) {}
-  })();
-</script>
+<!-- Without these the scene loads strictly one hop at a time: the browser only
+     learns three.js exists after it has parsed main.js, and only learns
+     GLTFLoader exists after worker.js asks for it at runtime. Starting the
+     jsdelivr connection and both module fetches from the markup collapses that
+     waterfall. The URLs must stay byte-identical to the import map below —
+     including the pinned version — or the preload is fetched and then thrown
+     away instead of reused. -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.185.1/build/three.module.min.js" />
+<!-- three.module.min.js is only a re-export shim over three.core.min.js, and the
+     browser does not follow a modulepreload's own imports here: without this
+     line the 100 KB core starts downloading only once the shim has finished,
+     which costs more than the whole waterfall above saves. -->
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.185.1/build/three.core.min.js" />
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.185.1/examples/jsm/loaders/GLTFLoader.js" />
+
 
 <style>
 /* Tokens mirror index.html so the overlay reads as the same site, with the
@@ -36,19 +45,19 @@
 :root {
   color-scheme: light;
 
-  --accent:        #0E6E6E;
-  --accent-warm:   #B36A15;
-  --accent-soft:   rgba(14, 110, 110, 0.10);
+  --accent:        #D00000;
+  --accent-warm:   #B8860B;
+  --accent-soft:   rgba(34, 28, 28, 0.07);
   --hazard:        #C9971A;
   --hazard-ink:    #24282A;
   --safety:        #C2570F;
-  --ink:      #1b2226;
-  --ink-soft: #45535a;
-  --ink-mute: #78868e;
+  --ink:      #221c1c;
+  --ink-soft: #52494a;
+  --ink-mute: #857a7b;
   --paper:   #fffefc;
-  --surface: #f4f8f8;
-  --rule:       rgba(14, 110, 110, 0.18);
-  --rule-faint: rgba(14, 110, 110, 0.09);
+  --surface: #f6f4f2;
+  --rule:       rgba(34, 28, 28, 0.14);
+  --rule-faint: rgba(34, 28, 28, 0.07);
   --scrim:   rgba(12, 24, 24, 0.46);
   --chrome:  rgba(255, 254, 252, 0.90);
   --shadow: 0 1px 2px rgba(27, 34, 38, 0.05), 0 8px 30px rgba(27, 34, 38, 0.14);
@@ -194,6 +203,33 @@ body.ready #booting { opacity: 0; visibility: hidden; }
   cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent;
 }
 #minimap:hover { border-color: var(--accent); }
+
+#map-caption {
+  margin: 5px 0 0; font-size: 11.5px; font-weight: 700;
+  letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-mute);
+  /* Two lines' worth of box, always: the caption changes on hover and a box
+     that grows with it nudges the plan up and down under the cursor. */
+  min-height: 2.6em; max-width: 138px; margin-left: auto;
+}
+
+/* ---------- the way back to the cursor ---------- */
+#lock-hint {
+  position: fixed; left: 50%; bottom: 26px; transform: translateX(-50%); z-index: 6;
+  margin: 0; padding: 6px 13px; border-radius: 999px;
+  background: var(--chrome); border: 1px solid var(--rule); box-shadow: var(--shadow);
+  backdrop-filter: blur(8px);
+  font-size: 12.5px; font-weight: 600; color: var(--ink-mute);
+  opacity: 0; pointer-events: none;
+}
+/* Driven by the class modules/movement.js already sets on pointer lock, so the
+   hint costs no JavaScript of its own. */
+body.is-locked #lock-hint { animation: lock-hint 5s ease-out forwards; }
+@keyframes lock-hint {
+  0%, 6% { opacity: 0; }
+  16%, 66% { opacity: 1; }
+  100% { opacity: 0; }
+}
+body.is-touch #lock-hint, body.panel-open #lock-hint, body.start-open #lock-hint { display: none; }
 
 /* ---------- jump to a yard ---------- */
 /* Anchored to the chip rather than to the corner, so it stays put if the row
@@ -433,6 +469,7 @@ kbd {
   .panel-inner { border-left: 0; }
   #panel-body { padding: 24px 20px 60px; }
   #minimap { width: 100px; height: 100px; }
+  #map-caption { max-width: 132px; }
   #prompt { bottom: 20vh; }
   #top-left .chip span { display: none; }
   #top-left .chip { padding: 7px 9px; }
@@ -455,6 +492,9 @@ kbd {
   #zone-tag.flash { animation: none; }
   #booting .bar i { animation: none; width: 100%; }
   #booting { transition: none; }
+  /* Shown rather than faded, because it is the only thing on screen that says
+     how to get the cursor back — dropping the animation must not drop the hint. */
+  body.is-locked #lock-hint { animation: none; opacity: 1; }
 }
 </style>
 
@@ -464,7 +504,7 @@ kbd {
 <script type="importmap">
 {
   "imports": {
-    "three": "https://cdn.jsdelivr.net/npm/three@0.185.1/build/three.module.js",
+    "three": "https://cdn.jsdelivr.net/npm/three@0.185.1/build/three.module.min.js",
     "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.185.1/examples/jsm/"
   }
 }
@@ -508,15 +548,21 @@ kbd {
     <div id="jump" hidden>
       <p class="jump-head">The five yards</p>
       <ul id="jump-list"></ul>
-      <p class="jump-foot">Or click a compound on the site plan.</p>
+      <p class="jump-foot">Or click a yard on the site plan.</p>
     </div>
   </div>
 </div>
 
 <div class="hud" id="top-right">
-  <span id="zone-tag" role="status" aria-label="Current compound"><span class="zone-code">A</span><span class="zone-name">Site Office</span></span>
-  <canvas id="minimap" width="138" height="138" aria-hidden="true" title="Click a compound to go there"></canvas>
+  <span id="zone-tag" role="status" aria-label="Current yard"><span class="zone-code">A</span><span class="zone-name">Site Office</span></span>
+  <canvas id="minimap" width="138" height="138" aria-hidden="true" title="Click a yard to go there"></canvas>
+  <p id="map-caption" aria-hidden="true"></p>
 </div>
+
+<!-- Pointer lock takes the cursor, which takes the chips along the top with it,
+     and nothing on screen says how to get either back. The hint says so once,
+     for a few seconds, every time the lock is taken. -->
+<p id="lock-hint" aria-hidden="true">Press <kbd>Esc</kbd> for the cursor</p>
 
 <button id="prompt" type="button" hidden>
   <span class="hazard-tape" aria-hidden="true"></span>
@@ -537,13 +583,13 @@ kbd {
       <dl class="keys">
         <dt><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></dt><dd>Walk</dd>
         <dt>Mouse</dt><dd>Swing the camera</dd>
+        <dt><kbd>Esc</kbd></dt><dd><b>Stop and get the cursor back.</b> Brings this card up again, and the buttons along the top become clickable</dd>
+        <dt><kbd>E</kbd></dt><dd>Open the board in front of you</dd>
         <dt>Scroll</dt><dd>Pull the camera in and out</dd>
         <dt><kbd>Shift</kbd></dt><dd>Jog</dd>
-        <dt><kbd>E</kbd></dt><dd>Open the board in front of you</dd>
         <dt><kbd>V</kbd></dt><dd>Switch between third and first person</dd>
         <dt><kbd>J</kbd></dt><dd>Jump to another yard — or click one on the site plan</dd>
         <dt><kbd>1</kbd>–<kbd>5</kbd></dt><dd>Go straight to a yard</dd>
-        <dt><kbd>Esc</kbd></dt><dd>Close a panel / release the cursor</dd>
         <dt>Touch</dt><dd>Left thumb walks — push it to the edge to jog — right thumb looks, tap a board to open</dd>
       </dl>
       <p class="legend-head">The five yards</p>
@@ -569,12 +615,13 @@ kbd {
 
 <noscript>
   <div style="position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:24px;background:#fffefc">
-    <p style="max-width:36em;text-align:center;font-size:16px;line-height:1.6;color:#1b2226">
+    <p style="max-width:36em;text-align:center;font-size:16px;line-height:1.6;color:#221c1c">
       The 3D site needs JavaScript and WebGL.
-      <a href="../" style="color:#0E6E6E">The full CV is available as a normal page.</a>
+      <a href="../" style="color:#D00000">The full CV is available as a normal page.</a>
     </p>
   </div>
 </noscript>
 
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "28dcf3540ad949d9b426261197cce7c3"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

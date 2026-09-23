@@ -133,11 +133,15 @@ export function gateSign(label, code, width, accent) {
   ctx.textBaseline = 'middle';
   ctx.fillText(code, bx + boxSize / 2, by + boxSize / 2 + 1);
 
+  // A sign is a fixed plank and a compound name is not a fixed length, so the
+  // type condenses to the room left beside the reference plate. Without it a
+  // long name simply ran off the end.
   ctx.textAlign = 'left';
   ctx.fillStyle = pal.labelInk;
-  ctx.font = `700 ${Math.round(h * 0.36)}px ${FONT}`;
   ctx.letterSpacing = '2px';
-  ctx.fillText(String(label).toUpperCase(), bx + boxSize + 18, h / 2 + 1);
+  const textX = bx + boxSize + 18;
+  const [name] = fitText(ctx, String(label).toUpperCase(), w - textX - 14, h * 0.36);
+  ctx.fillText(name, textX, h / 2 + 1);
   ctx.letterSpacing = '0px';
 
   const mat = new THREE.MeshBasicMaterial({ map: texFromCanvas(canvas), transparent: true });
@@ -166,16 +170,35 @@ export function noticeBoard(lines, width, opts = {}) {
   ctx.fillStyle = opts.ink || hex(pal.hazardInk);
   ctx.textAlign = 'center';
   const step = h / (lines.length + 1);
+  ctx.letterSpacing = '1.5px';
   lines.forEach((line, i) => {
-    const size = i === 0 ? step * 0.62 : step * 0.42;
-    ctx.font = `700 ${Math.round(size)}px ${FONT}`;
-    ctx.letterSpacing = '1.5px';
-    ctx.fillText(String(line).toUpperCase(), w / 2, step * (i + 1) + size * 0.34);
+    const [text, size] = fitText(
+      ctx, String(line).toUpperCase(), w - 28, step * (i === 0 ? 0.62 : 0.42), 8, 1,
+    );
+    ctx.fillText(text, w / 2, step * (i + 1) + size * 0.34);
   });
   ctx.letterSpacing = '0px';
 
   const mat = new THREE.MeshBasicMaterial({ map: texFromCanvas(canvas) });
   return new THREE.Mesh(new THREE.PlaneGeometry(width, (h / w) * width), mat);
+}
+
+/**
+ * Condense text to the room it has: step the type down from `size` until it
+ * fits `room` pixels, ellipsising as a floor. Everything in the world is
+ * written for a place, and a place is a fixed number of metres wide, so this is
+ * the rule for all of it — gate signs, notices, the hoarding bands and the
+ * floor markings in modules/textures.js.
+ *
+ * Set fill, alignment and `letterSpacing` before calling: letter spacing is
+ * part of the measurement. Returns the text to draw and the size it was drawn
+ * at, for callers that position a baseline off it.
+ */
+export function fitText(ctx, text, room, size, floor = 16, step = 2) {
+  const t = String(text);
+  const set = () => { ctx.font = `700 ${Math.round(size)}px ${FONT}`; };
+  for (set(); ctx.measureText(t).width > room && size - step > floor; set()) size -= step;
+  return [clip(ctx, t, room), Math.round(size)];
 }
 
 /** Trim a string to fit `max` pixels, with an ellipsis if it had to be cut. */

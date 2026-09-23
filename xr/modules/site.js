@@ -31,7 +31,7 @@ const INSET = 2.6;        // how far the painted edge line sits off the hoarding
 const CORNER_INSET = 1.4; // keep boards off the corners
 const DOOR_MARGIN = 0.8;  // and off the edges of an opening
 const HANG_GAP = 1.5;     // spacing between neighbouring boards, in metres
-const MAX_BOARD_H = 3.0;  // cap, so nothing outgrows the hoarding
+const MAX_BOARD_H = 3.6;  // cap, so nothing outgrows the hoarding
 const BAND_TILE = 12;     // the printed hoarding graphic is a 12 m x 3 m sheet
 const BAND_H_M = 3;
 const BAND_Y = 2.85;      // centred on the plywood, clear of plinth and cap
@@ -261,8 +261,8 @@ function buildCompound(root, zone, mats, pal, solid) {
 
   // Painted edge line in the compound's colour. It gives each yard an identity
   // and gives the eye something to read across a large empty slab.
-  const lineMat = new THREE.MeshBasicMaterial({ color: zone.accent, transparent: true, opacity: 0.42 });
-  const bw = w - INSET * 2, bd = d - INSET * 2, t = 0.14;
+  const lineMat = new THREE.MeshBasicMaterial({ color: zone.accent, transparent: true, opacity: 0.62 });
+  const bw = w - INSET * 2, bd = d - INSET * 2, t = 0.28;
   for (const [sx, sz, px, pz] of [
     [bw, t, 0, -bd / 2], [bw, t, 0, bd / 2],
     [t, bd, -bw / 2, 0], [t, bd, bw / 2, 0],
@@ -282,10 +282,12 @@ function buildCompound(root, zone, mats, pal, solid) {
     wallSpans(zone, wall).forEach(([s, e], k) => {
       buildHoarding(root, mats, wa, s, e, solid);
       // The scheme graphic, on the face that looks out at the rest of the
-      // site — and the PPE notice on any inward stretch left bare by the
-      // boards, so no run of plywood is ever simply blank.
-      hangBand(root, mats, wa, s, e, zone.accent, 'identity', false);
-      if (!taken[k]) hangBand(root, mats, wa, s, e, zone.accent, 'safety', true);
+      // site — and on any inward stretch the boards left bare, the yard's own
+      // name in its own colour. That inward band used to be the same PPE notice
+      // in all five yards, which is most of why they read alike from the middle
+      // of a slab; a yard that says what it is is a yard you can remember.
+      hangBand(root, mats, wa, s, e, zone, 'identity', false);
+      if (!taken[k]) hangBand(root, mats, wa, s, e, zone, 'zone', true);
     });
 
     if (type === 'door' || type === 'gate') {
@@ -303,7 +305,7 @@ function buildCompound(root, zone, mats, pal, solid) {
  * sheets: a fractional repeat slices a word in half at the end of every run,
  * and stretching the tile a little is far less visible than that.
  */
-function hangBand(root, mats, wa, s, e, accent, kind, inward) {
+function hangBand(root, mats, wa, s, e, zone, kind, inward) {
   const len = e - s;
   if (len < 2) return;                      // a stub of hoarding stays plain
   const mid = (s + e) / 2;
@@ -312,7 +314,7 @@ function hangBand(root, mats, wa, s, e, accent, kind, inward) {
   const off = PANEL_T / 2 + 0.012;
 
   const geo = tileUV(new THREE.PlaneGeometry(len, BAND_H_M), Math.max(1, Math.round(len / BAND_TILE)), 1);
-  const m = new THREE.Mesh(geo, mats.band(accent, kind));
+  const m = new THREE.Mesh(geo, mats.band(zone, kind));
   if (alongX) m.position.set(mid, BAND_Y, wa.fixed + dir * off);
   else m.position.set(wa.fixed + dir * off, BAND_Y, mid);
   m.rotation.y = wa.rotationY + (inward ? 0 : Math.PI);
@@ -323,13 +325,18 @@ function hangBand(root, mats, wa, s, e, accent, kind, inward) {
 /**
  * What is standing in a compound.
  *
- * Each yard gets the plant and materials its work would actually need, which is
- * also how the yards tell themselves apart from the middle of the slab, before
- * you are close enough to read a board.
+ * Each yard gets the plant and materials its work would actually need, plus one
+ * tall landmark of its own — the cabin, the scaffold, the stacked container, the
+ * excavator, the mixer. Accent paint tells the yards apart once you are reading
+ * them; a silhouette is what tells them apart across a slab, and it is what you
+ * remember a yard by afterwards.
  *
- * Two lanes stay clear everywhere: the cross corridor through the openings, and
- * a 4 m strip inside any run that carries boards, so nothing is ever parked
- * between you and the work.
+ * Nothing in here may stand between a visitor and a board. Every position below
+ * is checked against two rules: no prop footprint may contain a board's
+ * viewpoint (the wall's normal, VIEW_BACK metres out), and nothing over about
+ * 1.2 m may sit in the corridor between the two. main.js re-checks the first of
+ * those at startup, because the boards move when the CV changes and these
+ * numbers do not.
  */
 function dressCompound(root, zone, mats, solid) {
   const put = (node, hw, hd) => {
@@ -339,47 +346,53 @@ function dressCompound(root, zone, mats, solid) {
 
   switch (zone.id) {
     case 'office': {
-      put(siteCabin(mats, { x: -8, z: -5.4, rot: Math.PI / 2, w: 5.4, accent: zone.accent }), 1.7, 3.0);
-      put(planTable(mats, { x: 7.8, z: -5, rot: -1.9, accent: zone.accent }), 1.2, 1.2);
-      root.add(drums(mats, [[7.6, 6.2], [8.7, 6.6], [7.9, 7.3]]));
-      root.add(cableReel(mats, { x: -9.2, z: 2.4, rot: 0.8, r: 0.7 }));
-      solid(-9.2, 2.4, 0.9, 0.9);
+      put(siteCabin(mats, { x: 8.6, z: -6.0, rot: Math.PI / 2, w: 5.4, accent: zone.accent }), 1.7, 3.0);
+      put(planTable(mats, { x: -9.6, z: -4.0, rot: -1.9, accent: zone.accent }), 1.2, 1.2);
+      root.add(drums(mats, [[10.4, 6.2], [11.2, 7.0], [10.6, 7.9]]));
+      root.add(cableReel(mats, { x: -10.4, z: -8.6, rot: 0.8, r: 0.7 }));
+      solid(-10.4, -8.6, 0.9, 0.9);
       break;
     }
     case 'planroom': {
-      put(planTable(mats, { x: -5.4, z: -19.5, rot: 0.22, accent: zone.accent, w: 2.8 }), 1.5, 1.5);
-      put(planTable(mats, { x: 5.4, z: -22, rot: -0.38, accent: zone.accent }), 1.3, 1.3);
-      root.add(surveyStakes(mats, [[-6.4, -25.4], [-4.6, -25.4], [-2.8, -25.4]], zone.accent));
+      put(scaffoldTower(mats, { x: 9.5, z: -14.5, w: 3.4, d: 2.4, lifts: 5 }), 1.9, 1.4);
+      put(planTable(mats, { x: -3.8, z: -15.0, rot: 0.22, accent: zone.accent, w: 2.8 }), 1.5, 1.5);
+      put(planTable(mats, { x: 3.6, z: -15.0, rot: -0.38, accent: zone.accent }), 1.3, 1.3);
+      root.add(surveyStakes(mats, [[-5.2, -13.4], [-4.0, -13.4], [-2.8, -13.4]], zone.accent));
       root.add(drums(mats, [[6.6, -15.4], [7.7, -15.9]]));
       break;
     }
     case 'systems': {
-      put(shippingContainer(mats, { x: 18.5, z: -5.8, rot: 0, color: 0x3d6f77 }), 3.3, 1.4);
-      root.add(cableReel(mats, { x: 21.6, z: 5.4, rot: 0.3 }));
-      root.add(cableReel(mats, { x: 23.9, z: 5.9, rot: 1.4, r: 0.75 }));
-      solid(22.8, 5.6, 2.2, 1.1);
-      root.add(drums(mats, [[15.6, 6.4], [16.7, 6.9], [15.9, 7.6]]));
+      put(shippingContainer(mats, { x: 14.6, z: -6.0, rot: Math.PI / 2, color: 0x3d6f77, stack: true }), 1.4, 3.3);
+      root.add(cableReel(mats, { x: 15.0, z: 6.6, rot: 0.3 }));
+      root.add(cableReel(mats, { x: 16.6, z: 7.1, rot: 1.4, r: 0.75 }));
+      solid(15.8, 6.85, 2.2, 1.1);
+      root.add(drums(mats, [[14.0, -9.4], [15.1, -9.9], [14.3, -10.6]]));
       break;
     }
     case 'fabrication': {
-      put(rebarBundle(mats, { x: -20, z: -5.6, rot: 0.08 }), 3.2, 0.8);
-      put(rebarBundle(mats, { x: -20, z: -7.4, rot: 0.08 }), 3.2, 0.8);
-      put(pipeStack(mats, { x: -18.6, z: 5.6, rot: 0.06 }), 2.7, 0.9);
-      put(lumberStack(mats, { x: -23.4, z: 6.6, rot: 0.5 }), 2.0, 1.2);
-      root.add(blockPallet(mats, { x: -15.4, z: -6.8, high: 2 }));
-      solid(-15.4, -6.8, 0.7, 0.7);
+      put(excavator(mats, { x: -26.4, z: 7.0, rot: -0.9 }), 2.8, 2.8);
+      put(rebarBundle(mats, { x: -15.6, z: -6.0, rot: 0.08 }), 3.2, 0.8);
+      put(rebarBundle(mats, { x: -15.6, z: -7.8, rot: 0.08 }), 3.2, 0.8);
+      put(pipeStack(mats, { x: -15.4, z: 5.6, rot: 0.06 }), 2.7, 0.9);
+      put(lumberStack(mats, { x: -26.4, z: -10.6, rot: 0.5 }), 2.0, 1.2);
+      root.add(blockPallet(mats, { x: -14.0, z: 3.2, high: 2 }));
+      solid(-14.0, 3.2, 0.7, 0.7);
       break;
     }
     case 'milestones': {
-      // The survey line the yard is named for, set off the centre so the way
-      // through from the office is never blocked.
+      put(mixerTruck(mats, { x: -9.4, z: 17.6, rot: Math.PI / 2 }), 2.2, 4.4);
+      // The survey line the yard was laid out around, set off the centre so the
+      // way through from the office is never blocked.
       const stakes = [];
-      for (let i = 0; i < 6; i++) stakes.push([-7.4, 15.6 + i * 2.4]);
+      for (let i = 0; i < 6; i++) stakes.push([-3.6, 15.0 + i * 2.4]);
       root.add(surveyStakes(mats, stakes, zone.accent));
-      put(surveyTripod(mats, { x: -7.4, z: 13.2, rot: 0.2, accent: zone.accent }), 0.5, 0.5);
-      put(planTable(mats, { x: 6.8, z: 20, rot: -0.5, accent: zone.accent }), 1.3, 1.3);
-      root.add(blockPallet(mats, { x: 6.4, z: 25.6, high: 1 }));
-      solid(6.4, 25.6, 0.7, 0.7);
+      put(surveyTripod(mats, { x: -3.6, z: 12.8, rot: 0.2, accent: zone.accent }), 0.5, 0.5);
+      // Off the arrival camera as well as off the boards: the follow arm puts
+      // the camera some metres behind where you stand, and a trestle right on
+      // that spot fills a third of the frame you arrive into.
+      put(planTable(mats, { x: 4.2, z: 13.6, rot: -0.5, accent: zone.accent }), 1.3, 1.3);
+      root.add(blockPallet(mats, { x: 4.4, z: 26.6, high: 1 }));
+      solid(4.4, 26.6, 0.7, 0.7);
       break;
     }
     default: break;

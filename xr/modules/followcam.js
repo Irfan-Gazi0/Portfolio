@@ -22,7 +22,10 @@ const PITCH_MAX = 1.12;        // looking almost straight down
 const SKIN = 0.45;             // how far clear of a wall the camera stops
 
 export function createFollowCam({ camera, worker, collider }) {
-  const state = { yaw: Math.PI, pitch: 0.30, dist: 6.4, first: false };
+  // 5.2, not the 6.4 this started at. The arm is added to however far the worker
+  // stands off a board, so at 6.4 a 3 m board was 8% of the frame from the one
+  // place the site puts you to read it, and a 24 m yard read as empty.
+  const state = { yaw: Math.PI, pitch: 0.30, dist: 5.2, first: false };
 
   const focus = new THREE.Vector3();
   const want = new THREE.Vector3();
@@ -101,7 +104,7 @@ export function createFollowCam({ camera, worker, collider }) {
     // Pulling in has to be instant or the hoarding clips through the view for a
     // frame; easing back out is what stops it snapping as you clear a corner.
     const pullingIn = dist < state.dist - 0.02;
-    const k = pullingIn ? 42 : 13;
+    const k = pullingIn ? 42 : 25;
     smoothed.lerp(want, started ? 1 - Math.exp(-k * dt) : 1);
     camera.position.copy(smoothed);
     camera.lookAt(focus.x, focus.y - 0.12, focus.z);

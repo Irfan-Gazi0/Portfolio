@@ -44,6 +44,36 @@ export function shade(obj, cast = true, receive = true) {
 }
 
 /**
+ * Stop anything too small to read as a shadow from casting one.
+ *
+ * `shade` works on whole props, which is the right granularity for authoring
+ * and the wrong one for the shadow pass: a cab step, a door handle and a wheel
+ * nut each cost the sun exactly the same draw call the excavator does, and
+ * each contributes a smudge a texel or two across. Two thirds of the
+ * per-frame draw calls here were the shadow pass, and most of that was detail
+ * this small.
+ *
+ * Measured rather than hand-listed, so a prop added later is covered the day
+ * it is added rather than the day someone remembers this function exists.
+ *
+ * InstancedMeshes are skipped on purpose. They are one draw call however many
+ * copies they hold, so there is nothing to win — and their per-instance scale
+ * lives in the instance matrices rather than in `node.scale`, so measuring
+ * them this way would read a scaffold ledger as a 1 m stub of what is actually
+ * a 3 m tube.
+ */
+export function pruneShadowCasters(root, minSize = 0.45) {
+  const size = new THREE.Vector3();
+  root.traverse((n) => {
+    if (!n.isMesh || n.isInstancedMesh || !n.castShadow) return;
+    if (!n.geometry.boundingBox) n.geometry.computeBoundingBox();
+    n.geometry.boundingBox.getSize(size).multiply(n.scale);
+    if (Math.max(size.x, size.y, size.z) < minSize) n.castShadow = false;
+  });
+  return root;
+}
+
+/**
  * Collects transforms, then emits one InstancedMesh.
  * Everything placed through here shares a single draw call.
  */
@@ -123,11 +153,12 @@ export function siteMaterials(pal) {
     }),
     container: (color) => once('container:' + color, () => lam({ map: corrugatedTexture(color) })),
     flat: (color) => once('flat:' + color, () => lam({ color })),
-    // The printed graphic on a run of hoarding. Cached per compound colour and
-    // kind, because a 21 m run and a 6 m run share one material and differ only
-    // in how their own UVs are scaled.
-    band: (accent, kind) => once(`band:${kind}:${accent}`,
-      () => lam({ map: hoardingBandTexture(pal, accent, kind) })),
+    // The printed graphic on a run of hoarding. Cached per compound and kind,
+    // because a 21 m run and a 6 m run share one material and differ only in how
+    // their own UVs are scaled. The site-wide scheme graphic keys on the colour
+    // alone; the yard band names its yard, so that one keys on the yard.
+    band: (zone, kind) => once(`band:${kind}:${kind === 'zone' ? zone.code : zone.accent}`,
+      () => lam({ map: hoardingBandTexture(pal, zone, kind) })),
   };
 }
 

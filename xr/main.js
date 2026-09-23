@@ -2,6 +2,7 @@ import { ZONES } from './data/cv.js';
 import { applyDomTheme } from './modules/theme.js';
 import { createScene } from './modules/scene.js';
 import { buildSite, zoneAt, zoneById, OPEN_SITE } from './modules/site.js';
+import { pruneShadowCasters } from './modules/props.js';
 import { buildLighting } from './modules/lighting.js';
 import { createCollider } from './modules/collision.js';
 import { createWorker } from './modules/worker.js';
@@ -23,6 +24,12 @@ const minimapEl = $('minimap');
 
 const { renderer, scene, camera, palette, shadows } = createScene(canvas);
 const site = buildSite(scene, palette);
+/* The props are authored prop by prop, which is the right granularity to build
+   them at and the wrong one to light them at — two thirds of the draw calls
+   here were the shadow pass, and most of that was door handles. One pass over
+   the finished plan drops the detail too small to throw a readable shadow. The
+   worker is not in this: it is the one thing whose shadow you watch. */
+pruneShadowCasters(site.root);
 const lighting = buildLighting(scene, palette, site.masts, shadows);
 const collider = createCollider(site.colliders);
 
@@ -32,7 +39,7 @@ scene.add(worker.root);
 const followcam = createFollowCam({ camera, worker, collider });
 const movement = createMovement({ canvas, followcam, joystick: $('joystick') });
 
-const exhibits = buildExhibits(scene, palette);
+const exhibits = buildExhibits(scene, palette, renderer);
 const interaction = createInteraction({ camera, worker, items: exhibits.items });
 const minimap = createMinimap($('minimap'));
 
@@ -52,16 +59,40 @@ const wanted = new URLSearchParams(location.search).get('zone')
 const office = zoneById.office;
 const spawnZone = (wanted && zoneById[wanted]) || office;
 
+/* How far off a board the site stands you. The follow camera's arm is added to
+   this, so it is the near end of the distance a board is read from, not the
+   whole of it — see modules/followcam.js. modules/site.js keeps the plant out
+   of the footprint it names. */
+const VIEW_BACK = 4.2;
+
 place(...viewpointFor(spawnZone));
 
-/** Stand `back` metres off a board, facing it. */
-function standBefore(item, back = 6.2) {
+/** The spot `back` metres off a board on its outward normal, before collision. */
+function spotBefore(item, back = VIEW_BACK) {
   const rotY = item.node.rotation.y;
-  const nx = Math.sin(rotY), nz = Math.cos(rotY);   // the board's outward normal
+  const nx = Math.sin(rotY), nz = Math.cos(rotY);
+  return { x: item.anchor.x + nx * back, z: item.anchor.z + nz * back, heading: Math.atan2(-nx, -nz) };
+}
+
+/** Stand `back` metres off a board, facing it. */
+function standBefore(item, back = VIEW_BACK) {
+  const s = spotBefore(item, back);
   // Through collision on the way out: a deep board on a shallow yard could
   // otherwise put you inside the hoarding on the far side of it.
-  const p = collider.resolve(item.anchor.x + nx * back, item.anchor.z + nz * back);
-  return [p.x, p.z, Math.atan2(-nx, -nz)];
+  const p = collider.resolve(s.x, s.z);
+  return [p.x, p.z, s.heading];
+}
+
+/* A board you cannot stand in front of is a board nobody reads, and the plant
+   in modules/site.js is positioned by hand while the boards move whenever the
+   CV changes. Collision resolving the viewpoint away from where it was asked
+   for is exactly that failure, and it costs one pass at startup to notice. */
+for (const it of exhibits.items) {
+  const s = spotBefore(it);
+  const p = collider.resolve(s.x, s.z);
+  if (Math.hypot(p.x - s.x, p.z - s.z) > 0.01) {
+    console.warn(`[site] "${it.data.id}" has something parked in front of it`);
+  }
 }
 
 /**
@@ -89,6 +120,10 @@ function place(x, z, heading) {
   worker.state.facing = heading;
   worker.root.rotation.y = heading;
   followcam.state.yaw = heading + Math.PI;
+  // Level the arm on arrival. The walking pitch tips the camera far enough down
+  // that a third of the first frame in a yard is sky over the hoarding, which is
+  // the half of the frame with nothing in it.
+  followcam.state.pitch = 0.16;
   // Otherwise the spring arm eases in from wherever it last stood, which after
   // a jump is a smear of forty metres of site.
   followcam.snap();
@@ -120,7 +155,15 @@ function openFocused() {
 }
 
 window.addEventListener('keydown', (e) => {
-  if (e.code === 'Escape' && !jumpEl.hidden) { setJump(false); jumpBtn.focus(); return; }
+  /* Escape is the key anyone reaches for when they want out, and by then the
+     pointer is locked and the chips along the top cannot be clicked. The browser
+     hands the cursor back on its own; bringing the card up with it is what turns
+     that into a way out, because the link to the 2D page is on the card. */
+  if (e.code === 'Escape') {
+    if (!jumpEl.hidden) { setJump(false); jumpBtn.focus(); return; }
+    if (!panel.isOpen && startEl.hidden) setStart(true);
+    return;
+  }
   if (panel.isOpen || startEl.hidden === false) return;
   if (e.code === 'KeyV') { e.preventDefault(); setView(followcam.toggle()); return; }
   if (e.code === 'KeyJ') { e.preventDefault(); setJump(jumpEl.hidden); return; }
@@ -187,8 +230,9 @@ $('help-btn').addEventListener('click', () => {
 startEl.addEventListener('click', (e) => {
   if (e.target === startEl && movement.state.started) setStart(false);
 });
-// Losing pointer lock (Esc, tab-out) does not re-show the card — drag or click
-// on the site picks straight back up.
+// Tabbing away drops pointer lock too, and that is not a request for the card —
+// only the Escape handler above brings it back. Drag or click on the site picks
+// straight up from wherever you left off.
 
 /* --- getting about --------------------------------------------------------
    The site is a hub with four spokes and every board is reachable on foot, but
@@ -319,8 +363,23 @@ document.addEventListener('pointerdown', (e) => {
    five compounds, so pointing at one is the shortest way to say "there". It
    stays pointer-only — a canvas has nothing a keyboard can land on — and the
    jump list is the route that does not need a mouse. */
-minimapEl.addEventListener('pointermove', (e) => { mapHover = minimap.hitTest(e.clientX, e.clientY); });
-minimapEl.addEventListener('pointerleave', () => { mapHover = null; });
+/* The plan itself can only fit the one-letter reference in a 24 m square, and a
+   letter is not a name. The caption under it is where the name goes — in the DOM
+   rather than on the canvas, so it is selectable, themed with everything else,
+   and does not cost the plan any of the space it is short of. */
+const mapCaptionEl = $('map-caption');
+function setMapCaption(id) {
+  const zone = id && zoneById[id];
+  mapCaptionEl.textContent = zone ? `${zone.code} · ${zone.label}` : 'Click a yard to go there';
+  mapCaptionEl.style.color = zone ? '#' + zone.accent.toString(16).padStart(6, '0') : '';
+}
+setMapCaption(null);
+
+minimapEl.addEventListener('pointermove', (e) => {
+  mapHover = minimap.hitTest(e.clientX, e.clientY);
+  setMapCaption(mapHover);
+});
+minimapEl.addEventListener('pointerleave', () => { mapHover = null; setMapCaption(null); });
 minimapEl.addEventListener('click', (e) => {
   const id = minimap.hitTest(e.clientX, e.clientY);
   if (id && zoneById[id]) jumpTo(zoneById[id]);
@@ -329,6 +388,31 @@ minimapEl.addEventListener('click', (e) => {
 /* --- frame loop ----------------------------------------------------------- */
 let last = performance.now();
 let firstFrame = true;
+
+/* The site plan is redrawn only when it would actually come out different.
+
+   It is a 138 px canvas over a 240 m site — about half a pixel to the metre —
+   and drawing it costs five filled and stroked rectangles and six runs of
+   canvas text, which is one of the slower things a 2D context does. At 60 Hz
+   that was most of a millisecond a frame spent redrawing a picture identical to
+   the one already on screen. A metre of travel moves the marker half a pixel,
+   so these thresholds are below what anyone can see and still cut the redraws
+   to a handful a second while walking, and none at all standing still. */
+const MAP_STEP = 1.0;      // metres
+const MAP_TURN = 0.03;     // radians
+let mapDrawn = null;
+
+function drawMinimap() {
+  const x = worker.root.position.x, z = worker.root.position.z;
+  const yaw = followcam.state.yaw;
+  const d = mapDrawn;
+  if (d
+    && d.zone === currentZone.id && d.hover === mapHover
+    && Math.abs(yaw - d.yaw) < MAP_TURN
+    && Math.hypot(x - d.x, z - d.z) < MAP_STEP) return;
+  mapDrawn = { x, z, yaw, zone: currentZone.id, hover: mapHover };
+  minimap.draw(x, z, yaw, currentZone.id, mapHover);
+}
 
 function frame(now) {
   requestAnimationFrame(frame);
@@ -376,13 +460,34 @@ function frame(now) {
     promptEl.hidden = true;
   }
 
-  minimap.draw(worker.root.position.x, worker.root.position.z, followcam.state.yaw, currentZone.id, mapHover);
+  drawMinimap();
   renderer.render(scene, camera);
 
   if (firstFrame) {
     firstFrame = false;
     document.body.classList.add('ready');
+    preloadRest();
   }
+}
+
+/* The rest of the yards' board images, one yard per idle slot.
+
+   Loading on entry is what keeps the gate quick, but it also guarantees the
+   decode and the upload land on the frame someone is walking through it. The
+   induction card is still up here and nobody is moving, so this is the one
+   stretch where a stalled frame costs nothing. `loadZone` keys off its own Set,
+   so the on-entry calls further up stay exactly as they are and turn into
+   no-ops for whatever has already arrived. */
+function preloadRest() {
+  const queue = ZONES.map((z) => z.id);
+  const idle = window.requestIdleCallback || ((fn) => setTimeout(fn, 120));
+  const next = () => {
+    const id = queue.shift();
+    if (id === undefined) return;
+    exhibits.loadZone(id);
+    idle(next);
+  };
+  idle(next);
 }
 
 requestAnimationFrame(frame);

@@ -24,7 +24,7 @@ const FRAME_BORDER = 0.075;
 const FRAME_DEPTH = 0.055;
 const PLATE_MAX_W = 3.2;
 
-export function buildExhibits(scene, pal) {
+export function buildExhibits(scene, pal, renderer) {
   const group = new THREE.Group();
   const items = [];
   const loader = new THREE.TextureLoader();
@@ -113,10 +113,13 @@ export function buildExhibits(scene, pal) {
 
       // Hooded lamp over the board. Unlit geometry, so it costs nothing — but
       // after dark the glow strip is what tells you a board is there at all.
+      // It does not cast: an 11 cm slab hung flat against the hoarding throws
+      // a smudge nobody can read, for the same shadow-pass draw call the crane
+      // costs. The board and its surround are the silhouette that matters.
       const hood = new THREE.Mesh(new THREE.BoxGeometry(Math.min(w, 1.6), 0.11, 0.34), hoodMat);
       hood.position.set(0, centreY + fh / 2 + 0.16, 0.2);
       hood.rotation.x = 0.34;
-      hood.castShadow = true;
+      hood.castShadow = false;
       node.add(hood);
 
       const lampMat = new THREE.MeshBasicMaterial({
@@ -164,7 +167,9 @@ export function buildExhibits(scene, pal) {
     });
   }
 
-  group.add(brackets.build(true, false));
+  // The corner fixings are 9 cm. Same reasoning as the hood: too small to read
+  // as a shadow, and one more pass over the whole scene to draw them.
+  group.add(brackets.build(false, false));
 
   /** Load the images for one compound. Safe to call repeatedly. */
   function loadZone(zoneId) {
@@ -179,6 +184,12 @@ export function buildExhibits(scene, pal) {
           tex.anisotropy = 8;
           it.face.material.dispose();
           it.face.material = new THREE.MeshBasicMaterial({ map: tex });
+          // Fetching early only moves the fetch. What costs a frame is the
+          // upload and the mipmap chain, and three.js does that lazily on the
+          // first frame the board is drawn — which, loading on entry, is the
+          // frame you walk through the gate. Forcing it here spends it on a
+          // frame of our choosing instead of the one that is being watched.
+          renderer.initTexture(tex);
         },
         undefined,
         () => {
