@@ -183,7 +183,7 @@ export function buildExhibits(scene, pal, renderer) {
           tex.colorSpace = THREE.SRGBColorSpace;
           tex.anisotropy = 8;
           it.face.material.dispose();
-          it.face.material = new THREE.MeshBasicMaterial({ map: tex });
+          it.face.material = new THREE.MeshBasicMaterial({ map: tex, toneMapped: false });
           // Fetching early only moves the fetch. What costs a frame is the
           // upload and the mipmap chain, and three.js does that lazily on the
           // first frame the board is drawn — which, loading on entry, is the

@@ -83,7 +83,7 @@ export function captionPlate(title, venue, width, accent, opts = {}) {
   ctx.fillStyle = pal.labelInk;
   for (const l of lines) { y += titleSize; ctx.fillText(l, pad, y); y += 8; }
 
-  const mat = new THREE.MeshBasicMaterial({ map: texFromCanvas(canvas), transparent: true });
+  const mat = new THREE.MeshBasicMaterial({ map: texFromCanvas(canvas), toneMapped: false, transparent: true });
   const mesh = new THREE.Mesh(new THREE.PlaneGeometry(width, h / PX), mat);
   mesh.userData.plateHeight = h / PX;
   return mesh;
@@ -144,7 +144,7 @@ export function gateSign(label, code, width, accent) {
   ctx.fillText(name, textX, h / 2 + 1);
   ctx.letterSpacing = '0px';
 
-  const mat = new THREE.MeshBasicMaterial({ map: texFromCanvas(canvas), transparent: true });
+  const mat = new THREE.MeshBasicMaterial({ map: texFromCanvas(canvas), toneMapped: false, transparent: true });
   return new THREE.Mesh(new THREE.PlaneGeometry(width, (h / w) * width), mat);
 }
 
@@ -179,7 +179,7 @@ export function noticeBoard(lines, width, opts = {}) {
   });
   ctx.letterSpacing = '0px';
 
-  const mat = new THREE.MeshBasicMaterial({ map: texFromCanvas(canvas) });
+  const mat = new THREE.MeshBasicMaterial({ map: texFromCanvas(canvas), toneMapped: false });
   return new THREE.Mesh(new THREE.PlaneGeometry(width, (h / w) * width), mat);
 }
 
@@ -347,7 +347,7 @@ export function sheetFace(ex, w, h, accent) {
   ctx.textAlign = 'left';
   ctx.letterSpacing = '0px';
 
-  return new THREE.MeshBasicMaterial({ map: texFromCanvas(canvas) });
+  return new THREE.MeshBasicMaterial({ map: texFromCanvas(canvas), toneMapped: false });
 }
 
 /**
@@ -393,5 +393,5 @@ export function placeholderFace(title, venue, w, h, accent) {
   ctx.fillStyle = hex(accent);
   ctx.fillRect(pad, (ch - lines.length * step) / 2 - step * 0.5, Math.round(cw * 0.16), 7);
 
-  return new THREE.MeshBasicMaterial({ map: texFromCanvas(canvas) });
+  return new THREE.MeshBasicMaterial({ map: texFromCanvas(canvas), toneMapped: false });
 }

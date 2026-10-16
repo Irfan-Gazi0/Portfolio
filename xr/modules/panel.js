@@ -161,7 +161,9 @@ export function createPanel({ root, body, closeBtn, onClose }) {
 
   window.addEventListener('keydown', (e) => {
     if (!open) return;
-    if (e.key === 'Escape') { e.preventDefault(); hide(); return; }
+    // Stop it here: main.js also listens for Escape, and would read a panel that
+    // has just closed as a request for the induction card.
+    if (e.key === 'Escape') { e.preventDefault(); e.stopImmediatePropagation(); hide(); return; }
     if (e.key !== 'Tab') return;
 
     // Keep Tab inside the dialog: everything behind it is a 3D scene with

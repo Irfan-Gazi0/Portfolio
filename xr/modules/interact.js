@@ -34,6 +34,11 @@ export function createInteraction({ camera, worker, items }) {
 
     let best = null, bestScore = -Infinity;
     for (const it of items) {
+      // Boards face into their yard. From behind one you are on the far side of
+      // the hoarding it hangs on, and it is not yours to open.
+      const ry = it.node.rotation.y;
+      if ((eye.x - it.anchor.x) * Math.sin(ry) + (eye.z - it.anchor.z) * Math.cos(ry) < 0) continue;
+
       // Nearest point on the board's span, not its centre: standing at one end
       // of a 5 m board should still count as looking at it.
       to.subVectors(eye, it.anchor);
