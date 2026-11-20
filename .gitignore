@@ -37,6 +37,7 @@ __pycache__/
 # them as public URLs if they were committed.
 CLAUDE.md
 .claude/
+.taste-skill/
 .agents/
 skills-lock.json
 

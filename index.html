@@ -238,6 +238,14 @@ a { color: var(--accent); text-decoration: none; transition: color .18s ease; }
 a:hover, a:focus { color: var(--accent-deep); }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
 ::selection { background: var(--accent-soft); }
+/* Off screen until a keyboard reaches it; then it sits above the fixed nav. */
+.skip-link {
+  position: fixed; top: 8px; left: 8px; z-index: 200;
+  padding: 10px 14px; border-radius: 8px;
+  background: var(--surface); color: var(--ink); font-weight: 600;
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: none; }
 
 img { max-width: 100%; height: auto; display: block; }
 p { margin: 0 0 12px; overflow-wrap: break-word; }
@@ -619,6 +627,21 @@ details.more > summary:hover { color: var(--ink); }
 .more-figs figure:hover img { transform: scale(1.04); box-shadow: 0 0 20px 2px var(--accent), var(--shadow); }
 .more-figs svg { width: 100%; height: auto; background: transparent; }
 .more-figs figcaption { margin-top: 5px; font-size: 12.5px; color: var(--ink-mute); line-height: 1.4; }
+/* YouTube videos ship as a thumbnail link. The player (about 1 MB of YouTube
+   script) loads only when someone presses play; without JavaScript the link
+   simply opens YouTube. */
+.yt { position: relative; display: block; border-radius: 8px; overflow: hidden; }
+.entry-fig .yt img, .more-figs .yt img { display: block; aspect-ratio: 16 / 9; object-fit: cover; background: #000; }
+.yt-play {
+  position: absolute; left: 50%; top: 50%; width: 64px; height: 44px; margin: -22px 0 0 -32px;
+  border-radius: 12px; background: rgba(0, 0, 0, .72); transition: background .18s ease;
+}
+.yt-play::after {
+  content: ""; position: absolute; left: 26px; top: 13px;
+  border-style: solid; border-width: 9px 0 9px 15px; border-color: transparent transparent transparent #fff;
+}
+.yt:hover .yt-play, .yt:focus-visible .yt-play { background: #c4302b; }
+.yt-frame { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 8px; background: #000; }
 .fig-credit { margin: 6px 0 0; font-size: 12px; color: var(--ink-mute); line-height: 1.45; }
 
 /* ---------- code repositories ----------
@@ -704,32 +727,43 @@ footer {
   .entry-fig { max-width: 420px; }
   .rgroup-body { padding-left: 14px; }
   .rgroup-head h3 { font-size: 14.5px; }
-  .nav-inner { padding: 6px 16px; }
-  nav ul li a { padding: 4px 8px; font-size: 13.5px; }
+  /* One bar on a phone: the anchors scroll sideways instead of wrapping to a
+     second row, and every target is a full 44px tall for a thumb. */
+  .nav-inner { padding: 0 12px; gap: 8px; }
+  nav ul { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; min-width: 0; }
+  nav ul::-webkit-scrollbar { display: none; }
+  /* A soft right edge says there is more of the bar to swipe to. */
+  nav ul { -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent); }
+  nav ul li a { display: flex; align-items: center; min-height: 44px; padding: 0 9px; font-size: 14px; white-space: nowrap; }
+  a.nav-xr, .theme-toggle { height: 44px; min-width: 44px; justify-content: center; }
+  .rindex a, .actions a, .linkrow a, .linkrow button.linklike { min-height: 44px; align-items: center; padding-top: 0; padding-bottom: 0; }
+  .rindex { gap: 8px; }
+  .actions { gap: 8px; }
+  details.more > summary { display: inline-flex; align-items: center; min-height: 44px; }
+  /* The two marks share the hero column and shrink together on narrow phones. */
+  .sponsor-logo { flex: 0 1 auto; min-width: 0; }
   .wrap { padding: 0 18px; }
-  html { scroll-padding-top: 104px; }
-  body { padding-top: 76px; }
+  html { scroll-padding-top: 72px; }
+  body { padding-top: 60px; }
   h2.section-heading { font-size: 22px; }
   .status { font-size: 13.5px; }
 }
-
-/* ---------- motion ----------
-   Entries settle in as they scroll into view. The class is attached by script,
-   so with JavaScript off nothing is ever left invisible. */
-@media (prefers-reduced-motion: no-preference) {
-  .reveal { opacity: 0; transform: translateY(12px); transition: opacity .55s ease, transform .55s ease; }
-  .reveal.is-in { opacity: 1; transform: none; }
+/* Below 400px the 3D link keeps its icon and its name for screen readers, so
+   the five anchors still have room to show. */
+@media (max-width: 400px) {
+  a.nav-xr { padding: 0; }
+  .nav-xr-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 }
+
 
 /* ---------- print ----------
    This page gets saved as a PDF and forwarded; it should survive that. */
 @media print {
-  nav, #scroll-progress, .xr-cta, .to-top, .theme-toggle { display: none !important; }
+  nav, .skip-link, #scroll-progress, .xr-cta, .to-top, .theme-toggle { display: none !important; }
   .rindex { display: none; }  /* in-page anchors are nothing on paper */
   body { padding-top: 0; background: #fff !important; color: #000; font-size: 10.5pt; }
   .wrap { max-width: none; padding: 0; }
   a { color: #000; }
-  .reveal { opacity: 1 !important; transform: none !important; }
   details.more { display: none; }
   .news-scroll {
     max-height: none; overflow: visible; border: 0; background: none;
@@ -748,6 +782,7 @@ footer {
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <!-- Icons used more than once, defined once. -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -768,7 +803,7 @@ footer {
     </ul>
     <a class="nav-xr" href="xr/" title="Walk through the 3D version of this site">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V4h9v17"/><path d="M2 21h20"/><g class="xr-man"><circle cx="7.5" cy="10" r="1.7"/><path d="M7.5 12v4.5"/><path class="xr-arm" d="M5.3 13.6l2.2-.8 2.2.8"/><path class="xr-leg-a" d="M7.5 16.5l-1.6 4"/><path class="xr-leg-b" d="M7.5 16.5l1.6 4"/></g></svg>
-      3D Site
+      <span class="nav-xr-label">3D Site</span>
     </a>
     <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode">
       <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.4 5.4l1.5 1.5M17.1 17.1l1.5 1.5M18.6 5.4l-1.5 1.5M6.9 17.1l-1.5 1.5"/></svg>
@@ -778,7 +813,7 @@ footer {
   <div id="scroll-progress" aria-hidden="true"></div>
 </nav>
 
-<main class="wrap">
+<main class="wrap" id="main">
 
   <!-- ============ About ============ -->
   <section id="about" class="hero">
@@ -856,8 +891,8 @@ footer {
     <div class="rindex">
       <a href="#r-funded">Funded Projects <b>2</b></a>
       <a href="#r-journal">Journal Articles <b>2</b></a>
-      <a href="#r-progress">In Progress <b>3</b></a>
-      <a href="#r-talks"> Presentations <b>2</b></a>
+      <a href="#r-progress">In Progress <b>4</b></a>
+      <a href="#r-talks">Presentations <b>2</b></a>
     </div>
 
     <div class="rgroup" id="r-funded">
@@ -890,6 +925,19 @@ footer {
           the page behind every answer inside an immersive construction environment.
            
         </p>
+        <details class="more">
+          <summary>2 videos</summary>
+          <div class="more-figs">
+            <figure>
+              <a class="yt" href="https://www.youtube.com/watch?v=VIKhDqtIAbE" data-yt="VIKhDqtIAbE" target="_blank" rel="noopener" aria-label="Play video: VR + InspectionGPT V1"><img src="https://i.ytimg.com/vi/VIKhDqtIAbE/hqdefault.jpg" width="480" height="360" loading="lazy" decoding="async" alt="" /><span class="yt-play" aria-hidden="true"></span></a>
+              <figcaption>InspectionGPT running inside the VR construction environment.</figcaption>
+            </figure>
+            <figure>
+              <a class="yt" href="https://www.youtube.com/watch?v=wOylHvHSuuo" data-yt="wOylHvHSuuo" target="_blank" rel="noopener" aria-label="Play video: Project Q&amp;A"><img src="https://i.ytimg.com/vi/wOylHvHSuuo/hqdefault.jpg" width="480" height="360" loading="lazy" decoding="async" alt="" /><span class="yt-play" aria-hidden="true"></span></a>
+              <figcaption>Project Q&amp;A with the inspection assistant.</figcaption>
+            </figure>
+          </div>
+        </details>
       </div>
     </article>
 
@@ -918,8 +966,12 @@ footer {
           official guides.
         </p>
         <details class="more">
-          <summary>2 more figures</summary>
+          <summary>2 more figures and a video</summary>
           <div class="more-figs">
+            <figure>
+              <a class="yt" href="https://www.youtube.com/watch?v=m6wCvt3aBHs" data-yt="m6wCvt3aBHs" target="_blank" rel="noopener" aria-label="Play video: Voice input in the AI VR portal"><img src="https://i.ytimg.com/vi/m6wCvt3aBHs/hqdefault.jpg" width="480" height="360" loading="lazy" decoding="async" alt="" /><span class="yt-play" aria-hidden="true"></span></a>
+              <figcaption>Asking the chatbot by voice from inside the VR portal.</figcaption>
+            </figure>
             <figure>
               <img src="images/ev-3d-explorer-ui.webp" width="1400" height="700" loading="lazy" decoding="async" alt="3D EV Explorer tab showing a Chevrolet Equinox EV engine bay scan with a marker opened to an HV Battery Warning Label panel describing the 400V+ high-voltage system, and a Training Assistant chat panel with quick-question prompts." />
               <figcaption>Click a hotspot for safety info, or ask the chatbot directly.</figcaption>
@@ -1017,6 +1069,23 @@ footer {
     <div class="rgroup-head"><h3>In Progress</h3></div>
     <div class="rgroup-body">
 
+    <article class="entry">
+      <div class="entry-fig">
+        <a class="yt" href="https://www.youtube.com/watch?v=9qLTCyVg5k0" data-yt="9qLTCyVg5k0" target="_blank" rel="noopener" aria-label="Play video: Work-Zone Hazard Identification with NVIDIA Cosmos Reason"><img src="https://i.ytimg.com/vi/9qLTCyVg5k0/hqdefault.jpg" width="480" height="360" loading="lazy" decoding="async" alt="" /><span class="yt-play" aria-hidden="true"></span></a>
+        <p class="fig-credit">Hazard reasoning overlaid on drone footage of a paving operation</p>
+      </div>
+      <div>
+        <p class="entry-meta"><span class="state is-open">Ongoing</span></p>
+        <h4 class="entry-title">Work-Zone Hazard Identification with Vision-Language Reasoning</h4>
+        <p class="takeaway">
+          Object detection can box a worker and a truck, but not say that the worker is standing in the truck's blind spot.
+          This pipeline passes drone footage of a highway paving operation to NVIDIA Cosmos Reason, which reasons over the
+          whole clip, flags workers inside the operating radius of the paver and mixer trucks, and
+          recommends controls such as a spotter and a marked exclusion zone.
+        </p>
+      </div>
+    </article>
+
     
       <article class="entry">
       <div class="entry-fig">
@@ -1086,7 +1155,7 @@ footer {
         <p class="entry-meta"><span class="state is-open">In preparation</span></p>
         <h4 class="entry-title">A Systematic Review of Deep Learning-Based Drone Applications in the Construction Industry</h4>
         <p class="takeaway">
-          A PRISMA-guided review of how deep learning is actually being flown on construction sites.
+          A PRISMA-guided review of how deep learning is being flown on construction sites.
           Convolutional networks and the YOLO family dominate the literature for object detection, site
           monitoring, and structural assessment, and the review traces where each is credibly accurate across
           the phases of a project.
@@ -1167,7 +1236,7 @@ footer {
         <p class="takeaway">
           The project talk for our NDOT-funded work: InspectionGPT as a cited knowledge base and virtual
           mentor for new inspectors, and the immersive VR environment it is being embedded in, so an
-          inspector practises against a virtual site rather than a live one and retains what they learned
+          inspector practises on a virtual site and retains what they learned
           after the training ends.
         </p>
       </div>
@@ -1187,7 +1256,7 @@ footer {
 
     <article class="repo">
       <div class="repo-head">
-        <h4 class="repo-title">Safety-Gated LLM Controller for a Hospital Robot</h4>
+        <h3 class="repo-title">Safety-Gated LLM Controller for a Hospital Robot</h3>
         <span class="tags"><span class="tag">Python</span><span class="tag">py_trees</span><span class="tag">LLM orchestration</span><span class="tag">Docker</span><span class="tag">pytest</span></span>
       </div>
       <p>
@@ -1203,7 +1272,7 @@ footer {
 
     <article class="repo">
       <div class="repo-head">
-        <h4 class="repo-title">Token-Budget-Aware Retrieval for Medical Literature</h4>
+        <h3 class="repo-title">Token-Budget-Aware Retrieval for Medical Literature</h3>
         <span class="tags"><span class="tag">Python</span><span class="tag">RAG</span><span class="tag">Pinecone</span><span class="tag">OpenAI</span><span class="tag">FastAPI</span><span class="tag">React</span></span>
       </div>
       <p>
@@ -1218,13 +1287,13 @@ footer {
 
     <article class="repo">
       <div class="repo-head">
-        <h4 class="repo-title">Emergency Response Assistant for Electric Vehicles</h4>
+        <h3 class="repo-title">Emergency Response Assistant for Electric Vehicles</h3>
         <span class="tags"><span class="tag">LangChain</span><span class="tag">GPT-4o</span><span class="tag">Pinecone</span><span class="tag">Whisper</span><span class="tag">n8n</span><span class="tag">three.js</span></span>
       </div>
       <p>
         A virtual portal for first responders handling electric vehicle emergencies. It pairs a 360-degree
         walkthrough of the vehicle with a chatbot that answers with citations from about 578 documents across
-        three Pinecone namespaces, instead of sending users through manuals.
+        three Pinecone namespaces.
       </p>
       <p class="actions">
         <a href="https://github.com/Irfan-Gazi0/RAG_Responder" target="_blank" rel="noopener"><svg class="i-solid" aria-hidden="true"><use href="#i-github"/></svg>Repository</a>
@@ -1233,11 +1302,11 @@ footer {
 
     <article class="repo">
       <div class="repo-head">
-        <h4 class="repo-title">COVID-19 Misinformation Classifier under Temporal Drift</h4>
+        <h3 class="repo-title">COVID-19 Misinformation Classifier under Temporal Drift</h3>
         <span class="tags"><span class="tag">TensorFlow</span><span class="tag">Keras</span><span class="tag">NLP</span><span class="tag">LSTM</span></span>
       </div>
       <p>
-        Trained on May articles, tested on July ones, so the distribution genuinely shifts. Five experiments
+        Trained on May articles, tested on July ones, so the distribution shifts. Five experiments
         across LNN, LSTM and MLP heads over Count and TF-IDF features, scored on minority-class recall
         instead of accuracy.
       </p>
@@ -1251,7 +1320,7 @@ footer {
 
   <!-- ============ Projects ============ -->
   <section id="projects">
-    <h2 class="section-heading"> Projects</h2>
+    <h2 class="section-heading">Projects</h2>
     <p style="color: var(--ink-soft); font-size: 15px; margin-bottom: 20px;">
       Some notable academic projects I did.
     </p>
@@ -1263,7 +1332,7 @@ footer {
       </div>
       <div>
         <span class="venue pending">Autodesk Revit</span>
-        <h4 class="entry-title">Revit-Based Architectural and Plumbing Coordination</h4>
+        <h3 class="entry-title">Revit-Based Architectural and Plumbing Coordination</h3>
         <p class="takeaway">
           A unified architectural and plumbing model for a commercial building, with parametric components
           keeping supply, drainage, and fixtures consistent through to the construction drawings.
@@ -1291,7 +1360,7 @@ footer {
       </div>
       <div>
         <span class="venue pending">Autodesk Revit</span>
-        <h4 class="entry-title">HVAC System Design and BIM Coordination</h4>
+        <h3 class="entry-title">HVAC System Design and BIM Coordination</h3>
         <p class="takeaway">
           Supply, return, and exhaust ducting modelled alongside chilled-water piping, sized to hold design
           flow rates, with dimensions and device tags carried through to the drawings.
@@ -1319,7 +1388,7 @@ footer {
       </div>
       <div>
         <span class="venue pending">Autodesk Navisworks</span>
-        <h4 class="entry-title">Clash Detection and Model Coordination</h4>
+        <h3 class="entry-title">Clash Detection and Model Coordination</h3>
         <p class="takeaway">
           Federating architectural, structural, and MEP models into Navisworks surfaced 123 clashes, each
           pinned to a level and grid intersection for assignment and closure before they became rework.
@@ -1409,28 +1478,6 @@ footer {
     draw();
   })();
 
-  /* Let entries settle in as they scroll into view. The class is attached here
-     rather than in the markup, so without JavaScript nothing is hidden. */
-  (function () {
-    if (!('IntersectionObserver' in window)) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    var items = document.querySelectorAll('#research .entry, #code .repo, #projects .entry');
-    if (!items.length) return;
-
-    var observer = new IntersectionObserver(function (entries, obs) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('is-in');
-        obs.unobserve(entry.target);
-      });
-    }, { rootMargin: '0px 0px -8% 0px' });
-
-    Array.prototype.forEach.call(items, function (el) {
-      el.classList.add('reveal');
-      observer.observe(el);
-    });
-  })();
 
   /* Swap a still figure for its animated .webp, but only where motion is
      welcome. The markup ships the still, so a reader who asked for reduced
@@ -1441,6 +1488,22 @@ footer {
       img.src = img.getAttribute('data-anim');
     });
   })();
+
+  /* Swap a YouTube thumbnail for the player on click. A modified click
+     (new tab, new window) is left to the browser. */
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest && e.target.closest('a.yt[data-yt]');
+    if (!link || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    var frame = document.createElement('iframe');
+    frame.className = 'yt-frame';
+    frame.src = 'https://www.youtube-nocookie.com/embed/' + link.getAttribute('data-yt') + '?autoplay=1&rel=0';
+    frame.title = link.getAttribute('aria-label').replace(/^Play video: /, '');
+    frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    frame.allowFullscreen = true;
+    link.parentNode.replaceChild(frame, link);
+    frame.focus();
+  });
 
   /* Theme toggle. No stored value means "follow the system", so the first click
      has to resolve what the system is currently showing and flip away from it. */
@@ -1492,7 +1555,18 @@ footer {
         if (visible[sections[i].id]) { active = sections[i].id; break; }
       }
       links.forEach(function (link) { link.classList.remove('active'); });
-      if (active && byId[active]) byId[active].classList.add('active');
+      if (active && byId[active]) {
+        var link = byId[active];
+        link.classList.add('active');
+        /* On a phone the anchors scroll sideways; keep the current one in view. */
+        var bar = link.closest('ul');
+        if (bar && bar.scrollWidth > bar.clientWidth) {
+          var left = link.offsetLeft - bar.offsetLeft;
+          if (left < bar.scrollLeft || left + link.offsetWidth > bar.scrollLeft + bar.clientWidth) {
+            bar.scrollTo({ left: left - 8, behavior: 'smooth' });
+          }
+        }
+      }
     }, { rootMargin: '-70px 0px -55% 0px' });
 
     sections.forEach(function (el) { observer.observe(el); });
