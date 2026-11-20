@@ -420,21 +420,19 @@ h2.section-heading::before {
 .xr-cta a svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.6; }
 .xr-cta span { color: var(--ink-mute); font-size: 13.5px; }
 
-.linkrow { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 13.5px; }
+.linkrow { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 14px; justify-content: flex-start; align-items: center; }
 .linkrow a, .linkrow button.linklike {
-  display: inline-flex; align-items: center;
-  padding: 6px 14px; border-radius: 999px;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; padding: 0; border-radius: 50%;
   border: 1px solid var(--rule); background: var(--accent-softer);
-  font-weight: 600; color: var(--ink-soft);
-  transition: border-color .18s ease, background .18s ease, color .18s ease;
+  transition: border-color .18s ease, background .18s ease, transform .18s ease;
 }
-.linkrow a:hover, .linkrow button.linklike:hover {
-  border-color: var(--ink-mute); background: var(--accent-soft); color: var(--ink);
-}
-button.linklike {
-  cursor: pointer; font: inherit;
-}
-#email-address { font-size: 14.5px; color: var(--ink-soft); }
+.linkrow a:hover, .linkrow button.linklike:hover { border-color: var(--ink-mute); background: var(--accent-soft); transform: translateY(-2px); }
+.linkrow .ic { width: 20px; height: 20px; flex: none; }
+:root[data-theme="dark"] .linkrow .ic-ink { filter: invert(1); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .linkrow .ic-ink { filter: invert(1); } }
+button.linklike { cursor: pointer; font: inherit; }
+#email-address { display: block; margin-top: 10px; font-size: 13px; color: var(--ink-soft); }
 #email-address[hidden] { display: none; }
 .copy-btn {
   margin-left: 7px; padding: 1px 7px;
@@ -736,7 +734,8 @@ footer {
   nav ul { -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent); }
   nav ul li a { display: flex; align-items: center; min-height: 44px; padding: 0 9px; font-size: 14px; white-space: nowrap; }
   a.nav-xr, .theme-toggle { height: 44px; min-width: 44px; justify-content: center; }
-  .rindex a, .actions a, .linkrow a, .linkrow button.linklike { min-height: 44px; align-items: center; padding-top: 0; padding-bottom: 0; }
+  .rindex a, .actions a { min-height: 44px; align-items: center; padding-top: 0; padding-bottom: 0; }
+  .linkrow a, .linkrow button.linklike { width: 44px; height: 44px; }
   .rindex { gap: 8px; }
   .actions { gap: 8px; }
   details.more > summary { display: inline-flex; align-items: center; min-height: 44px; }
@@ -796,10 +795,10 @@ footer {
   <div class="nav-inner">
     <ul>
       <li><a href="#about">About</a></li>
-      <li><a href="#news">News</a></li>
       <li><a href="#research">Research</a></li>
       <li><a href="#code">Code</a></li>
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#news">News</a></li>
     </ul>
     <a class="nav-xr" href="xr/" title="Walk through the 3D version of this site">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V4h9v17"/><path d="M2 21h20"/><g class="xr-man"><circle cx="7.5" cy="10" r="1.7"/><path d="M7.5 12v4.5"/><path class="xr-arm" d="M5.3 13.6l2.2-.8 2.2.8"/><path class="xr-leg-a" d="M7.5 16.5l-1.6 4"/><path class="xr-leg-b" d="M7.5 16.5l1.6 4"/></g></svg>
@@ -829,7 +828,7 @@ footer {
     </div>
     <div>
       <p>
-        I am a Graduate Research Assistant pursuing my MS in
+        I am a research assistant pursuing master's degree in
         <a href="https://engineering.unl.edu/durhamschool/cemt-ms/" target="_blank" rel="noopener">Construction Engineering and Management</a>
         at the <a href="https://www.unl.edu/" target="_blank" rel="noopener">University of Nebraska&ndash;Lincoln</a>,
         advised by <a href="https://engineering.unl.edu/durhamschool/person/kyungki-kim/" target="_blank" rel="noopener">Dr. Kyungki Kim.</a>
@@ -837,48 +836,27 @@ footer {
       </p>
       <p>
         
-        Currently, I am developing a training platform for inspectors at the
-        <a href="https://dot.nebraska.gov/" target="_blank" rel="noopener">Nebraska Department of Transportation (NDOT)</a>
-        to address the challenge of transferring construction inspection knowledge to new employees.
-        The platform combines simulated highway work zones with an AI mentor grounded in agency manuals, procedures and training videos.
-        
-      </p>
-      <p>
-        Also, I built a first responder training portal for the
+        Been busy talking with inspectors to understand the problems in traditional training workflow at the
+        <a href="https://dot.nebraska.gov/" target="_blank" rel="noopener">Nebraska Department of Transportation (NDOT).</a>
+        Then, designing agentic solutions that can assist in different stages of that workflow.
+        Also, designed a virtual training platform for the
         <a href="https://nec4.unl.edu/initiatives/modernizing-ev-emergency-response-training-through-xr-and-ai/" target="_blank" rel="noopener">Nebraska Clean Cities and Communities Coalition</a>, sponsored by the <a href="https://www.nlr.gov/" target="_blank" rel="noopener">National Laboratory of the Rockies (NLR)</a>,
-        where they can inspect 3D electric cars and learn from immersive training videos. Within the portal, a virtual assistant provides cited answers  
-        from manufacturer rescue guides, sparing crews from searching through large vehicle manuals.
+        where first responders can use artificial intelligence to learn from immersive tutorial videos and 3D EV models.
+
       </p>
-      <br>
-
+      
+        
+      
       <div class="linkrow">
-        <button class="linklike" id="email-reveal" type="button" aria-expanded="false" aria-controls="email-address">Email</button>
-        <span id="email-address" hidden>&nbsp;<span id="email-text">igazi2&#64;huskers.unl.edu</span><button class="copy-btn" id="email-copy" type="button">copy</button></span>
-        <a href="data/CV_Irfan_Gazi_Fall_2027.pdf" target="_blank" rel="noopener">CV</a>
-        <a href="https://orcid.org/0009-0004-5817-8845" target="_blank" rel="noopener">ORCID</a>
-        <a href="https://scholar.google.com/citations?user=Nkbeio8AAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>
-        <a href="https://www.researchgate.net/profile/Irfan-Gazi" target="_blank" rel="noopener">ResearchGate</a>
-        <a href="https://github.com/Irfan-Gazi0" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://www.linkedin.com/in/irfan-gazi" target="_blank" rel="noopener">LinkedIn</a>
+        <button class="linklike" id="email-reveal" type="button" aria-expanded="false" aria-controls="email-address" aria-label="Email" title="Email"><img class="ic" src="assets/icons/gmail.svg" alt="" width="20" height="20"></button>
+        <a href="data/CV_Irfan_Gazi_Fall_2027.pdf" target="_blank" rel="noopener" aria-label="CV" title="CV"><img class="ic" src="assets/icons/pdf2.svg" alt="" width="20" height="20"></a>
+        <a href="https://orcid.org/0009-0004-5817-8845" target="_blank" rel="noopener" aria-label="ORCID" title="ORCID"><img class="ic" src="assets/icons/orcid.svg" alt="" width="20" height="20"></a>
+        <a href="https://scholar.google.com/citations?user=Nkbeio8AAAAJ&amp;hl=en" target="_blank" rel="noopener" aria-label="Google Scholar" title="Google Scholar"><img class="ic" src="assets/icons/googlescholar.svg" alt="" width="20" height="20"></a>
+        <a href="https://www.researchgate.net/profile/Irfan-Gazi" target="_blank" rel="noopener" aria-label="ResearchGate" title="ResearchGate"><img class="ic" src="assets/icons/researchgate.svg" alt="" width="20" height="20"></a>
+        <a href="https://github.com/Irfan-Gazi0" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><img class="ic ic-ink" src="assets/icons/github.svg" alt="" width="20" height="20"></a>
+        <a href="https://www.linkedin.com/in/irfan-gazi" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><img class="ic" src="assets/icons/linkedin.svg" alt="" width="20" height="20"></a>
       </div>
-    </div>
-  </section>
-
-  <!-- ============ News ============ -->
-  <section id="news">
-    <h2 class="section-heading">News</h2>
-    <div class="news-scroll" tabindex="0" role="region" aria-label="News and updates">
-      <ul>
-        <li><span class="date">Sep 2026:</span> Presented our first-responder training portal in the <a href="https://nec4.unl.edu/" target="_blank" rel="noopener">NEC4</a> Jumpstart webinar.</li>
-        <li><span class="date">Aug 2026:</span> Served as a judge at the <a href="https://www.unl.edu/gradstudies/" target="_blank" rel="noopener">Undergraduate Summer Research Symposium.</a> </li>
-        <li><span class="date">Aug 2026:</span> <a href="https://doi.org/10.1038/s41598-026-63788-2" target="_blank" rel="noopener">2nd Paper</a> published on occupational risk prioritization.</li>
-        <li><span class="date">Jul 2026:</span> Presented our research at the <a href="https://dot.nebraska.gov/" target="_blank" rel="noopener">NDOT</a> &amp; UNL Research Summit.</li>
-        <li><span class="date">Jun 2026:</span> Awarded the <strong>Calvin C. Solem Foundation Fellowship</strong>.</li>
-        <li><span class="date">May 2026:</span> Awarded the <strong>Chancellor&rsquo;s Graduate Travel Grant</strong>.</li>
-        <li><span class="date">May 2026:</span> <a href="https://doi.org/10.3390/app16115320" target="_blank" rel="noopener">1st Paper</a> published on an LLM-orchestrated robotic health attendant framework.</li>
-        <li><span class="date">Apr 2026:</span> Served as research advisor to the <a href="https://www.clarkconstruction.com/" target="_blank" rel="noopener">Clark Construction Group</a> capstone team.</li>
-        <li><span class="date">Mar 2026:</span> Presented our work at the CI &amp; CRC joint conference in San Antonio, Texas.</li>
-      </ul>
+    <span id="email-address" hidden>&nbsp;<span id="email-text">igazi2&#64;huskers.unl.edu</span><button class="copy-btn" id="email-copy" type="button">copy</button></span>
     </div>
   </section>
 
@@ -1408,6 +1386,24 @@ footer {
         </details>
       </div>
     </article>
+  </section>
+
+  <!-- ============ News ============ -->
+  <section id="news">
+    <h2 class="section-heading">News</h2>
+    <div class="news-scroll" tabindex="0" role="region" aria-label="News and updates">
+      <ul>
+        <li><span class="date">Sep 2026:</span> Presented our first-responder training portal in the <a href="https://nec4.unl.edu/" target="_blank" rel="noopener">NEC4</a> Jumpstart webinar.</li>
+        <li><span class="date">Aug 2026:</span> Served as a judge at the <a href="https://www.unl.edu/gradstudies/" target="_blank" rel="noopener">Undergraduate Summer Research Symposium.</a> </li>
+        <li><span class="date">Aug 2026:</span> <a href="https://doi.org/10.1038/s41598-026-63788-2" target="_blank" rel="noopener">2nd Paper</a> published on occupational risk prioritization.</li>
+        <li><span class="date">Jul 2026:</span> Presented our research at the <a href="https://dot.nebraska.gov/" target="_blank" rel="noopener">NDOT</a> &amp; UNL Research Summit.</li>
+        <li><span class="date">Jun 2026:</span> Awarded the <strong>Calvin C. Solem Foundation Fellowship</strong>.</li>
+        <li><span class="date">May 2026:</span> Awarded the <strong>Chancellor&rsquo;s Graduate Travel Grant</strong>.</li>
+        <li><span class="date">May 2026:</span> <a href="https://doi.org/10.3390/app16115320" target="_blank" rel="noopener">1st Paper</a> published on an LLM-orchestrated robotic health attendant framework.</li>
+        <li><span class="date">Apr 2026:</span> Served as research advisor to the <a href="https://www.clarkconstruction.com/" target="_blank" rel="noopener">Clark Construction Group</a> capstone team.</li>
+        <li><span class="date">Mar 2026:</span> Presented our work at the CI &amp; CRC joint conference in San Antonio, Texas.</li>
+      </ul>
+    </div>
   </section>
 
   <footer>
