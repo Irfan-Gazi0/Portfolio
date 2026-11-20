@@ -619,6 +619,21 @@ details.more > summary:hover { color: var(--ink); }
 .more-figs figure:hover img { transform: scale(1.04); box-shadow: 0 0 20px 2px var(--accent), var(--shadow); }
 .more-figs svg { width: 100%; height: auto; background: transparent; }
 .more-figs figcaption { margin-top: 5px; font-size: 12.5px; color: var(--ink-mute); line-height: 1.4; }
+/* YouTube videos ship as a thumbnail link. The player (about 1 MB of YouTube
+   script) loads only when someone presses play; without JavaScript the link
+   simply opens YouTube. */
+.yt { position: relative; display: block; border-radius: 8px; overflow: hidden; }
+.entry-fig .yt img, .more-figs .yt img { display: block; aspect-ratio: 16 / 9; object-fit: cover; background: #000; }
+.yt-play {
+  position: absolute; left: 50%; top: 50%; width: 64px; height: 44px; margin: -22px 0 0 -32px;
+  border-radius: 12px; background: rgba(0, 0, 0, .72); transition: background .18s ease;
+}
+.yt-play::after {
+  content: ""; position: absolute; left: 26px; top: 13px;
+  border-style: solid; border-width: 9px 0 9px 15px; border-color: transparent transparent transparent #fff;
+}
+.yt:hover .yt-play, .yt:focus-visible .yt-play { background: #c4302b; }
+.yt-frame { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 8px; background: #000; }
 .fig-credit { margin: 6px 0 0; font-size: 12px; color: var(--ink-mute); line-height: 1.45; }
 
 /* ---------- code repositories ----------
@@ -856,7 +871,7 @@ footer {
     <div class="rindex">
       <a href="#r-funded">Funded Projects <b>2</b></a>
       <a href="#r-journal">Journal Articles <b>2</b></a>
-      <a href="#r-progress">In Progress <b>3</b></a>
+      <a href="#r-progress">In Progress <b>4</b></a>
       <a href="#r-talks"> Presentations <b>2</b></a>
     </div>
 
@@ -890,6 +905,19 @@ footer {
           the page behind every answer inside an immersive construction environment.
            
         </p>
+        <details class="more">
+          <summary>2 videos</summary>
+          <div class="more-figs">
+            <figure>
+              <a class="yt" href="https://www.youtube.com/watch?v=VIKhDqtIAbE" data-yt="VIKhDqtIAbE" target="_blank" rel="noopener" aria-label="Play video: VR + InspectionGPT V1"><img src="https://i.ytimg.com/vi/VIKhDqtIAbE/hqdefault.jpg" width="480" height="360" loading="lazy" decoding="async" alt="" /><span class="yt-play" aria-hidden="true"></span></a>
+              <figcaption>InspectionGPT running inside the VR construction environment.</figcaption>
+            </figure>
+            <figure>
+              <a class="yt" href="https://www.youtube.com/watch?v=wOylHvHSuuo" data-yt="wOylHvHSuuo" target="_blank" rel="noopener" aria-label="Play video: Project Q&amp;A"><img src="https://i.ytimg.com/vi/wOylHvHSuuo/hqdefault.jpg" width="480" height="360" loading="lazy" decoding="async" alt="" /><span class="yt-play" aria-hidden="true"></span></a>
+              <figcaption>Project Q&amp;A with the inspection assistant.</figcaption>
+            </figure>
+          </div>
+        </details>
       </div>
     </article>
 
@@ -918,8 +946,12 @@ footer {
           official guides.
         </p>
         <details class="more">
-          <summary>2 more figures</summary>
+          <summary>2 more figures and a video</summary>
           <div class="more-figs">
+            <figure>
+              <a class="yt" href="https://www.youtube.com/watch?v=m6wCvt3aBHs" data-yt="m6wCvt3aBHs" target="_blank" rel="noopener" aria-label="Play video: Voice input in the AI VR portal"><img src="https://i.ytimg.com/vi/m6wCvt3aBHs/hqdefault.jpg" width="480" height="360" loading="lazy" decoding="async" alt="" /><span class="yt-play" aria-hidden="true"></span></a>
+              <figcaption>Asking the chatbot by voice from inside the VR portal.</figcaption>
+            </figure>
             <figure>
               <img src="images/ev-3d-explorer-ui.webp" width="1400" height="700" loading="lazy" decoding="async" alt="3D EV Explorer tab showing a Chevrolet Equinox EV engine bay scan with a marker opened to an HV Battery Warning Label panel describing the 400V+ high-voltage system, and a Training Assistant chat panel with quick-question prompts." />
               <figcaption>Click a hotspot for safety info, or ask the chatbot directly.</figcaption>
@@ -1016,6 +1048,23 @@ footer {
     <div class="rgroup" id="r-progress">
     <div class="rgroup-head"><h3>In Progress</h3></div>
     <div class="rgroup-body">
+
+    <article class="entry">
+      <div class="entry-fig">
+        <a class="yt" href="https://www.youtube.com/watch?v=9qLTCyVg5k0" data-yt="9qLTCyVg5k0" target="_blank" rel="noopener" aria-label="Play video: Work-Zone Hazard Identification with NVIDIA Cosmos Reason"><img src="https://i.ytimg.com/vi/9qLTCyVg5k0/hqdefault.jpg" width="480" height="360" loading="lazy" decoding="async" alt="" /><span class="yt-play" aria-hidden="true"></span></a>
+        <p class="fig-credit">Hazard reasoning overlaid on drone footage of a paving operation</p>
+      </div>
+      <div>
+        <p class="entry-meta"><span class="state is-open">Ongoing</span></p>
+        <h4 class="entry-title">Work-Zone Hazard Identification with Vision-Language Reasoning</h4>
+        <p class="takeaway">
+          Object detection can box a worker and a truck, but not say that the worker is standing in the truck's blind spot.
+          This pipeline passes drone footage of a highway paving operation to NVIDIA Cosmos Reason, which reasons over the
+          clip rather than single frames, flags workers inside the operating radius of the paver and mixer trucks, and
+          recommends controls such as a spotter and a marked exclusion zone.
+        </p>
+      </div>
+    </article>
 
     
       <article class="entry">
@@ -1441,6 +1490,22 @@ footer {
       img.src = img.getAttribute('data-anim');
     });
   })();
+
+  /* Swap a YouTube thumbnail for the player on click. A modified click
+     (new tab, new window) is left to the browser. */
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest && e.target.closest('a.yt[data-yt]');
+    if (!link || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    var frame = document.createElement('iframe');
+    frame.className = 'yt-frame';
+    frame.src = 'https://www.youtube-nocookie.com/embed/' + link.getAttribute('data-yt') + '?autoplay=1&rel=0';
+    frame.title = link.getAttribute('aria-label').replace(/^Play video: /, '');
+    frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    frame.allowFullscreen = true;
+    link.parentNode.replaceChild(frame, link);
+    frame.focus();
+  });
 
   /* Theme toggle. No stored value means "follow the system", so the first click
      has to resolve what the system is currently showing and flip away from it. */
