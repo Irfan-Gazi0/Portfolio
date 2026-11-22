@@ -569,6 +569,11 @@ button.linklike { cursor: pointer; font: inherit; }
 }
 
 .entry-title { margin: 0 0 6px; font-size: 17.5px; font-weight: 600; line-height: 1.35; letter-spacing: -0.008em; }
+/* A title that opens the entry's own project page. Ink, not accent, so the
+   list still reads as titles; the underline on hover says it goes somewhere. */
+.entry-title a { color: var(--ink); text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 3px; transition: color .18s ease, text-decoration-color .18s ease; }
+.entry-title a:hover, .entry-title a:focus-visible { color: var(--accent); text-decoration-color: currentColor; }
+.takeaway + .actions { margin-top: 10px; }
 .authors { margin: 0 0 8px; font-size: 14.5px; color: var(--ink-soft); line-height: 1.5; }
 .authors .me { font-weight: 700; color: var(--ink); }
 .takeaway { margin: 8px 0 0; font-size: 14.5px; color: var(--ink-soft); }
@@ -854,40 +859,18 @@ footer {
         <img src="images/inspection-gpt-still.webp" width="775" height="457" loading="lazy" decoding="async"
              data-anim="images/inspection-gpt.webp"
              alt="The InspectionGPT interface: a sidebar of NDOT standard specifications, tech talk videos and the project contract; a chat thread answering &quot;Once the anchor bolts are set in concrete, how far off plumb can they be?&quot; with the specification passage quoted and page-level sources listed; and the cited manual page open beside it." />
-        <p class="fig-credit">Answers are displayed with a side panel showing the source pages</p>
       </div>
       <div>
-        <p class="entry-meta"><span class="state">Active</span> Nebraska Department of Transportation</p>
-        <h4 class="entry-title">AI and VR for Construction Inspection Training</h4>
-        <p class="authors">
-          <span class="me">Supervisor</span>:
-          <a href="https://engineering.unl.edu/durhamschool/person/kyungki-kim/" target="_blank" rel="noopener">Kyungki Kim</a>,
-          
-          <a href="https://engineering.unl.edu/durhamschool/person/chun-hsing-ho/" target="_blank" rel="noopener">Chun-Hsing (Jun) Ho</a>.
-          
-        </p>
-        <p class="actions">
-          <a href="https://trid.trb.org/View/2507233" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-ext"/></svg>TRID Record</a>
-        </p>
+        <h4 class="entry-title"><a href="projects/ndot-inspection-training.html">AI and VR for Construction Inspection Training</a></h4>
+        <p class="entry-meta"><span class="state">Active</span> Nebraska Department of Transportation <span aria-hidden="true">&middot;</span> Supervisors: Kyungki Kim, Chun-Hsing (Jun) Ho</p>
         <p class="takeaway">
           Trainee inspectors learn on the job, and what they learn leaves with them. This project pairs
           a chatbot grounded in NDOT documents, project contracts and videos that cites
           the page behind every answer inside an immersive construction environment.
-           
         </p>
-        <details class="more">
-          <summary>2 videos</summary>
-          <div class="more-figs">
-            <figure>
-              <a class="yt" href="https://www.youtube.com/watch?v=VIKhDqtIAbE" data-yt="VIKhDqtIAbE" target="_blank" rel="noopener" aria-label="Play video: VR + InspectionGPT V1"><img src="https://i.ytimg.com/vi/VIKhDqtIAbE/hqdefault.jpg" width="480" height="360" loading="lazy" decoding="async" alt="" /><span class="yt-play" aria-hidden="true"></span></a>
-              <figcaption>InspectionGPT running inside the VR construction environment.</figcaption>
-            </figure>
-            <figure>
-              <a class="yt" href="https://www.youtube.com/watch?v=wOylHvHSuuo" data-yt="wOylHvHSuuo" target="_blank" rel="noopener" aria-label="Play video: Project Q&amp;A"><img src="https://i.ytimg.com/vi/wOylHvHSuuo/hqdefault.jpg" width="480" height="360" loading="lazy" decoding="async" alt="" /><span class="yt-play" aria-hidden="true"></span></a>
-              <figcaption>Project Q&amp;A with the inspection assistant.</figcaption>
-            </figure>
-          </div>
-        </details>
+        <p class="actions">
+          <a href="https://trid.trb.org/View/2507233" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-ext"/></svg>TRID Record</a>
+        </p>
       </div>
     </article>
 
@@ -909,6 +892,7 @@ footer {
         </p>
         <p class="actions">
           <a href="https://nec4.unl.edu/initiatives/modernizing-ev-emergency-response-training-through-xr-and-ai/" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-ext"/></svg>Project page</a>
+          <a href="https://github.com/Irfan-Gazi0/RAG_Responder" target="_blank" rel="noopener"><svg class="i-solid" aria-hidden="true"><use href="#i-github"/></svg>Code</a>
         </p>
         <p class="takeaway">
           First responders can practice electric vehicle emergency response using a web browser or VR headset. This portal replaces traditional
@@ -1056,6 +1040,9 @@ footer {
         <p class="entry-meta"><span class="state">Poster</span> CI &amp; CRC Joint Conference, San Antonio, TX &middot; 2026</p>
         <h4 class="entry-title">InspectionGPT: Advancing Inspector Training Workflow in NDOT with an Agentic RAG-MCP Based Chatbot</h4>
         <p class="authors"><span class="me">Irfan Gazi</span>, Kyungki Kim</p>
+        <p class="actions">
+          <a href="data/InspectionGPT_Poster_CICRC_2026.pdf" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-paper"/></svg>Poster (PDF)</a>
+        </p>
         <p class="takeaway">
           A chatbot that answers a trainee inspector&rsquo;s questions from the NDOT construction manuals with
           the passage it drew on cited beside the answer, so a new inspector can check the source rather

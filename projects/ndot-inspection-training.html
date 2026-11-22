@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI and VR for Construction Inspection Training | Irfan Gazi</title>
+<meta name="description" content="An NDOT-funded project pairing InspectionGPT, a chatbot that cites the NDOT page behind every answer, with an immersive VR construction site for inspector training." />
+<meta name="author" content="Irfan Gazi" />
+<link rel="canonical" href="https://irfan-gazi0.github.io/Portfolio/projects/ndot-inspection-training.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="AI and VR for Construction Inspection Training" />
+<meta property="og:description" content="InspectionGPT and an immersive VR construction site for NDOT inspector training." />
+<meta property="og:image" content="https://irfan-gazi0.github.io/Portfolio/images/inspection-gpt-still.webp" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23D00000'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='36' font-weight='700' fill='%23fff' text-anchor='middle'%3EIG%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" />
+<link rel="stylesheet" href="project.css" />
+<script>
+  (function () {
+    try {
+      var s = localStorage.getItem('theme');
+      if (s === 'dark' || s === 'light') document.documentElement.setAttribute('data-theme', s);
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="back" href="../index.html#research">&larr; Irfan Gazi</a>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode">
+      <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.4 5.4l1.5 1.5M17.1 17.1l1.5 1.5M18.6 5.4l-1.5 1.5M6.9 17.1l-1.5 1.5"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.5 8.5 0 1 1 9.4 3.5a6.8 6.8 0 0 0 11.1 11.1z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="page">
+
+  <div class="head">
+    <span class="state">Active &middot; Nebraska Department of Transportation</span>
+    <h1>AI and VR for Construction Inspection Training</h1>
+    <p class="people">
+      <span class="me">Irfan Gazi</span>,
+      <a href="https://engineering.unl.edu/durhamschool/person/kyungki-kim/" target="_blank" rel="noopener">Kyungki Kim</a>,
+      <a href="https://engineering.unl.edu/durhamschool/person/chun-hsing-ho/" target="_blank" rel="noopener">Chun-Hsing (Jun) Ho</a>
+    </p>
+    <p class="affil">University of Nebraska&ndash;Lincoln</p>
+
+    <div class="buttons">
+      <a href="https://trid.trb.org/View/2507233" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/><path d="m21 3-9 9"/><path d="M15 3h6v6"/></svg>TRID Record</a>
+      <a href="../data/InspectionGPT_Poster_CICRC_2026.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/></svg>Poster</a>
+      <a href="#videos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 8 6 4-6 4z"/><rect x="2" y="4" width="20" height="16" rx="3"/></svg>Videos</a>
+    </div>
+  </div>
+
+  <figure class="teaser">
+    <img src="../images/inspection-gpt-still.webp" data-anim="../images/inspection-gpt.webp" width="775" height="457" decoding="async"
+         alt="The InspectionGPT interface: a sidebar of NDOT standard specifications, tech talk videos and the project contract; a chat thread answering &quot;Once the anchor bolts are set in concrete, how far off plumb can they be?&quot; with the specification passage quoted and page-level sources listed; and the cited manual page open beside it." />
+    <figcaption>InspectionGPT answers from NDOT documents and opens the cited page beside the answer.</figcaption>
+  </figure>
+
+  <div class="prose">
+
+    <section id="summary">
+      <h2>Summary</h2>
+      <p class="lead">
+        Trainee inspectors learn on the job, and what they learn leaves with them.
+        This project builds two tools so that knowledge stays with the agency.
+      </p>
+      <p>
+        <strong>InspectionGPT</strong> is a chatbot grounded in NDOT standard specifications,
+        project contracts and tech talk videos. Every answer cites the page it came from, so a new
+        inspector can check the source rather than trust the model.
+        <strong>An immersive VR construction site</strong> puts that chatbot where the inspection
+        happens, so an inspector can practise on a virtual site and ask questions as they go.
+      </p>
+    </section>
+
+    <section id="inspectiongpt">
+      <h2>InspectionGPT</h2>
+      <p>
+        A router agent sends each question to the right source: specifications, contracts or
+        training material. Retrieval and the tools the agent may call sit behind MCP, so the
+        manuals stay swappable and the agent&rsquo;s reach stays explicit. A self-corrective module
+        stores past mistakes and checks new answers against them.
+      </p>
+      <figure class="media">
+        <img src="../images/inspectiongpt-poster-architecture.webp" width="1240" height="678" loading="lazy" decoding="async"
+             alt="Architecture diagram: NDOT inspector query flowing through a Streamlit chat app and FastAPI router agent to an n8n client, which coordinates a self-corrective module (checking past mistakes, a vector DB, learning new corrections) and a document AI agent (knowledge vector store, top-K chunks, LLM response); below, raw materials guide data is extracted, table-detected, chunked and embedded." />
+        <figcaption>Routed retrieval, self-correction and content-aware chunking behind MCP.</figcaption>
+      </figure>
+    </section>
+
+    <section id="evaluation">
+      <h2>Does grounding help?</h2>
+      <p>
+        We compared a closed-book LLM, a single-agent RAG system and multi-agent variants on NDOT
+        inspection questions. Grounding cut unsafe answers sharply. Adding agent orchestration did
+        not improve final answer quality.
+      </p>
+      <div class="stats">
+        <div class="stat"><b>2.71 &rarr; 3.73</b><span>answer quality, closed-book to single-agent RAG</span></div>
+        <div class="stat"><b>69% &rarr; 25%</b><span>safety-relevant failure rate</span></div>
+        <div class="stat"><b>56.7% &rarr; 26.7%</b><span>abstention on unanswerable questions as agents were added</span></div>
+      </div>
+      <div class="media pair">
+        <figure>
+          <img src="../images/rag-results.webp" width="1300" height="618" loading="lazy" decoding="async"
+               alt="Two charts: answer quality by condition, showing closed-book at 2.71 rising to 3.73 for single-agent RAG with no further gain from multi-agent variants; and safety-relevant failure rate dropping from 69% closed-book to 25% single-agent, ticking back up to 33% for the full multi-agent system." />
+          <figcaption>Grounding improved quality and cut unsafe answers.</figcaption>
+        </figure>
+        <figure>
+          <img src="../images/rag-abstention.webp" width="1300" height="588" loading="lazy" decoding="async"
+               alt="Two charts: abstention rate on unanswerable questions falling from 56.7% to 26.7% as agents are added, on Bank D; and abstention rate declining across conditions on all three question banks (adversarial, contract, general), though by different amounts." />
+          <figcaption>Appropriate refusals declined as the system grew more agentic.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="videos">
+      <h2>Videos</h2>
+      <div class="media pair">
+        <figure>
+          <a class="yt" href="https://www.youtube.com/watch?v=VIKhDqtIAbE" data-yt="VIKhDqtIAbE" target="_blank" rel="noopener" aria-label="Play video: VR + InspectionGPT V1"><img src="https://i.ytimg.com/vi/VIKhDqtIAbE/hqdefault.jpg" width="480" height="360" loading="lazy" decoding="async" alt="" /><span class="yt-play" aria-hidden="true"></span></a>
+          <figcaption>InspectionGPT running inside the VR construction environment.</figcaption>
+        </figure>
+        <figure>
+          <a class="yt" href="https://www.youtube.com/watch?v=wOylHvHSuuo" data-yt="wOylHvHSuuo" target="_blank" rel="noopener" aria-label="Play video: Project Q&amp;A"><img src="https://i.ytimg.com/vi/wOylHvHSuuo/hqdefault.jpg" width="480" height="360" loading="lazy" decoding="async" alt="" /><span class="yt-play" aria-hidden="true"></span></a>
+          <figcaption>Project Q&amp;A with the inspection assistant.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="outputs">
+      <h2>Outputs</h2>
+      <ul class="outputs">
+        <li><span class="kind">Paper</span><span class="t">Evaluating Multi-Agent and Single-Agent RAG Frameworks for Highway Construction Inspector Training</span>. TRB Annual Meeting, 2027.</li>
+        <li><span class="kind">Poster</span><span class="t">InspectionGPT: Advancing Inspector Training Workflow in NDOT with an Agentic RAG-MCP Based Chatbot</span>. CI &amp; CRC Joint Conference, San Antonio, TX, 2026.</li>
+        <li><span class="kind">Talk</span><span class="t">AI and Immersive AR/VR for Sustained Material and Construction Inspection Training and Knowledge Retention</span>. NDOT &amp; UNL Research Summit, 2026.</li>
+      </ul>
+      <div class="media pair">
+        <figure>
+          <img src="../images/inspectiongpt-poster-conference.webp" width="1080" height="1350" loading="lazy" decoding="async"
+               alt="Irfan Gazi standing beside the printed InspectionGPT poster at the CI &amp; CRC Joint Conference, wearing an exhibitor badge." />
+          <figcaption>Poster at the CI &amp; CRC Joint Conference.</figcaption>
+        </figure>
+        <figure>
+          <img src="../images/ndot-unl-summit-talk.webp" width="1400" height="771" loading="lazy" decoding="async"
+               alt="Irfan Gazi giving the project talk at the NDOT &amp; University of Nebraska&ndash;Lincoln Research Summit, 2026." />
+          <figcaption>Project talk at the NDOT &amp; UNL Research Summit.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="citation">
+      <h2>Citation</h2>
+      <div class="bib">
+        <button class="copy-bib" id="copy-bib" type="button">Copy</button>
+<pre id="bibtex">@inproceedings{gazi2026inspectiongpt,
+  title     = {InspectionGPT: Advancing Inspector Training Workflow in NDOT
+               with an Agentic RAG-MCP Based Chatbot},
+  author    = {Gazi, Irfan and Kim, Kyungki},
+  booktitle = {CI \&amp; CRC Joint Conference},
+  address   = {San Antonio, TX},
+  year      = {2026},
+  note      = {Poster}
+}</pre>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    Supported by the Nebraska Department of Transportation &middot; <a href="../index.html">Back to portfolio</a>
+  </footer>
+
+</main>
+
+<script>
+  /* Animated teaser only where motion is welcome. */
+  (function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    Array.prototype.forEach.call(document.querySelectorAll('img[data-anim]'), function (img) {
+      img.src = img.getAttribute('data-anim');
+    });
+  })();
+
+  /* YouTube thumbnail becomes the player on click. */
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest && e.target.closest('a.yt[data-yt]');
+    if (!link || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    var frame = document.createElement('iframe');
+    frame.className = 'yt-frame';
+    frame.src = 'https://www.youtube-nocookie.com/embed/' + link.getAttribute('data-yt') + '?autoplay=1&rel=0';
+    frame.title = link.getAttribute('aria-label').replace(/^Play video: /, '');
+    frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    frame.allowFullscreen = true;
+    link.parentNode.replaceChild(frame, link);
+    frame.focus();
+  });
+
+  /* Copy the BibTeX. */
+  (function () {
+    var btn = document.getElementById('copy-bib');
+    var pre = document.getElementById('bibtex');
+    if (!btn || !pre || !navigator.clipboard) { if (btn) btn.hidden = true; return; }
+    btn.addEventListener('click', function () {
+      navigator.clipboard.writeText(pre.textContent).then(function () {
+        btn.textContent = 'Copied';
+        setTimeout(function () { btn.textContent = 'Copy'; }, 1600);
+      });
+    });
+  })();
+
+  /* Theme toggle, shared with the main page through localStorage. */
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var current = root.getAttribute('data-theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var next = current === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>
