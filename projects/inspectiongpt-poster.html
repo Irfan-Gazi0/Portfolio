@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>InspectionGPT: Advancing Inspector Training Workflow in NDOT with an Agentic RAG-MCP Based Chatbot | Irfan Gazi</title>
+<meta name="description" content="An agentic RAG system on MCP that keeps NDOT tables intact, routes queries by intent and learns from user corrections." />
+<meta name="author" content="Irfan Gazi" />
+<link rel="canonical" href="https://irfan-gazi0.github.io/Portfolio/projects/inspectiongpt-poster.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="InspectionGPT: Advancing Inspector Training Workflow in NDOT with an Agentic RAG-MCP Based Chatbot" />
+<meta property="og:description" content="An agentic RAG system on MCP that keeps NDOT tables intact, routes queries by intent and learns from user corrections." />
+<meta property="og:image" content="https://irfan-gazi0.github.io/Portfolio/images/inspectiongpt-poster.webp" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23D00000'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='36' font-weight='700' fill='%23fff' text-anchor='middle'%3EIG%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" />
+<link rel="stylesheet" href="project.css?v=4" />
+<script>
+  (function () {
+    try {
+      var s = localStorage.getItem('theme');
+      if (s === 'dark' || s === 'light') document.documentElement.setAttribute('data-theme', s);
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="back" href="../index.html#research">&larr; Irfan Gazi</a>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode">
+      <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.4 5.4l1.5 1.5M17.1 17.1l1.5 1.5M18.6 5.4l-1.5 1.5M6.9 17.1l-1.5 1.5"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.5 8.5 0 1 1 9.4 3.5a6.8 6.8 0 0 0 11.1 11.1z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="page">
+
+  <div class="head">
+    <h1>InspectionGPT: Advancing Inspector Training Workflow in NDOT with an Agentic RAG-MCP Based Chatbot</h1>
+    <p class="people"><span class="me">Irfan Gazi</span>, <a href="https://engineering.unl.edu/durhamschool/person/kyungki-kim/" target="_blank" rel="noopener">Kyungki Kim</a></p>
+    <p class="venue-line">CI &amp; CRC Joint Conference, San Antonio, TX &middot; 2026</p>
+
+    <div class="buttons">
+      <a href="../data/InspectionGPT_Poster_CICRC_2026.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/></svg>Poster (PDF)</a>
+    </div>
+  </div>
+
+  <div class="prose">
+
+    <section id="abstract" class="abstract">
+      <h2>Abstract</h2>
+      <p>
+        Retrieval-augmented generation (RAG) grounds a large language model in external documents, but standard RAG pipelines break down on the dense, multi-page and borderless tables common in Nebraska Department of Transportation (NDOT) manuals. Across five NDOT documents totalling over 2,000 pages, fixed chunking splits tables mid-row and discards the column headers that inspectors rely on for sampling decisions, and existing RAG frameworks neither route queries by intent nor learn from past mistakes. This work presents InspectionGPT, an agentic RAG system built on the Model Context Protocol (MCP). A content-aware ingestion pipeline keeps full table structures intact with custom chunk markers. A router agent evaluates query intent and dispatches each search to the right domain knowledge. A self-corrective module stores user corrections and injects relevant ones into the prompt on later queries. On the 216-page Materials Sampling Guide, evaluated with 75 manually curated questions, Custom Marker chunking outperformed the basic baseline by over 55% on Precision@5 for table-structure queries, while By Title chunking matched it on narrative text, pointing to a hybrid strategy. On re-query, the self-corrective loop detected a stored correction and produced a section-aware answer instead of repeating the error.
+      </p>
+    </section>
+
+    <section id="framework">
+      <h2>Framework</h2>
+      <p>
+        A Streamlit chat app sends the inspector&rsquo;s query to a FastAPI router agent. An n8n client coordinates the self-corrective module, which checks past mistakes, and the document agent, which retrieves the top chunks and writes the answer. Source documents are extracted, table-detected, chunked and embedded first.
+      </p>
+      <figure class="media">
+        <img src="../images/inspectiongpt-poster-architecture.webp" width="1240" height="678" loading="lazy" decoding="async"
+             alt="Architecture diagram: NDOT inspector query flowing through a Streamlit chat app and FastAPI router agent to an n8n client, which coordinates a self-corrective module (checking past mistakes, a vector DB, learning new corrections) and a document AI agent (knowledge vector store, top-K chunks, LLM response); below, raw materials guide data is extracted, table-detected, chunked and embedded." />
+      </figure>
+    </section>
+
+    <section id="poster">
+      <h2>Poster</h2>
+      <figure class="media">
+        <img src="../images/inspectiongpt-poster.webp" width="1072" height="803" loading="lazy" decoding="async"
+             alt="InspectionGPT conference poster: introduction, problem identification, objectives and source document panels on the left; methodology diagrams of the proposed framework, document ingestion and chunking pipeline, and four-stage self-corrective RAG workflow in the centre; results bar charts and conclusions on the right." />
+      </figure>
+      <figure class="media narrow">
+        <img src="../images/inspectiongpt-poster-conference.webp" width="1080" height="1350" loading="lazy" decoding="async"
+             alt="Irfan Gazi standing beside the printed InspectionGPT poster at the CI &amp; CRC Joint Conference, wearing an exhibitor badge." />
+      </figure>
+    </section>
+
+    <section id="citation">
+      <h2>BibTeX</h2>
+      <div class="bib">
+        <button class="copy-bib" id="copy-bib" type="button">Copy</button>
+<pre id="bibtex">@inproceedings{gazi2026inspectiongpt,
+  title     = {InspectionGPT: Advancing Inspector Training Workflow in NDOT
+               with an Agentic RAG-MCP Based Chatbot},
+  author    = {Gazi, Irfan and Kim, Kyungki},
+  booktitle = {CI \&amp; CRC Joint Conference},
+  address   = {San Antonio, TX},
+  year      = {2026},
+  note      = {Poster}
+}</pre>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    Supported by the Nebraska Department of Transportation, project FY26(050) &middot; <a href="../index.html">Back to portfolio</a>
+  </footer>
+
+</main>
+
+<script>
+  /* Animated figures only where motion is welcome. */
+  (function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    Array.prototype.forEach.call(document.querySelectorAll('img[data-anim]'), function (img) {
+      img.src = img.getAttribute('data-anim');
+    });
+  })();
+
+  /* YouTube thumbnail becomes the player on click. */
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest && e.target.closest('a.yt[data-yt]');
+    if (!link || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    var frame = document.createElement('iframe');
+    frame.className = 'yt-frame';
+    frame.src = 'https://www.youtube-nocookie.com/embed/' + link.getAttribute('data-yt') + '?autoplay=1&rel=0';
+    frame.title = link.getAttribute('aria-label').replace(/^Play video: /, '');
+    frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    frame.allowFullscreen = true;
+    link.parentNode.replaceChild(frame, link);
+    frame.focus();
+  });
+
+  /* Copy the BibTeX. */
+  (function () {
+    var btn = document.getElementById('copy-bib');
+    var pre = document.getElementById('bibtex');
+    if (!btn || !pre) return;
+    if (!navigator.clipboard) { btn.hidden = true; return; }
+    btn.addEventListener('click', function () {
+      navigator.clipboard.writeText(pre.textContent).then(function () {
+        btn.textContent = 'Copied';
+        setTimeout(function () { btn.textContent = 'Copy'; }, 1600);
+      });
+    });
+  })();
+
+  /* Theme toggle, shared with the main page through localStorage. */
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var current = root.getAttribute('data-theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var next = current === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>

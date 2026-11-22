@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>A Systematic Review of Deep Learning-Based Drone Applications in the Construction Industry | Irfan Gazi</title>
+<meta name="description" content="A PRISMA-guided review of deep learning on drone data in construction: object detection, site monitoring and structural assessment." />
+<meta name="author" content="Irfan Gazi" />
+<link rel="canonical" href="https://irfan-gazi0.github.io/Portfolio/projects/drone-deep-learning-review.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="A Systematic Review of Deep Learning-Based Drone Applications in the Construction Industry" />
+<meta property="og:description" content="A PRISMA-guided review of deep learning on drone data in construction: object detection, site monitoring and structural assessment." />
+<meta property="og:image" content="https://irfan-gazi0.github.io/Portfolio/images/drone-keyword-map.webp" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23D00000'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='36' font-weight='700' fill='%23fff' text-anchor='middle'%3EIG%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" />
+<link rel="stylesheet" href="project.css?v=4" />
+<script>
+  (function () {
+    try {
+      var s = localStorage.getItem('theme');
+      if (s === 'dark' || s === 'light') document.documentElement.setAttribute('data-theme', s);
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="back" href="../index.html#research">&larr; Irfan Gazi</a>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode">
+      <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.4 5.4l1.5 1.5M17.1 17.1l1.5 1.5M18.6 5.4l-1.5 1.5M6.9 17.1l-1.5 1.5"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.5 8.5 0 1 1 9.4 3.5a6.8 6.8 0 0 0 11.1 11.1z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="page">
+
+  <div class="head">
+    <h1>A Systematic Review of Deep Learning-Based Drone Applications in the Construction Industry</h1>
+    <p class="people"><span class="me">Irfan Gazi</span> &middot; Supervisor: <a href="https://orcid.org/0000-0002-6279-5406" target="_blank" rel="noopener">Md. Habibur Rahman Sobuz</a></p>
+    <p class="venue-line">Systematic review &middot; In preparation</p>
+  </div>
+
+  <div class="prose">
+
+    <section id="abstract" class="abstract">
+      <h2>Abstract</h2>
+      <p>
+        Drones are now a routine sight on construction sites, and deep learning is what turns their footage into information a project team can act on. Research on this pairing has grown quickly and unevenly. This PRISMA-guided systematic review maps how deep learning is applied to drone data across the construction industry. Convolutional neural networks and the YOLO family dominate the literature, with object detection, site monitoring and structural assessment as the main applications. A keyword co-occurrence analysis and a thematic analysis across 2018&ndash;2024 show how the research focus has shifted. The review traces where each approach is credibly accurate across the phases of a project, from data acquisition and labelling to trained models used for monitoring, defect detection and early warning.
+      </p>
+    </section>
+
+    <section id="landscape">
+      <h2>Research Landscape</h2>
+      <p>
+        Keywords such as aerial vehicle, CNN, classification, artificial intelligence and object detection cluster together. Research themes shift across 2018&ndash;2020, 2021&ndash;2022 and 2023&ndash;2024.
+      </p>
+      <figure class="media">
+        <img src="../images/drone-keyword-map.webp" width="1200" height="914" loading="lazy" decoding="async"
+             alt="VOSviewer co-occurrence map clustering keywords such as aerial vehicle, CNN, classification, artificial intelligence and object detection." />
+      </figure>
+      <figure class="media">
+        <img src="../images/drone-theme-flow.webp" width="1000" height="530" loading="lazy" decoding="async"
+             alt="Sankey diagram tracing research themes across three periods: 2018 to 2020, 2021 to 2022, and 2023 to 2024." />
+      </figure>
+    </section>
+
+    <section id="pipeline">
+      <h2>Deep Learning Pipeline</h2>
+      <p>
+        Most studies follow two stages: data acquisition with a sensor-equipped drone, then a CNN that is selected, trained and tuned for structural assessment, monitoring and early warning.
+      </p>
+      <figure class="media narrow">
+        <img src="../images/drone-dl-pipeline.webp" width="1103" height="905" loading="lazy" decoding="async"
+             alt="Two-stage pipeline: a data acquisition stage covering infrastructure type, sensor-equipped drone, data collection and labelling, feeding a CNN-based structural assessment stage of architecture selection, training, tuning and classification, producing autonomous monitoring, defect detection and early warning." />
+      </figure>
+    </section>
+
+  </div>
+
+  <footer>
+    <a href="../index.html">Back to portfolio</a>
+  </footer>
+
+</main>
+
+<script>
+  /* Animated figures only where motion is welcome. */
+  (function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    Array.prototype.forEach.call(document.querySelectorAll('img[data-anim]'), function (img) {
+      img.src = img.getAttribute('data-anim');
+    });
+  })();
+
+  /* YouTube thumbnail becomes the player on click. */
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest && e.target.closest('a.yt[data-yt]');
+    if (!link || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    var frame = document.createElement('iframe');
+    frame.className = 'yt-frame';
+    frame.src = 'https://www.youtube-nocookie.com/embed/' + link.getAttribute('data-yt') + '?autoplay=1&rel=0';
+    frame.title = link.getAttribute('aria-label').replace(/^Play video: /, '');
+    frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    frame.allowFullscreen = true;
+    link.parentNode.replaceChild(frame, link);
+    frame.focus();
+  });
+
+  /* Copy the BibTeX. */
+  (function () {
+    var btn = document.getElementById('copy-bib');
+    var pre = document.getElementById('bibtex');
+    if (!btn || !pre) return;
+    if (!navigator.clipboard) { btn.hidden = true; return; }
+    btn.addEventListener('click', function () {
+      navigator.clipboard.writeText(pre.textContent).then(function () {
+        btn.textContent = 'Copied';
+        setTimeout(function () { btn.textContent = 'Copy'; }, 1600);
+      });
+    });
+  })();
+
+  /* Theme toggle, shared with the main page through localStorage. */
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var current = root.getAttribute('data-theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var next = current === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>

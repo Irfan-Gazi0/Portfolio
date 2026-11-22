@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>A Hybrid Framework for Occupational Risk Prioritization in Construction Projects Using Monte Carlo Simulation and Utility Theory | Irfan Gazi</title>
+<meta name="description" content="Monte Carlo simulation and utility theory combined to rank occupational risks in construction by how risk-averse the decision-maker is." />
+<meta name="author" content="Irfan Gazi" />
+<link rel="canonical" href="https://irfan-gazi0.github.io/Portfolio/projects/occupational-risk-prioritization.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="A Hybrid Framework for Occupational Risk Prioritization in Construction Projects Using Monte Carlo Simulation and Utility Theory" />
+<meta property="og:description" content="Monte Carlo simulation and utility theory combined to rank occupational risks in construction by how risk-averse the decision-maker is." />
+<meta property="og:image" content="https://irfan-gazi0.github.io/Portfolio/images/risk-framework-phases.webp" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23D00000'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='36' font-weight='700' fill='%23fff' text-anchor='middle'%3EIG%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" />
+<link rel="stylesheet" href="project.css?v=4" />
+<script>
+  (function () {
+    try {
+      var s = localStorage.getItem('theme');
+      if (s === 'dark' || s === 'light') document.documentElement.setAttribute('data-theme', s);
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="back" href="../index.html#research">&larr; Irfan Gazi</a>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode">
+      <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.4 5.4l1.5 1.5M17.1 17.1l1.5 1.5M18.6 5.4l-1.5 1.5M6.9 17.1l-1.5 1.5"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.5 8.5 0 1 1 9.4 3.5a6.8 6.8 0 0 0 11.1 11.1z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="page">
+
+  <div class="head">
+    <h1>A Hybrid Framework for Occupational Risk Prioritization in Construction Projects Using Monte Carlo Simulation and Utility Theory</h1>
+    <p class="people">Md Tanvir Rahman Rifat, Shuvo Dip Datta, Md. Mehrab Hossain, Md Shah Jamal, Marcel Maghiar, Sani Aliyu, <span class="me">Irfan Gazi</span></p>
+    <p class="venue-line"><em>Scientific Reports</em> 16, 36398 &middot; 2026</p>
+
+    <div class="buttons">
+      <a href="https://doi.org/10.1038/s41598-026-63788-2" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M8 13h8"/><path d="M8 17h5"/></svg>Paper</a>
+    </div>
+  </div>
+
+  <div class="prose">
+
+    <section id="abstract" class="abstract">
+      <h2>Abstract</h2>
+      <p>
+        South Asian countries, including Bangladesh, continue to experience unacceptably high rates of occupational accidents and fatalities in the construction sector, driven by rapid urbanization and infrastructure development. Traditional risk assessment methods, such as static risk matrices, frequently fail to capture the stochastic nature of these accidents, rely on point-based probability and severity estimates, and neglect the behavioral risk perceptions of decision-makers. This study develops and applies a hybrid framework that integrates Monte Carlo Simulation (MCS) with Utility Theory (UT) to prioritize occupational risks in construction projects in Bangladesh. Primary data were collected through a structured questionnaire survey of 112 construction professionals across 43 infrastructure projects in Bangladesh, who assessed the probability and severity of 30 occupational risks on a five-point scale. For each risk, triangular distributions, parameterized using minimum, mode, and maximum values derived from survey statistics and bounded within the 1&ndash;5 rating scale, were specified in @Risk. A total of 5,000 Monte Carlo iterations were executed to ensure convergence stability in the simulated risk exposure distributions. Simulated risk exposure indices were subsequently transformed into utility-based priorities using an exponential utility function that explicitly represents risk-averse, risk-neutral, and risk-seeking decision profiles. Results indicate that falls from a higher level (RI&nbsp;=&nbsp;22.3, SRI&nbsp;=&nbsp;14.78), shocks from overhead powerlines (RI&nbsp;=&nbsp;19.8, SRI&nbsp;=&nbsp;13.51), and falling on the same level (RI&nbsp;=&nbsp;18.6, SRI&nbsp;=&nbsp;13.36) represent the most critical occupational hazards. The utility-based analysis translates simulated risk exposure scores into behaviorally interpretable priority values under risk-averse, risk-neutral, and risk-seeking decision profiles. The primary methodological contribution of this study lies in the explicit integration of probabilistic uncertainty modeling (MCS) with behavioral risk-preference modeling (UT) for occupational safety prioritization in a developing-country construction context. The framework provides a transparent, reproducible, and adaptable tool for decision-making in construction safety. Its findings are intended to guide practitioners in resource allocation and intervention planning, though field-level validation in real-time safety management contexts remains a recommended direction for future research.
+      </p>
+    </section>
+
+    <section id="framework">
+      <h2>Framework</h2>
+      <p>
+        Three phases: framework development from the literature, risk assessment through the questionnaire, statistics and Monte Carlo simulation, and prioritisation that brings the risk matrix, the simulation and the decision-maker&rsquo;s risk perception together.
+      </p>
+      <figure class="media narrow">
+        <img src="../images/risk-framework-phases.webp" width="668" height="656" loading="lazy" decoding="async"
+             alt="Three-phase framework diagram: phase one framework development via literature review, phase two process integration via risk assessment covering questionnaire, statistical analysis, Monte Carlo simulation and prioritization, and phase three framework execution via risk prioritization by risk matrix, Monte Carlo simulation and decision-maker risk perception." />
+      </figure>
+    </section>
+
+    <section id="data">
+      <h2>Survey and Baseline</h2>
+      <p>
+        The 112 respondents worked across five divisions of Bangladesh. The simulation output is compared against a baseline 5&times;5 risk matrix and its mitigation bands.
+      </p>
+      <div class="media pair">
+        <figure>
+          <img src="../images/risk-respondent-map.webp" width="601" height="714" loading="lazy" decoding="async"
+             alt="Choropleth map of Bangladesh shading five divisions by respondent count: Chattogram 29, Khulna 26, Dhaka 25, Barisal 22 and Sylhet 10." />
+        </figure>
+        <figure>
+          <img src="../images/risk-matrix.webp" width="743" height="610" loading="lazy" decoding="async"
+             alt="Five-by-five risk matrix crossing probability bands A to E against severity one to five, with cells scored 1 to 25 and colour-coded, above a mitigation strategy table defining high, moderate, low and negligible risk bands." />
+        </figure>
+      </div>
+    </section>
+
+    <section id="citation">
+      <h2>BibTeX</h2>
+      <div class="bib">
+        <button class="copy-bib" id="copy-bib" type="button">Copy</button>
+<pre id="bibtex">@article{rifat2026risk,
+  title   = {A hybrid framework for occupational risk prioritization in
+             construction projects using {Monte Carlo} simulation and
+             utility theory},
+  author  = {Rifat, Md Tanvir Rahman and Datta, Shuvo Dip and Hossain,
+             Md. Mehrab and Jamal, Md Shah and Maghiar, Marcel and Aliyu, Sani
+             and Gazi, Irfan},
+  journal = {Scientific Reports},
+  volume  = {16},
+  pages   = {36398},
+  year    = {2026},
+  doi     = {10.1038/s41598-026-63788-2}
+}</pre>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <a href="../index.html">Back to portfolio</a>
+  </footer>
+
+</main>
+
+<script>
+  /* Animated figures only where motion is welcome. */
+  (function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    Array.prototype.forEach.call(document.querySelectorAll('img[data-anim]'), function (img) {
+      img.src = img.getAttribute('data-anim');
+    });
+  })();
+
+  /* YouTube thumbnail becomes the player on click. */
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest && e.target.closest('a.yt[data-yt]');
+    if (!link || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    var frame = document.createElement('iframe');
+    frame.className = 'yt-frame';
+    frame.src = 'https://www.youtube-nocookie.com/embed/' + link.getAttribute('data-yt') + '?autoplay=1&rel=0';
+    frame.title = link.getAttribute('aria-label').replace(/^Play video: /, '');
+    frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    frame.allowFullscreen = true;
+    link.parentNode.replaceChild(frame, link);
+    frame.focus();
+  });
+
+  /* Copy the BibTeX. */
+  (function () {
+    var btn = document.getElementById('copy-bib');
+    var pre = document.getElementById('bibtex');
+    if (!btn || !pre) return;
+    if (!navigator.clipboard) { btn.hidden = true; return; }
+    btn.addEventListener('click', function () {
+      navigator.clipboard.writeText(pre.textContent).then(function () {
+        btn.textContent = 'Copied';
+        setTimeout(function () { btn.textContent = 'Copy'; }, 1600);
+      });
+    });
+  })();
+
+  /* Theme toggle, shared with the main page through localStorage. */
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var current = root.getAttribute('data-theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var next = current === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>
