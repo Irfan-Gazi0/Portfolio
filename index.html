@@ -474,9 +474,8 @@ button.linklike { cursor: pointer; font: inherit; }
    timeline's spine reused — so the gap between two groups reads differently
    from the gap between two entries inside one. */
 .rgroup { margin-top: 36px; }
-/* Adjacency, not :first-of-type — that keys on the tag, and .rindex is the
-   first div in the section, so :first-of-type would match nothing here. */
-.rindex + .rgroup { margin-top: 16px; }
+/* The first group sits right under the section heading, which already has its own bottom margin. */
+.section-heading + .rgroup { margin-top: 0; }
 
 .rgroup-head {
   display: flex; align-items: baseline; gap: 10px;
@@ -506,22 +505,6 @@ button.linklike { cursor: pointer; font: inherit; }
   padding-left: 22px; margin-left: 3px;
 }
 .rgroup-body > .entry:last-child { margin-bottom: 0; }
-
-/* The shape of the section in one line, before the reader has scrolled it.
-   Anchors rather than filters: someone reading this wants the whole list, and
-   nothing here may depend on JavaScript. A <div>, not a <nav> — the scroll-spy
-   below collects `nav a[href^="#"]`, and these four would displace Research. */
-.rindex { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 6px; }
-.rindex a {
-  display: inline-flex; align-items: baseline; gap: 7px;
-  padding: 4px 12px; border-radius: 999px;
-  font-size: 13px; font-weight: 600;
-  color: var(--ink-soft); background: var(--accent-softer);
-  border: 1px solid var(--rule);
-  transition: border-color .18s ease, background .18s ease;
-}
-.rindex a:hover { color: var(--ink); border-color: var(--ink-mute); background: var(--accent-soft); }
-.rindex b { font-weight: 700; color: var(--ink-mute); font-variant-numeric: tabular-nums; }
 
 /* ---------- research / project entries ---------- */
 .entry { display: grid; grid-template-columns: 340px 1fr; gap: 28px; align-items: start; margin-bottom: 34px; }
@@ -734,9 +717,8 @@ footer {
   nav ul { -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent); }
   nav ul li a { display: flex; align-items: center; min-height: 44px; padding: 0 9px; font-size: 14px; white-space: nowrap; }
   a.nav-xr, .theme-toggle { height: 44px; min-width: 44px; justify-content: center; }
-  .rindex a, .actions a { min-height: 44px; align-items: center; padding-top: 0; padding-bottom: 0; }
+  .actions a { min-height: 44px; align-items: center; padding-top: 0; padding-bottom: 0; }
   .linkrow a, .linkrow button.linklike { width: 44px; height: 44px; }
-  .rindex { gap: 8px; }
   .actions { gap: 8px; }
   details.more > summary { display: inline-flex; align-items: center; min-height: 44px; }
   /* The two marks share the hero column and shrink together on narrow phones. */
@@ -758,8 +740,7 @@ footer {
 /* ---------- print ----------
    This page gets saved as a PDF and forwarded; it should survive that. */
 @media print {
-  nav, .skip-link, #scroll-progress, .xr-cta, .to-top, .theme-toggle { display: none !important; }
-  .rindex { display: none; }  /* in-page anchors are nothing on paper */
+  nav, .skip-link, #scroll-progress, .xr-cta, .to-top, .theme-toggle { display: none !important; }  /* in-page anchors are nothing on paper */
   body { padding-top: 0; background: #fff !important; color: #000; font-size: 10.5pt; }
   .wrap { max-width: none; padding: 0; }
   a { color: #000; }
@@ -828,7 +809,7 @@ footer {
     </div>
     <div>
       <p>
-        I am a research assistant pursuing master's degree in
+        I am working as a research assistant, pursuing master's degree in
         <a href="https://engineering.unl.edu/durhamschool/cemt-ms/" target="_blank" rel="noopener">Construction Engineering and Management</a>
         at the <a href="https://www.unl.edu/" target="_blank" rel="noopener">University of Nebraska&ndash;Lincoln</a>,
         advised by <a href="https://engineering.unl.edu/durhamschool/person/kyungki-kim/" target="_blank" rel="noopener">Dr. Kyungki Kim.</a>
@@ -863,15 +844,6 @@ footer {
   <!-- ============ Research ============ -->
   <section id="research">
     <h2 class="section-heading">Research</h2>
-
-    <!-- The shape of the section, before anyone has scrolled it. A <div> and
-         not a <nav>: the scroll-spy script collects `nav a[href^="#"]`. -->
-    <div class="rindex">
-      <a href="#r-funded">Funded Projects <b>2</b></a>
-      <a href="#r-journal">Journal Articles <b>2</b></a>
-      <a href="#r-progress">In Progress <b>4</b></a>
-      <a href="#r-talks">Presentations <b>2</b></a>
-    </div>
 
     <div class="rgroup" id="r-funded">
     <div class="rgroup-head"><h3>Funded Projects</h3></div>
@@ -1043,35 +1015,17 @@ footer {
     </div>
     </div>
 
-    <div class="rgroup" id="r-progress">
-    <div class="rgroup-head"><h3>In Progress</h3></div>
+    <div class="rgroup" id="r-talks">
+    <div class="rgroup-head"><h3> Presentations</h3></div>
     <div class="rgroup-body">
 
     <article class="entry">
-      <div class="entry-fig">
-        <a class="yt" href="https://www.youtube.com/watch?v=9qLTCyVg5k0" data-yt="9qLTCyVg5k0" target="_blank" rel="noopener" aria-label="Play video: Work-Zone Hazard Identification with NVIDIA Cosmos Reason"><img src="https://i.ytimg.com/vi/9qLTCyVg5k0/hqdefault.jpg" width="480" height="360" loading="lazy" decoding="async" alt="" /><span class="yt-play" aria-hidden="true"></span></a>
-        <p class="fig-credit">Hazard reasoning overlaid on drone footage of a paving operation</p>
-      </div>
-      <div>
-        <p class="entry-meta"><span class="state is-open">Ongoing</span></p>
-        <h4 class="entry-title">Work-Zone Hazard Identification with Vision-Language Reasoning</h4>
-        <p class="takeaway">
-          Object detection can box a worker and a truck, but not say that the worker is standing in the truck's blind spot.
-          This pipeline passes drone footage of a highway paving operation to NVIDIA Cosmos Reason, which reasons over the
-          whole clip, flags workers inside the operating radius of the paver and mixer trucks, and
-          recommends controls such as a spotter and a marked exclusion zone.
-        </p>
-      </div>
-    </article>
-
-    
-      <article class="entry">
       <div class="entry-fig">
         <img src="images/rag-architecture.webp" width="1099" height="462" loading="lazy" decoding="async"
              alt="Architecture diagram: an NDOT inspector's question and training prompts are rewritten by a supervisor agent, routed to contract, specification, training, quiz and conflict-detection sub-agents, which query NDOT manuals and project documents on an MCP server and return a grounded answer with sources." />
       </div>
       <div>
-        <p class="entry-meta"><span class="state is-open">Under review</span> TRB Annual Meeting</p>
+        <p class="entry-meta"><span class="state">Paper</span> TRB Annual Meeting &middot; 2027</p>
         <h4 class="entry-title">Evaluating Multi-Agent and Single-Agent RAG Frameworks for Highway Construction Inspector Training</h4>
         <p class="takeaway">
           Whether a multi-agent RAG system beats a single grounded LLM at answering NDOT inspection queries.
@@ -1092,6 +1046,86 @@ footer {
         </details>
       </div>
     </article>
+
+    <article class="entry">
+      <div class="entry-fig">
+        <img src="images/inspectiongpt-poster.webp" width="1072" height="803" loading="lazy" decoding="async"
+             alt="InspectionGPT conference poster: introduction, problem identification, objectives and source document panels on the left; methodology diagrams of the proposed framework, document ingestion and chunking pipeline, and four-stage self-corrective RAG workflow in the centre; results bar charts and conclusions on the right." />
+      </div>
+      <div>
+        <p class="entry-meta"><span class="state">Poster</span> CI &amp; CRC Joint Conference, San Antonio, TX &middot; 2026</p>
+        <h4 class="entry-title">InspectionGPT: Advancing Inspector Training Workflow in NDOT with an Agentic RAG-MCP Based Chatbot</h4>
+        <p class="authors"><span class="me">Irfan Gazi</span>, Kyungki Kim</p>
+        <p class="takeaway">
+          A chatbot that answers a trainee inspector&rsquo;s questions from the NDOT construction manuals with
+          the passage it drew on cited beside the answer, so a new inspector can check the source rather
+          than take the model&rsquo;s word for it. Retrieval and the tools the agent may call are separated
+          behind MCP, which keeps the manuals swappable and the agent&rsquo;s reach explicit.
+          Supported by the Nebraska Department of Transportation.
+        </p>
+        <details class="more">
+          <summary>2 more figures</summary>
+          <div class="more-figs">
+            <figure>
+              <img src="images/inspectiongpt-poster-architecture.webp" width="1240" height="678" loading="lazy" decoding="async"
+                   alt="Architecture diagram: NDOT inspector query flowing through a Streamlit chat app and FastAPI router agent to an n8n client, which coordinates a self-corrective module (checking past mistakes, a vector DB, learning new corrections) and a document AI agent (knowledge vector store, top-K chunks, LLM response); below, raw materials guide data is extracted, table-detected, chunked and embedded." />
+              <figcaption>The proposed InspectionGPT framework: routed retrieval, self-correction, and content-aware chunking behind MCP.</figcaption>
+            </figure>
+            <figure>
+              <img src="images/inspectiongpt-poster-conference.webp" width="1080" height="1350" loading="lazy" decoding="async"
+                   alt="Irfan Gazi standing beside the printed InspectionGPT poster at the CI &amp; CRC Joint Conference, wearing an exhibitor badge." />
+              <figcaption>Presenting the poster at the CI &amp; CRC Joint Conference in San Antonio, TX.</figcaption>
+            </figure>
+          </div>
+        </details>
+      </div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-fig">
+        <img src="images/ndot-unl-summit-talk.webp" width="1400" height="771" loading="lazy" decoding="async"
+             alt="Irfan Gazi giving the project talk at the NDOT &amp; University of Nebraska&ndash;Lincoln Research Summit, 2026." />
+      </div>
+      <div>
+        <p class="entry-meta"><span class="state">Talk</span> NDOT &amp; University of Nebraska&ndash;Lincoln Research Summit &middot; 2026</p>
+        <h4 class="entry-title">AI and Immersive AR/VR for Sustained Material and Construction Inspection Training and Knowledge Retention</h4>
+        <p class="authors">
+          <span class="me">Supervisor</span>: Kyungki Kim, Chun-Hsing (Jun) Ho
+        </p>
+        <p class="takeaway">
+          The project talk for our NDOT-funded work: InspectionGPT as a cited knowledge base and virtual
+          mentor for new inspectors, and the immersive VR environment it is being embedded in, so an
+          inspector practises on a virtual site and retains what they learned
+          after the training ends.
+        </p>
+      </div>
+    </article>
+
+    </div>
+    </div>
+
+    <div class="rgroup" id="r-progress">
+    <div class="rgroup-head"><h3>In Progress</h3></div>
+    <div class="rgroup-body">
+
+    <article class="entry">
+      <div class="entry-fig">
+        <a class="yt" href="https://www.youtube.com/watch?v=9qLTCyVg5k0" data-yt="9qLTCyVg5k0" target="_blank" rel="noopener" aria-label="Play video: Work-Zone Hazard Identification with NVIDIA Cosmos Reason"><img src="https://i.ytimg.com/vi/9qLTCyVg5k0/hqdefault.jpg" width="480" height="360" loading="lazy" decoding="async" alt="" /><span class="yt-play" aria-hidden="true"></span></a>
+        
+      </div>
+      <div>
+        <p class="entry-meta"><span class="state is-open">Ongoing</span></p>
+        <h4 class="entry-title">Work-Zone Hazard Identification with Vision-Language Reasoning</h4>
+        <p class="takeaway">
+          Object detection can box a worker and a truck, but not say that the worker is standing in the truck's blind spot.
+          This pipeline passes drone footage of a highway paving operation to NVIDIA Cosmos Reason, which reasons over the
+          whole clip, flags workers inside the operating radius of the paver and mixer trucks, and
+          recommends controls such as a spotter and a marked exclusion zone.
+        </p>
+      </div>
+    </article>
+
+    
 
     <article class="entry">
       <div class="entry-fig">
@@ -1162,66 +1196,6 @@ footer {
     </div>
     </div>
 
-    <div class="rgroup" id="r-talks">
-    <div class="rgroup-head"><h3> Presentations</h3></div>
-    <div class="rgroup-body">
-
-    <article class="entry">
-      <div class="entry-fig">
-        <img src="images/inspectiongpt-poster.webp" width="1072" height="803" loading="lazy" decoding="async"
-             alt="InspectionGPT conference poster: introduction, problem identification, objectives and source document panels on the left; methodology diagrams of the proposed framework, document ingestion and chunking pipeline, and four-stage self-corrective RAG workflow in the centre; results bar charts and conclusions on the right." />
-      </div>
-      <div>
-        <p class="entry-meta"><span class="state">Poster</span> CI &amp; CRC Joint Conference, San Antonio, TX &middot; 2026</p>
-        <h4 class="entry-title">InspectionGPT: Advancing Inspector Training Workflow in NDOT with an Agentic RAG-MCP Based Chatbot</h4>
-        <p class="authors"><span class="me">Irfan Gazi</span>, Kyungki Kim</p>
-        <p class="takeaway">
-          A chatbot that answers a trainee inspector&rsquo;s questions from the NDOT construction manuals with
-          the passage it drew on cited beside the answer, so a new inspector can check the source rather
-          than take the model&rsquo;s word for it. Retrieval and the tools the agent may call are separated
-          behind MCP, which keeps the manuals swappable and the agent&rsquo;s reach explicit.
-          Supported by the Nebraska Department of Transportation.
-        </p>
-        <details class="more">
-          <summary>2 more figures</summary>
-          <div class="more-figs">
-            <figure>
-              <img src="images/inspectiongpt-poster-architecture.webp" width="1240" height="678" loading="lazy" decoding="async"
-                   alt="Architecture diagram: NDOT inspector query flowing through a Streamlit chat app and FastAPI router agent to an n8n client, which coordinates a self-corrective module (checking past mistakes, a vector DB, learning new corrections) and a document AI agent (knowledge vector store, top-K chunks, LLM response); below, raw materials guide data is extracted, table-detected, chunked and embedded." />
-              <figcaption>The proposed InspectionGPT framework: routed retrieval, self-correction, and content-aware chunking behind MCP.</figcaption>
-            </figure>
-            <figure>
-              <img src="images/inspectiongpt-poster-conference.webp" width="1080" height="1350" loading="lazy" decoding="async"
-                   alt="Irfan Gazi standing beside the printed InspectionGPT poster at the CI &amp; CRC Joint Conference, wearing an exhibitor badge." />
-              <figcaption>Presenting the poster at the CI &amp; CRC Joint Conference in San Antonio, TX.</figcaption>
-            </figure>
-          </div>
-        </details>
-      </div>
-    </article>
-
-    <article class="entry">
-      <div class="entry-fig">
-        <img src="images/ndot-unl-summit-talk.webp" width="1400" height="771" loading="lazy" decoding="async"
-             alt="Irfan Gazi giving the project talk at the NDOT &amp; University of Nebraska&ndash;Lincoln Research Summit, 2026." />
-      </div>
-      <div>
-        <p class="entry-meta"><span class="state">Talk</span> NDOT &amp; University of Nebraska&ndash;Lincoln Research Summit &middot; 2026</p>
-        <h4 class="entry-title">AI and Immersive AR/VR for Sustained Material and Construction Inspection Training and Knowledge Retention</h4>
-        <p class="authors">
-          <span class="me">Supervisor</span>: Kyungki Kim, Chun-Hsing (Jun) Ho
-        </p>
-        <p class="takeaway">
-          The project talk for our NDOT-funded work: InspectionGPT as a cited knowledge base and virtual
-          mentor for new inspectors, and the immersive VR environment it is being embedded in, so an
-          inspector practises on a virtual site and retains what they learned
-          after the training ends.
-        </p>
-      </div>
-    </article>
-
-    </div>
-    </div>
   </section>
 
   <!-- ============ Code ============ -->
