@@ -523,6 +523,22 @@ button.linklike { cursor: pointer; font: inherit; }
   :root:not([data-theme="light"]) .entry-fig img, :root:not([data-theme="light"]) .more-figs img { background: #f2f5f5; }
 }
 .entry-fig svg { background: transparent; border: 0; }
+/* Screen captures fill the frame: the figure grows to the height of the text
+   beside it, and the capture is zoomed in slightly so its dark edges sit
+   outside the frame. The frame, not the image, carries the border and glow. */
+.entry:has(> .fig-fill) { align-items: stretch; }
+.entry-fig.fig-fill {
+  position: relative; overflow: hidden; min-height: 200px;
+  border-radius: 8px; border: 1px solid var(--rule-faint); background: #fff;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.entry-fig.fig-fill img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  aspect-ratio: auto; object-fit: cover; border: 0; border-radius: 0;
+  transform: scale(1.08);
+}
+.entry-fig.fig-fill:hover img { transform: scale(1.08); box-shadow: none; }
+.entry-fig.fig-fill:hover { transform: scale(1.04); box-shadow: 0 0 20px 2px var(--accent), var(--shadow); }
 
 .venue {
   display: block; margin-bottom: 6px;
@@ -539,7 +555,7 @@ button.linklike { cursor: pointer; font: inherit; }
 .entry-meta {
   display: flex; flex-wrap: wrap; align-items: center; gap: 4px 9px;
   margin: 0 0 7px;
-  font-size: 13px; color: var(--ink-mute); line-height: 1.45;
+  font-size: 14px; color: var(--ink-mute); line-height: 1.45;
 }
 .state {
   display: inline-flex; align-items: center; gap: 6px; flex: none;
@@ -568,15 +584,15 @@ button.linklike { cursor: pointer; font: inherit; }
   object-fit: contain;
 }
 
-.entry-title { margin: 0 0 6px; font-size: 17.5px; font-weight: 600; line-height: 1.35; letter-spacing: -0.008em; }
+.entry-title { margin: 0 0 6px; font-size: 18.5px; font-weight: 600; line-height: 1.35; letter-spacing: -0.008em; }
 /* A title that opens the entry's own project page. Ink, not accent, so the
    list still reads as titles; the underline on hover says it goes somewhere. */
 .entry-title a { color: var(--ink); text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 3px; transition: color .18s ease, text-decoration-color .18s ease; }
 .entry-title a:hover, .entry-title a:focus-visible { color: var(--accent); text-decoration-color: currentColor; }
 .takeaway + .actions { margin-top: 10px; }
-.authors { margin: 0 0 8px; font-size: 14.5px; color: var(--ink-soft); line-height: 1.5; }
+.authors { margin: 0 0 8px; font-size: 15.5px; color: var(--ink-mute); line-height: 1.5; }
 .authors .me { font-weight: 700; color: var(--ink); }
-.takeaway { margin: 8px 0 0; font-size: 14.5px; color: var(--ink-soft); }
+.takeaway { margin: 8px 0 0; font-size: 15.5px; color: var(--ink-soft); }
 .meta { margin: 8px 0 0; font-size: 14px; color: var(--ink-mute); }
 .meta strong { color: var(--ink-soft); font-weight: 600; }
 
@@ -711,6 +727,7 @@ footer {
   .sponsor-logo { height: 36px; }
   .entry { grid-template-columns: 1fr; gap: 14px; }
   .entry-fig { max-width: 420px; }
+  .entry-fig.fig-fill { aspect-ratio: 775 / 457; min-height: 0; }
   .rgroup-body { padding-left: 14px; }
   .rgroup-head h3 { font-size: 14.5px; }
   /* One bar on a phone: the anchors scroll sideways instead of wrapping to a
@@ -855,21 +872,19 @@ footer {
     <div class="rgroup-body">
 
     <article class="entry">
-      <div class="entry-fig">
+      <div class="entry-fig fig-fill">
         <img src="images/inspection-gpt-still.webp" width="775" height="457" loading="lazy" decoding="async"
              data-anim="images/inspection-gpt.webp"
              alt="The InspectionGPT interface: a sidebar of NDOT standard specifications, tech talk videos and the project contract; a chat thread answering &quot;Once the anchor bolts are set in concrete, how far off plumb can they be?&quot; with the specification passage quoted and page-level sources listed; and the cited manual page open beside it." />
       </div>
       <div>
         <h4 class="entry-title"><a href="projects/ndot-inspection-training.html">AI and VR for Construction Inspection Training</a></h4>
-        <p class="entry-meta"><span class="state">Active</span> Nebraska Department of Transportation <span aria-hidden="true">&middot;</span> Supervisors: Kyungki Kim, Chun-Hsing (Jun) Ho</p>
+        <p class="entry-meta"><span class="state">Active</span> Nebraska Department of Transportation</p>
+        <p class="authors">PI: Kyungki Kim; Co-PI: Chun-Hsing (Jun) Ho</p>
         <p class="takeaway">
           Trainee inspectors learn on the job, and what they learn leaves with them. This project pairs
           a chatbot grounded in NDOT documents, project contracts and videos that cites
           the page behind every answer inside an immersive construction environment.
-        </p>
-        <p class="actions">
-          <a href="https://trid.trb.org/View/2507233" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-ext"/></svg>TRID Record</a>
         </p>
       </div>
     </article>
@@ -1003,7 +1018,7 @@ footer {
     <div class="rgroup-head"><h3> Presentations</h3></div>
     <div class="rgroup-body">
 
-    <article class="entry">
+    <article class="entry" id="pub-trb-2027">
       <div class="entry-fig">
         <img src="images/rag-architecture.webp" width="1099" height="462" loading="lazy" decoding="async"
              alt="Architecture diagram: an NDOT inspector's question and training prompts are rewritten by a supervisor agent, routed to contract, specification, training, quiz and conflict-detection sub-agents, which query NDOT manuals and project documents on an MCP server and return a grounded answer with sources." />
@@ -1031,7 +1046,7 @@ footer {
       </div>
     </article>
 
-    <article class="entry">
+    <article class="entry" id="pub-cicrc-2026">
       <div class="entry-fig">
         <img src="images/inspectiongpt-poster.webp" width="1072" height="803" loading="lazy" decoding="async"
              alt="InspectionGPT conference poster: introduction, problem identification, objectives and source document panels on the left; methodology diagrams of the proposed framework, document ingestion and chunking pipeline, and four-stage self-corrective RAG workflow in the centre; results bar charts and conclusions on the right." />
@@ -1068,7 +1083,7 @@ footer {
       </div>
     </article>
 
-    <article class="entry">
+    <article class="entry" id="talk-ndot-summit-2026">
       <div class="entry-fig">
         <img src="images/ndot-unl-summit-talk.webp" width="1400" height="771" loading="lazy" decoding="async"
              alt="Irfan Gazi giving the project talk at the NDOT &amp; University of Nebraska&ndash;Lincoln Research Summit, 2026." />
