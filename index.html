@@ -596,18 +596,21 @@ button.linklike { cursor: pointer; font: inherit; }
 .meta { margin: 8px 0 0; font-size: 14px; color: var(--ink-mute); }
 .meta strong { color: var(--ink-soft); font-weight: 600; }
 
+/* Link buttons under each card: small boxed tabs, icon plus label. */
 .actions { display: flex; flex-wrap: wrap; gap: 6px; margin: 2px 0 0; }
-.actions a {
-  display: inline-flex; align-items: center; gap: 5px;
-  font-size: 13px; font-weight: 600; letter-spacing: .01em;
-  padding: 2px 9px; border-radius: 999px;
-  border: 1px solid var(--rule); background: var(--accent-softer); color: var(--ink-soft);
+.actions a, .actions .is-pending {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13.5px; font-weight: 400; line-height: 1.4;
+  padding: 3px 10px; border-radius: 3px;
+  border: 1px solid var(--rule); background: var(--surface); color: var(--ink-soft);
   transition: background .18s ease, border-color .18s ease, color .18s ease;
 }
-.actions a:hover { background: var(--accent-soft); border-color: var(--ink-mute); color: var(--ink); }
+.actions a:hover, .actions a:focus-visible { background: var(--accent-soft); border-color: var(--ink-mute); color: var(--ink); }
+/* A link that is not out yet: shown so the row reads complete, but inert. */
+.actions .is-pending { opacity: .5; cursor: default; }
 /* Line icons (Lucide, 24px grid) and the filled GitHub mark share one size. */
-.actions a svg { flex: none; width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-.actions a svg.i-solid { fill: currentColor; stroke: none; }
+.actions svg { flex: none; width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.actions svg.i-solid { fill: currentColor; stroke: none; }
 
 details.more { margin-top: 12px; }
 details.more > summary {
@@ -739,7 +742,7 @@ footer {
   nav ul { -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent); }
   nav ul li a { display: flex; align-items: center; min-height: 44px; padding: 0 9px; font-size: 14px; white-space: nowrap; }
   a.nav-xr, .theme-toggle { height: 44px; min-width: 44px; justify-content: center; }
-  .actions a { min-height: 44px; align-items: center; padding-top: 0; padding-bottom: 0; }
+  .actions a, .actions .is-pending { min-height: 44px; align-items: center; padding-top: 0; padding-bottom: 0; }
   .linkrow a, .linkrow button.linklike { width: 44px; height: 44px; }
   .actions { gap: 8px; }
   details.more > summary { display: inline-flex; align-items: center; min-height: 44px; }
@@ -792,6 +795,7 @@ footer {
   <symbol id="i-paper" viewBox="0 0 24 24"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></symbol>
   <symbol id="i-ext" viewBox="0 0 24 24"><path d="M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/><path d="m21 3-9 9"/><path d="M15 3h6v6"/></symbol>
   <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></symbol>
 </svg>
 
 <nav>
@@ -886,6 +890,9 @@ footer {
           a chatbot grounded in NDOT documents, project contracts and videos that cites
           the page behind every answer inside an immersive construction environment.
         </p>
+        <p class="actions">
+          <a href="projects/ndot-inspection-training.html"><svg aria-hidden="true"><use href="#i-globe"/></svg>Project</a>
+        </p>
       </div>
     </article>
 
@@ -903,6 +910,10 @@ footer {
           First responders can practice electric vehicle emergency response using a web browser or VR headset. This portal replaces traditional
           classroom sessions by combining 360-degree training videos, interactive vehicle scans, and a smart chatbot that answers questions using
           official guides.
+        </p>
+        <p class="actions">
+          <a href="projects/ev-emergency-response-training.html"><svg aria-hidden="true"><use href="#i-globe"/></svg>Project</a>
+          <a href="https://github.com/Irfan-Gazi0/RAG_Responder" target="_blank" rel="noopener"><svg class="i-solid" aria-hidden="true"><use href="#i-github"/></svg>Code</a>
         </p>
       </div>
     </article>
@@ -928,6 +939,10 @@ footer {
           A smart nursing-assistant robot that understands everyday language to handle physical chores 
           and look up medical information. It connects with hospital sensors and patient records to make decisions about what it should do next.
         </p>
+        <p class="actions">
+          <a href="projects/robotic-health-attendant.html"><svg aria-hidden="true"><use href="#i-globe"/></svg>Project</a>
+          <a href="https://doi.org/10.3390/app16115320" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-paper"/></svg>Paper</a>
+        </p>
       </div>
     </article>
 
@@ -945,6 +960,10 @@ footer {
         <p class="takeaway">
           Traditional construction risk tools ignore how managers weigh disasters against common nuisances. 
           By combining survey data with simulations, this framework automatically adjusts risk rankings based on how cautious a decision-maker is.
+        </p>
+        <p class="actions">
+          <a href="projects/occupational-risk-prioritization.html"><svg aria-hidden="true"><use href="#i-globe"/></svg>Project</a>
+          <a href="https://doi.org/10.1038/s41598-026-63788-2" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-paper"/></svg>Paper</a>
         </p>
       </div>
     </article>
@@ -969,6 +988,11 @@ footer {
           Whether a multi-agent RAG system beats a single grounded LLM at answering NDOT inspection queries.
           Grounding cut hallucinations sharply; adding agent orchestration did not improve final answer quality.
         </p>
+        <p class="actions">
+          <a href="projects/rag-inspector-training-evaluation.html"><svg aria-hidden="true"><use href="#i-globe"/></svg>Project</a>
+          <!-- Paper not public yet: replace this span with a link once the PDF is in data/. -->
+          <span class="is-pending" aria-disabled="true" title="Paper coming soon"><svg aria-hidden="true"><use href="#i-paper"/></svg>Paper</span>
+        </p>
       </div>
     </article>
 
@@ -987,6 +1011,10 @@ footer {
           than take the model&rsquo;s word for it. Retrieval and the tools the agent may call are separated
           behind MCP, which keeps the manuals swappable and the agent&rsquo;s reach explicit.
           Supported by the Nebraska Department of Transportation.
+        </p>
+        <p class="actions">
+          <a href="projects/inspectiongpt-poster.html"><svg aria-hidden="true"><use href="#i-globe"/></svg>Project</a>
+          <a href="data/InspectionGPT_Poster_CICRC_2026.pdf" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-paper"/></svg>Poster</a>
         </p>
       </div>
     </article>
@@ -1007,6 +1035,9 @@ footer {
           mentor for new inspectors, and the immersive VR environment it is being embedded in, so an
           inspector practises on a virtual site and retains what they learned
           after the training ends.
+        </p>
+        <p class="actions">
+          <a href="projects/ndot-inspection-training.html"><svg aria-hidden="true"><use href="#i-globe"/></svg>Project</a>
         </p>
       </div>
     </article>
@@ -1031,6 +1062,10 @@ footer {
           whole clip, flags workers inside the operating radius of the paver and mixer trucks, and
           recommends controls such as a spotter and a marked exclusion zone.
         </p>
+        <p class="actions">
+          <a href="projects/work-zone-hazard-vlm.html"><svg aria-hidden="true"><use href="#i-globe"/></svg>Project</a>
+          <a href="https://www.youtube.com/watch?v=9qLTCyVg5k0" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-video"/></svg>Video</a>
+        </p>
       </div>
     </article>
 
@@ -1051,6 +1086,9 @@ footer {
           Selecting any column or beam will show
           the carbon amount they could save by switching to greener materials.
         </p>
+        <p class="actions">
+          <a href="projects/embodied-carbon-vr.html"><svg aria-hidden="true"><use href="#i-globe"/></svg>Project</a>
+        </p>
       </div>
     </article>
     <article class="entry">
@@ -1066,6 +1104,9 @@ footer {
           Convolutional networks and the YOLO family dominate the literature for object detection, site
           monitoring, and structural assessment, and the review traces where each is credibly accurate across
           the phases of a project.
+        </p>
+        <p class="actions">
+          <a href="projects/drone-deep-learning-review.html"><svg aria-hidden="true"><use href="#i-globe"/></svg>Project</a>
         </p>
       </div>
     </article>
@@ -1167,6 +1208,9 @@ footer {
           A unified architectural and plumbing model for a commercial building, with parametric components
           keeping supply, drainage, and fixtures consistent through to the construction drawings.
         </p>
+        <p class="actions">
+          <a href="projects/revit-plumbing-coordination.html"><svg aria-hidden="true"><use href="#i-globe"/></svg>Project</a>
+        </p>
       </div>
     </article>
 
@@ -1182,6 +1226,9 @@ footer {
           Supply, return, and exhaust ducting modelled alongside chilled-water piping, sized to hold design
           flow rates, with dimensions and device tags carried through to the drawings.
         </p>
+        <p class="actions">
+          <a href="projects/hvac-bim-coordination.html"><svg aria-hidden="true"><use href="#i-globe"/></svg>Project</a>
+        </p>
       </div>
     </article>
 
@@ -1196,6 +1243,9 @@ footer {
         <p class="takeaway">
           Federating architectural, structural, and MEP models into Navisworks surfaced 123 clashes, each
           pinned to a level and grid intersection for assignment and closure before they became rework.
+        </p>
+        <p class="actions">
+          <a href="projects/clash-detection-coordination.html"><svg aria-hidden="true"><use href="#i-globe"/></svg>Project</a>
         </p>
       </div>
     </article>
