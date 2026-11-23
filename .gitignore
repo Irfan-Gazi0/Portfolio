@@ -9,6 +9,8 @@ images/*.png
 images/*.tif
 images/*.tiff
 images/*.gif
+# Served demo clip (palette-reduced, under 3 MB), not a raw source.
+!images/work-zone-hazard-demo.gif
 
 # Source material for the site's write-ups: internal project documents and the
 # raw screen recordings they came with. images/inspection-gpt*.webp and
