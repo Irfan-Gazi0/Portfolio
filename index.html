@@ -524,10 +524,8 @@ button.linklike { cursor: pointer; font: inherit; }
   :root:not([data-theme="light"]) .entry-fig img, :root:not([data-theme="light"]) .entry-fig video, :root:not([data-theme="light"]) .more-figs img { background: #f2f5f5; }
 }
 .entry-fig svg { background: transparent; border: 0; }
-/* Screen captures fill the frame: the figure grows to the height of the text
-   beside it, and the capture is zoomed in slightly so its dark edges sit
+/* Screen captures fill the frame: the capture is zoomed in slightly so its dark edges sit
    outside the frame. The frame, not the image, carries the border and glow. */
-.entry:has(> .fig-fill) { align-items: stretch; }
 .entry-fig.fig-fill {
   position: relative; overflow: hidden; min-height: 200px;
   border-radius: 8px; border: 1px solid var(--rule-faint); background: #fff;
@@ -540,6 +538,12 @@ button.linklike { cursor: pointer; font: inherit; }
 }
 .entry-fig.fig-fill:hover img { transform: scale(1.08); box-shadow: none; }
 .entry-fig.fig-fill:hover { transform: scale(1.04); box-shadow: 0 0 20px 2px var(--accent), var(--shadow); }
+/* On desktop every figure is one fixed height, the height of a typical
+   journal entry's text block, and the media is cropped to fill it. */
+.entry { --fig-h: 177px; }
+.entry-fig > a { display: block; }
+.entry-fig img, .entry-fig video { display: block; height: var(--fig-h); aspect-ratio: auto; object-fit: cover; }
+.entry-fig.fig-fill { height: var(--fig-h); min-height: 0; }
 
 .venue {
   display: block; margin-bottom: 6px;
@@ -732,7 +736,8 @@ footer {
   .sponsor-logo { height: 36px; }
   .entry { grid-template-columns: 1fr; gap: 14px; }
   .entry-fig { max-width: 420px; }
-  .entry-fig.fig-fill { aspect-ratio: 775 / 457; min-height: 0; }
+  .entry-fig img, .entry-fig video { height: auto; aspect-ratio: 4 / 3; }
+  .entry-fig.fig-fill { height: auto; aspect-ratio: 775 / 457; min-height: 0; }
   .rgroup-body { padding-left: 14px; }
   .rgroup-head h3 { font-size: 14.5px; }
   /* One bar on a phone: the anchors scroll sideways instead of wrapping to a
