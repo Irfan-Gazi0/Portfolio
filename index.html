@@ -605,7 +605,7 @@ button.linklike { cursor: pointer; font: inherit; }
   border: 1px solid var(--rule); background: var(--surface); color: var(--ink-soft);
   transition: background .18s ease, border-color .18s ease, color .18s ease;
 }
-.actions a:hover, .actions a:focus-visible { background: var(--accent-soft); border-color: var(--ink-mute); color: var(--ink); }
+.actions a:hover, .actions a:focus-visible { background: var(--accent); border-color: var(--accent); color: var(--paper); }
 /* A link that is not out yet: shown so the row reads complete, but inert. */
 .actions .is-pending { opacity: .5; cursor: default; }
 /* Line icons (Lucide, 24px grid) and the filled GitHub mark share one size. */
@@ -883,8 +883,8 @@ footer {
       </div>
       <div>
         <h4 class="entry-title"><a href="projects/ndot-inspection-training.html">AI and VR for Construction Inspection Training</a></h4>
-        <p class="entry-meta"><span class="state">Active</span> Nebraska Department of Transportation</p>
         <p class="authors">PI: Kyungki Kim; Co-PI: Chun-Hsing (Jun) Ho</p>
+        <p class="entry-meta">Nebraska Department of Transportation</p>
         <p class="takeaway">
           Trainee inspectors learn on the job, and what they learn leaves with them. This project pairs
           a chatbot grounded in NDOT documents, project contracts and videos that cites
@@ -904,8 +904,8 @@ footer {
       </div>
       <div>
         <h4 class="entry-title"><a href="projects/ev-emergency-response-training.html">Modernizing EV Emergency Response Training Through XR and AI</a></h4>
-        <p class="entry-meta"><span class="state">Completed</span> National Laboratory of the Rockies (NLR)</p>
         <p class="authors">PI: Nathan Huynh; Co-PI: Kyungki Kim</p>
+        <p class="entry-meta">National Laboratory of the Rockies (NLR)</p>
         <p class="takeaway">
           First responders can practice electric vehicle emergency response using a web browser or VR headset. This portal replaces traditional
           classroom sessions by combining 360-degree training videos, interactive vehicle scans, and a smart chatbot that answers questions using
@@ -931,10 +931,10 @@ footer {
       </div>
       <div>
         <h4 class="entry-title"><a href="projects/robotic-health-attendant.html">LLM-Orchestrated Framework for Multifunctional Robotic Health Attendant (RHA) in Healthcare Environments</a></h4>
-        <p class="entry-meta"><span class="state">Published</span> Applied Sciences &middot; 2026</p>
         <p class="authors">
           Kyungki Kim, <span class="me">Irfan Gazi</span>, et al.
         </p>
+        <p class="entry-meta"><em>Applied Sciences &middot; 2026</em></p>
         <p class="takeaway">
           A smart nursing-assistant robot that understands everyday language to handle physical chores 
           and look up medical information. It connects with hospital sensors and patient records to make decisions about what it should do next.
@@ -953,10 +953,10 @@ footer {
       </div>
       <div>
         <h4 class="entry-title"><a href="projects/occupational-risk-prioritization.html">A hybrid framework for occupational risk prioritization in construction projects using Monte Carlo simulation and utility theory</a></h4>
-        <p class="entry-meta"><span class="state">Published</span> Scientific Reports &middot; 2026</p>
         <p class="authors">
           Md Tanvir Rahman Rifat, et al. , <span class="me">Irfan Gazi</span>
         </p>
+        <p class="entry-meta"><em>Scientific Reports &middot; 2026</em></p>
         <p class="takeaway">
           Traditional construction risk tools ignore how managers weigh disasters against common nuisances. 
           By combining survey data with simulations, this framework automatically adjusts risk rankings based on how cautious a decision-maker is.
@@ -982,8 +982,8 @@ footer {
       </div>
       <div>
         <h4 class="entry-title"><a href="projects/rag-inspector-training-evaluation.html">Evaluating Multi-Agent and Single-Agent RAG Frameworks for Highway Construction Inspector Training</a></h4>
-        <p class="entry-meta"><span class="state">Paper</span> TRB Annual Meeting &middot; 2027</p>
         <p class="authors"><span class="me">Irfan Gazi</span>, Kyungki Kim, Chun-Hsing (Jun) Ho</p>
+        <p class="entry-meta"><span class="state">Paper</span> <em>TRB Annual Meeting &middot; 2027</em></p>
         <p class="takeaway">
           Whether a multi-agent RAG system beats a single grounded LLM at answering NDOT inspection queries.
           Grounding cut hallucinations sharply; adding agent orchestration did not improve final answer quality.
@@ -1003,8 +1003,8 @@ footer {
       </div>
       <div>
         <h4 class="entry-title"><a href="projects/inspectiongpt-poster.html">InspectionGPT: Advancing Inspector Training Workflow in NDOT with an Agentic RAG-MCP Based Chatbot</a></h4>
-        <p class="entry-meta"><span class="state">Poster</span> CI &amp; CRC Joint Conference, San Antonio, TX &middot; 2026</p>
         <p class="authors"><span class="me">Irfan Gazi</span>, Kyungki Kim</p>
+        <p class="entry-meta"><span class="state">Poster</span> <em>CI &amp; CRC Joint Conference, San Antonio, TX &middot; 2026</em></p>
         <p class="takeaway">
           A chatbot that answers a trainee inspector&rsquo;s questions from the NDOT construction manuals with
           the passage it drew on cited beside the answer, so a new inspector can check the source rather
@@ -1027,9 +1027,6 @@ footer {
       <div>
         <h4 class="entry-title"><a href="projects/ndot-inspection-training.html">AI and Immersive AR/VR for Sustained Material and Construction Inspection Training and Knowledge Retention</a></h4>
         <p class="entry-meta"><span class="state">Talk</span> NDOT &amp; University of Nebraska&ndash;Lincoln Research Summit &middot; 2026</p>
-        <p class="authors">
-          <span class="me">Supervisor</span>: Kyungki Kim, Chun-Hsing (Jun) Ho
-        </p>
         <p class="takeaway">
           The project talk for our NDOT-funded work: InspectionGPT as a cited knowledge base and virtual
           mentor for new inspectors, and the immersive VR environment it is being embedded in, so an
