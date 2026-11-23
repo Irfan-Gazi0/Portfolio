@@ -1,16 +1,14 @@
 # Everything the site serves is committed; this is the short list of things
 # that live here to make the committed files, and must not be published.
 
-# Raw image sources. Only the downscaled .webp is committed — see
-# "Adding an image" in README.md.
+# Raw image sources. Only the downscaled .webp is committed; demo clips ship
+# as .webm/.mp4 with a .webp poster.
 images/*.jpg
 images/*.jpeg
 images/*.png
 images/*.tif
 images/*.tiff
 images/*.gif
-# Served demo clip (palette-reduced, under 3 MB), not a raw source.
-!images/work-zone-hazard-demo.gif
 
 # Source material for the site's write-ups: internal project documents and the
 # raw screen recordings they came with. images/inspection-gpt*.webp and
