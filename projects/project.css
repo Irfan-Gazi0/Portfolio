@@ -142,8 +142,8 @@ p { margin: 0 0 14px; overflow-wrap: break-word; }
 .buttons svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 
 .teaser { margin: 34px 0 6px; }
-.teaser img, .media img {
-  width: 100%; border-radius: 10px;
+.teaser img, .media img, .media video {
+  display: block; width: 100%; height: auto; border-radius: 10px;
   border: 1px solid var(--rule-faint); background: #fff; box-shadow: var(--shadow);
 }
 figcaption { margin-top: 8px; font-size: 14px; color: var(--ink-mute); line-height: 1.5; text-align: center; }

@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" />
-<link rel="stylesheet" href="project.css?v=4" />
+<link rel="stylesheet" href="project.css?v=5" />
 <script>
   (function () {
     try {
@@ -68,8 +68,8 @@
         The 360-degree recording of the training plays around the viewer. A floating panel carries the video controls, quick questions and the chat, so a responder can ask about what they are watching without leaving it.
       </p>
       <figure class="media">
-        <img src="../images/ev-vr-portal-still.webp" data-anim="../images/ev-vr-portal.webp" width="800" height="446" loading="lazy" decoding="async"
-             alt="Inside the VR portal: the 360-degree recording of the training plays around the viewer, while a floating panel carries the video controls, quick-question chips reading &quot;Shut down HV&quot;, &quot;Battery fire&quot; and &quot;Where to cut&quot;, and a chat thread answering &quot;Where are the two batteries located in Ford Mustang?&quot;" />
+        <video class="fig-video" width="600" height="334" data-poster="../images/ev-vr-portal-still.webp" muted loop playsinline preload="none"
+               aria-label="Inside the VR portal: the 360-degree recording of the training plays around the viewer, while a floating panel carries the video controls, quick-question chips reading &quot;Shut down HV&quot;, &quot;Battery fire&quot; and &quot;Where to cut&quot;, and a chat thread answering &quot;Where are the two batteries located in Ford Mustang?&quot;"><source data-src="../images/ev-vr-portal.webm" type="video/webm" /><source data-src="../images/ev-vr-portal.mp4" type="video/mp4" /></video>
       </figure>
     </section>
 
@@ -99,12 +99,29 @@
 </main>
 
 <script>
-  /* Animated figures only where motion is welcome. */
+  /* Demo video: poster and sources load only near the viewport. It plays
+     unless the reader asked for reduced motion. */
   (function () {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    Array.prototype.forEach.call(document.querySelectorAll('img[data-anim]'), function (img) {
-      img.src = img.getAttribute('data-anim');
-    });
+    var vids = document.querySelectorAll('video.fig-video');
+    if (!vids.length) return;
+    var motion = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function start(v) {
+      v.poster = v.getAttribute('data-poster'); v.removeAttribute('data-poster');
+      if (!motion) return;
+      Array.prototype.forEach.call(v.querySelectorAll('source[data-src]'), function (s) {
+        s.src = s.getAttribute('data-src'); s.removeAttribute('data-src');
+      });
+      v.load();
+      var p = v.play();
+      if (p && p.catch) p.catch(function () {});
+    }
+    if (!('IntersectionObserver' in window)) { Array.prototype.forEach.call(vids, start); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { io.unobserve(e.target); start(e.target); }
+      });
+    }, { rootMargin: '300px 0px' });
+    Array.prototype.forEach.call(vids, function (v) { io.observe(v); });
   })();
 
   /* YouTube thumbnail becomes the player on click. */

@@ -531,12 +531,12 @@ button.linklike { cursor: pointer; font: inherit; }
   border-radius: 8px; border: 1px solid var(--rule-faint); background: #fff;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-.entry-fig.fig-fill img {
+.entry-fig.fig-fill img, .entry-fig.fig-fill video {
   position: absolute; inset: 0; width: 100%; height: 100%;
   aspect-ratio: auto; object-fit: cover; border: 0; border-radius: 0;
   transform: scale(1.08);
 }
-.entry-fig.fig-fill:hover img { transform: scale(1.08); box-shadow: none; }
+.entry-fig.fig-fill:hover img, .entry-fig.fig-fill:hover video { transform: scale(1.08); box-shadow: none; }
 .entry-fig.fig-fill:hover { transform: scale(1.04); box-shadow: 0 0 20px 2px var(--accent), var(--shadow); }
 /* On desktop every figure is one fixed height, the height of a typical
    journal entry's text block, and the media is cropped to fill it. */
@@ -882,9 +882,8 @@ footer {
 
     <article class="entry">
       <div class="entry-fig fig-fill">
-        <img src="images/inspection-gpt-still.webp" width="775" height="457" loading="lazy" decoding="async"
-             data-anim="images/inspection-gpt.webp"
-             alt="The InspectionGPT interface: a sidebar of NDOT standard specifications, tech talk videos and the project contract; a chat thread answering &quot;Once the anchor bolts are set in concrete, how far off plumb can they be?&quot; with the specification passage quoted and page-level sources listed; and the cited manual page open beside it." />
+        <video class="fig-video" width="582" height="344" data-poster="images/inspection-gpt-still.webp" muted loop playsinline preload="none"
+               aria-label="The InspectionGPT interface: a sidebar of NDOT standard specifications, tech talk videos and the project contract; a chat thread answering &quot;Once the anchor bolts are set in concrete, how far off plumb can they be?&quot; with the specification passage quoted and page-level sources listed; and the cited manual page open beside it."><source data-src="images/inspection-gpt.webm" type="video/webm" /><source data-src="images/inspection-gpt.mp4" type="video/mp4" /></video>
       </div>
       <div>
         <h4 class="entry-title"><a href="projects/ndot-inspection-training.html">AI and VR for Construction Inspection Training</a></h4>
@@ -900,9 +899,8 @@ footer {
 
     <article class="entry">
       <div class="entry-fig fig-fill">
-        <img src="images/ev-vr-portal-still.webp" width="800" height="446" loading="lazy" decoding="async"
-             data-anim="images/ev-vr-portal.webp"
-             alt="Inside the VR portal: the 360-degree recording of the training plays around the viewer, while a floating panel carries the video controls, quick-question chips reading &quot;Shut down HV&quot;, &quot;Battery fire&quot; and &quot;Where to cut&quot;, and a chat thread answering &quot;Where are the two batteries located in Ford Mustang?&quot;" />
+        <video class="fig-video" width="600" height="334" data-poster="images/ev-vr-portal-still.webp" muted loop playsinline preload="none"
+               aria-label="Inside the VR portal: the 360-degree recording of the training plays around the viewer, while a floating panel carries the video controls, quick-question chips reading &quot;Shut down HV&quot;, &quot;Battery fire&quot; and &quot;Where to cut&quot;, and a chat thread answering &quot;Where are the two batteries located in Ford Mustang?&quot;"><source data-src="images/ev-vr-portal.webm" type="video/webm" /><source data-src="images/ev-vr-portal.mp4" type="video/mp4" /></video>
       </div>
       <div>
         <h4 class="entry-title"><a href="projects/ev-emergency-response-training.html">Modernizing EV Emergency Response Training Through XR and AI</a></h4>
@@ -1027,7 +1025,7 @@ footer {
 
     <article class="entry">
       <div class="entry-fig">
-        <a href="projects/work-zone-hazard-vlm.html" aria-label="Work-Zone Hazard Identification project page"><video class="fig-video" width="480" height="270" poster="images/work-zone-hazard-demo-poster.webp" autoplay muted loop playsinline preload="metadata" aria-label="Demo of the work-zone hazard pipeline flagging a worker inside a paver&rsquo;s operating radius"><source src="images/work-zone-hazard-demo.webm" type="video/webm" /><source src="images/work-zone-hazard-demo.mp4" type="video/mp4" /></video></a>
+        <a href="projects/work-zone-hazard-vlm.html" aria-label="Work-Zone Hazard Identification project page"><video class="fig-video" width="480" height="270" data-poster="images/work-zone-hazard-demo-poster.webp" muted loop playsinline preload="none" aria-label="Demo of the work-zone hazard pipeline flagging a worker inside a paver&rsquo;s operating radius"><source data-src="images/work-zone-hazard-demo.webm" type="video/webm" /><source data-src="images/work-zone-hazard-demo.mp4" type="video/mp4" /></video></a>
       </div>
       <div>
         <h4 class="entry-title"><a href="projects/work-zone-hazard-vlm.html">Work-Zone Hazard Identification with Vision-Language Reasoning</a></h4>
@@ -1286,20 +1284,33 @@ footer {
   })();
 
 
-  /* Swap a still figure for its animated .webp, but only where motion is
-     welcome. The markup ships the still, so a reader who asked for reduced
-     motion — or who has no JavaScript — never downloads the animation at all. */
+  /* Demo videos ship with their poster and sources in data-* attributes, so
+     nothing downloads until a video comes within 300px of the viewport. A
+     video poster is never lazy-loaded by the browser, and three of them at
+     start-up cost about 0.6 s of mobile LCP in Lighthouse. Near the viewport
+     the poster is set, and the video loads and plays unless the reader asked
+     for reduced motion. Without JavaScript the frame stays empty. */
   (function () {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      /* Demo videos autoplay; stop them and leave the poster frame showing. */
-      Array.prototype.forEach.call(document.querySelectorAll('video.fig-video'), function (v) {
-        v.removeAttribute('autoplay'); v.pause();
+    var vids = document.querySelectorAll('video.fig-video');
+    if (!vids.length) return;
+    var motion = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function start(v) {
+      v.poster = v.getAttribute('data-poster'); v.removeAttribute('data-poster');
+      if (!motion) return;
+      Array.prototype.forEach.call(v.querySelectorAll('source[data-src]'), function (s) {
+        s.src = s.getAttribute('data-src'); s.removeAttribute('data-src');
       });
-      return;
+      v.load();
+      var p = v.play();
+      if (p && p.catch) p.catch(function () {});
     }
-    Array.prototype.forEach.call(document.querySelectorAll('img[data-anim]'), function (img) {
-      img.src = img.getAttribute('data-anim');
-    });
+    if (!('IntersectionObserver' in window)) { Array.prototype.forEach.call(vids, start); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { io.unobserve(e.target); start(e.target); }
+      });
+    }, { rootMargin: '300px 0px' });
+    Array.prototype.forEach.call(vids, function (v) { io.observe(v); });
   })();
 
   /* Swap a YouTube thumbnail for the player on click. A modified click

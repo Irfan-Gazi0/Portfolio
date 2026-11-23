@@ -11,9 +11,9 @@ images/*.tiff
 images/*.gif
 
 # Source material for the site's write-ups: internal project documents and the
-# raw screen recordings they came with. images/inspection-gpt*.webp and
-# images/ev-vr-portal*.webp are the committed results; nothing in here is
-# published.
+# raw screen recordings they came with. images/inspection-gpt* and
+# images/ev-vr-portal* (.webm, .mp4 and the -still.webp poster) are the
+# committed results; nothing in here is published.
 Project 1/
 Project 2/
 
