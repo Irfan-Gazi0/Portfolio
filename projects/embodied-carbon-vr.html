@@ -142,5 +142,13 @@
     });
   })();
 </script>
+<script>
+  /* Register the caching service worker (sw.js) for faster repeat visits. */
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('../sw.js').catch(function () {});
+    });
+  }
+</script>
 </body>
 </html>

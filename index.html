@@ -1404,5 +1404,13 @@ footer {
   <img src="images/profile.webp" width="450" height="530" alt="Portrait of Irfan Gazi" />
 </div>
 
+<script>
+  /* Register the caching service worker (sw.js) for faster repeat visits. */
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('sw.js').catch(function () {});
+    });
+  }
+</script>
 </body>
 </html>
